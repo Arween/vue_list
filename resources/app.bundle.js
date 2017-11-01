@@ -14182,37 +14182,46 @@ new _vue2.default({
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: () => ({
         text: 'Hello from Vue',
+        search: '',
         arr: [{
-            name: "text",
+            title: "text",
             number_f: 24
         }, {
-            name: "text",
+            title: "name",
             number_f: 6
         }, {
-            name: "text",
+            title: "name text",
             number_f: 1
         }, {
-            name: "text",
+            title: "text",
             number_f: 5
         }, {
-            name: "text",
+            title: "name",
             number_f: 83
         }, {
-            name: "text",
+            title: "text",
             number_f: 7
         }, {
-            name: "text",
+            title: "text name",
             number_f: 9
         }],
         sort_arr: []
     }),
     computed: {
-        selectedSortLtoG() {
-            return this.arr;
+        //            selectedSortLtoG() {
+        //                return this.arr;
+        //            },
+        searchName() {
+            return this.arr.filter(post => {
+                console.log(post);
+                return post.title.toLowerCase().includes(this.search.toLowerCase());
+            });
         }
     },
     //        watch: {
@@ -14226,7 +14235,9 @@ new _vue2.default({
         //            addTempArray(){
         //                this.sort_arr = this.arr;
         //            },
-
+        //            searchName() {
+        //                console.log('67677')
+        //            },
         sortLtoG() {
             let temp_arr = this.arr;
             this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, true);
@@ -15397,7 +15408,7 @@ exports = module.exports = __webpack_require__(11)();
 
 
 // module
-exports.push([module.i, "\n.list[data-v-596512ba]{\n    width: 100%;\n    padding: 200px 0;\n}\n.item[data-v-596512ba]{\n    width: 100px;\n    height: 100px;\n    border: none;\n    background: slateblue;\n    display: inline-flex;\n    margin-right: 10px;\n    margin-bottom: 10px;\n}\n.item p[data-v-596512ba]{\n    /*color: darkorange;*/\n    color: #ffffff;\n    display: block;\n    margin: auto;\n    font-weight: bold;\n}\n.list_button[data-v-596512ba]{\n    width: 100%;\n    margin-bottom: 50px;\n}\n.list .red[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: firebrick;\n    border: none;\n}\n.list .green[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: lightcoral;\n    border: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/components/components/FilterFirst.vue?d6881122"],"names":[],"mappings":";AAgJA;IACA,YAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,mBAAA;IACA,oBAAA;CACA;AACA;IACA,sBAAA;IACA,eAAA;IACA,eAAA;IACA,aAAA;IACA,kBAAA;CACA;AACA;IACA,YAAA;IACA,oBAAA;CACA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,sBAAA;IACA,aAAA;CAEA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,uBAAA;IACA,aAAA;CACA","file":"FilterFirst.vue","sourcesContent":["<template>\n    <div class=\"list\">\n        <div class=\"list_button\">\n            <button v-on:click=\"sortLtoG\" class=\"red\">По возрастанию</button>\n            <button v-on:click=\"sortGtoL\" class=\"green\">По убыанию</button>\n        </div>\n\n\n        <div class=\"item\" v-for=\"i in selectedSortLtoG\">\n            <p>{{ i.number_f }}</p>\n        </div>\n    </div>\n</template>\n<script>\n    export default {\n        data: () => ({\n            text: 'Hello from Vue',\n            arr: [\n                {\n                    name: \"text\",\n                    number_f: 24\n                },\n                {\n                    name: \"text\",\n                    number_f: 6\n                },\n                {\n                    name: \"text\",\n                    number_f: 1\n                },\n                {\n                    name: \"text\",\n                    number_f: 5\n                },\n                {\n                    name: \"text\",\n                    number_f: 83\n                },\n                {\n                    name: \"text\",\n                    number_f: 7\n                },\n                {\n                    name: \"text\",\n                    number_f: 9\n                }\n            ],\n            sort_arr: []\n        }),\n        computed: {\n            selectedSortLtoG() {\n                return this.arr;\n            }\n        },\n//        watch: {\n//\n//        },\n//        mounted: function(){\n//            this.sortLtoG();\n//        },\n        methods: {\n\n//            addTempArray(){\n//                this.sort_arr = this.arr;\n//            },\n\n            sortLtoG() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, true);\n//                console.dir(this.arr)\n            },\n            sortGtoL() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, false);\n//                console.dir(this.arr)\n            },\n            quickSort(items, left, right, val_sort) {\n                let index;\n//                console.dir(items);\n                if (items.length > 1) {\n                    index = this.partition(items, left, right, val_sort);\n                    if (left < index - 1) {\n                        this.quickSort(items, left, index - 1, val_sort);\n                    }\n                    if (index < right) {\n                        this.quickSort(items, index, right, val_sort);\n                    }\n                }\n                return items;\n            },\n            partition(items, left, right, val_sort) {\n                let pivot   = items[Math.floor((right + left) / 2)],\n                    i       = left,\n                    j       = right;\n\n                if ( val_sort ) {\n                    while (i <= j) {\n                        while (items[i].number_f < pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f > pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n//                }\n                } else {\n                    while (i <= j) {\n                        while (items[i].number_f > pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f < pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n                }\n\n\n                return i;\n            },\n            swap(items, firstIndex, secondIndex){\n                const temp = items[firstIndex].number_f;\n                items[firstIndex].number_f = items[secondIndex].number_f;\n                items[secondIndex].number_f = temp;\n            }\n        },\n\n    }\n\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n    .list{\n        width: 100%;\n        padding: 200px 0;\n    }\n    .item{\n        width: 100px;\n        height: 100px;\n        border: none;\n        background: slateblue;\n        display: inline-flex;\n        margin-right: 10px;\n        margin-bottom: 10px;\n    }\n    .item p{\n        /*color: darkorange;*/\n        color: #ffffff;\n        display: block;\n        margin: auto;\n        font-weight: bold;\n    }\n    .list_button{\n        width: 100%;\n        margin-bottom: 50px;\n    }\n    .list .red{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: firebrick;\n        border: none;\n\n    }\n    .list .green{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: lightcoral;\n        border: none;\n    }\n</style>\n\n"],"sourceRoot":""}]);
+exports.push([module.i, "\n.list[data-v-596512ba]{\n    width: 100%;\n    padding: 200px 0;\n}\n.item[data-v-596512ba]{\n    width: 100px;\n    height: 100px;\n    border: none;\n    background: slateblue;\n    display: inline-block;\n    margin-right: 10px;\n    margin-bottom: 10px;\n}\n.item p[data-v-596512ba]{\n    /*color: darkorange;*/\n    color: #ffffff;\n    /*display: block;*/\n    margin: 10px auto;\n    text-align: center;\n    width: 100%;\n    font-weight: bold;\n}\n.list_button[data-v-596512ba]{\n    width: 100%;\n    margin-bottom: 50px;\n}\n.list .red[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: firebrick;\n    border: none;\n}\n.list .green[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: lightcoral;\n    border: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/components/components/FilterFirst.vue?87fece3a"],"names":[],"mappings":";AA2JA;IACA,YAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;IACA,aAAA;IACA,sBAAA;IACA,sBAAA;IACA,mBAAA;IACA,oBAAA;CACA;AACA;IACA,sBAAA;IACA,eAAA;IACA,mBAAA;IACA,kBAAA;IACA,mBAAA;IACA,YAAA;IACA,kBAAA;CACA;AACA;IACA,YAAA;IACA,oBAAA;CACA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,sBAAA;IACA,aAAA;CAEA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,uBAAA;IACA,aAAA;CACA","file":"FilterFirst.vue","sourcesContent":["<template>\n    <div class=\"list\">\n        <div class=\"list_button\">\n            <input v-model=\"search\"/>\n            <button v-on:click=\"sortLtoG\" class=\"red\">По возрастанию</button>\n            <button v-on:click=\"sortGtoL\" class=\"green\">По убыанию</button>\n        </div>\n\n\n        <div class=\"item\" v-for=\"i in searchName\">\n            <p>{{ i.number_f }}</p>\n            <p>{{ i.title }}</p>\n        </div>\n    </div>\n</template>\n<script>\n    export default {\n        data: () => ({\n            text: 'Hello from Vue',\n            search: '',\n            arr: [\n                {\n                    title: \"text\",\n                    number_f: 24\n                },\n                {\n                    title: \"name\",\n                    number_f: 6\n                },\n                {\n                    title: \"name text\",\n                    number_f: 1\n                },\n                {\n                    title: \"text\",\n                    number_f: 5\n                },\n                {\n                    title: \"name\",\n                    number_f: 83\n                },\n                {\n                    title: \"text\",\n                    number_f: 7\n                },\n                {\n                    title: \"text name\",\n                    number_f: 9\n                }\n            ],\n            sort_arr: []\n        }),\n        computed: {\n//            selectedSortLtoG() {\n//                return this.arr;\n//            },\n            searchName() {\n                return this.arr.filter(post => {\n                    console.log(post)\n                    return post.title.toLowerCase().includes(this.search.toLowerCase())\n                })\n            }\n        },\n//        watch: {\n//\n//        },\n//        mounted: function(){\n//            this.sortLtoG();\n//        },\n        methods: {\n\n//            addTempArray(){\n//                this.sort_arr = this.arr;\n//            },\n//            searchName() {\n//                console.log('67677')\n//            },\n            sortLtoG() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, true);\n//                console.dir(this.arr)\n            },\n            sortGtoL() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, false);\n//                console.dir(this.arr)\n            },\n            quickSort(items, left, right, val_sort) {\n                let index;\n//                console.dir(items);\n                if (items.length > 1) {\n                    index = this.partition(items, left, right, val_sort);\n                    if (left < index - 1) {\n                        this.quickSort(items, left, index - 1, val_sort);\n                    }\n                    if (index < right) {\n                        this.quickSort(items, index, right, val_sort);\n                    }\n                }\n                return items;\n            },\n            partition(items, left, right, val_sort) {\n                let pivot   = items[Math.floor((right + left) / 2)],\n                    i       = left,\n                    j       = right;\n\n                if ( val_sort ) {\n                    while (i <= j) {\n                        while (items[i].number_f < pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f > pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n//                }\n                } else {\n                    while (i <= j) {\n                        while (items[i].number_f > pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f < pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n                }\n\n\n                return i;\n            },\n            swap(items, firstIndex, secondIndex){\n                const temp = items[firstIndex].number_f;\n                items[firstIndex].number_f = items[secondIndex].number_f;\n                items[secondIndex].number_f = temp;\n            }\n        },\n\n    }\n\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n    .list{\n        width: 100%;\n        padding: 200px 0;\n    }\n    .item{\n        width: 100px;\n        height: 100px;\n        border: none;\n        background: slateblue;\n        display: inline-block;\n        margin-right: 10px;\n        margin-bottom: 10px;\n    }\n    .item p{\n        /*color: darkorange;*/\n        color: #ffffff;\n        /*display: block;*/\n        margin: 10px auto;\n        text-align: center;\n        width: 100%;\n        font-weight: bold;\n    }\n    .list_button{\n        width: 100%;\n        margin-bottom: 50px;\n    }\n    .list .red{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: firebrick;\n        border: none;\n\n    }\n    .list .green{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: lightcoral;\n        border: none;\n    }\n</style>\n\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -21500,6 +21511,26 @@ var render = function() {
     { staticClass: "list" },
     [
       _c("div", { staticClass: "list_button" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.search,
+              expression: "search"
+            }
+          ],
+          domProps: { value: _vm.search },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.search = $event.target.value
+            }
+          }
+        }),
+        _vm._v(" "),
         _c("button", { staticClass: "red", on: { click: _vm.sortLtoG } }, [
           _vm._v("По возрастанию")
         ]),
@@ -21509,9 +21540,11 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._l(_vm.selectedSortLtoG, function(i) {
+      _vm._l(_vm.searchName, function(i) {
         return _c("div", { staticClass: "item" }, [
-          _c("p", [_vm._v(_vm._s(i.number_f))])
+          _c("p", [_vm._v(_vm._s(i.number_f))]),
+          _vm._v(" "),
+          _c("p", [_vm._v(_vm._s(i.title))])
         ])
       })
     ],
