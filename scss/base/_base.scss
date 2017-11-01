@@ -1,0 +1,40 @@
+
+body {
+    font-size: 0;
+    font-size: 16px;
+    background: #193341;
+    p{
+    color: white;
+    }
+}
+
+//.map-container {
+//    width: 500px;
+//    height: 500px;
+//  }
+//
+//
+//  .vue-map{
+//  height: 500px;
+//  }
+
+
+  body.hidden-scroll {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+@media only screen and (min-width : 1040px) {
+
+}
+@media only screen and (max-width : 1039px) {
+    
+
+}
+
+@media only screen and (max-width : 767px) {
+    
+}
