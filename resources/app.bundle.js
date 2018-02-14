@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 243);
+/******/ 	return __webpack_require__(__webpack_require__.s = 238);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -109,7 +109,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _forEach2 = __webpack_require__(73);
+var _forEach2 = __webpack_require__(79);
 
 var _forEach3 = _interopRequireDefault(_forEach2);
 
@@ -217,7 +217,7 @@ exports.default = function (vueElement, googleMapsElement, props, options) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var freeGlobal = __webpack_require__(63);
+var freeGlobal = __webpack_require__(72);
 
 /** Detect free variable `self`. */
 var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -239,7 +239,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mapValues2 = __webpack_require__(77);
+var _mapValues2 = __webpack_require__(83);
 
 var _mapValues3 = _interopRequireDefault(_mapValues2);
 
@@ -261,7 +261,7 @@ exports.default = {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClone = __webpack_require__(56);
+var baseClone = __webpack_require__(65);
 
 /** Used to compose bitmasks for cloning. */
 var CLONE_SYMBOLS_FLAG = 4;
@@ -301,6 +301,69 @@ module.exports = clone;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _forEach2 = __webpack_require__(79);
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/* vim: set softtabstop=2 shiftwidth=2 expandtab : */
+
+exports.default = function (vueElement, googleMapObject, events) {
+  (0, _forEach3.default)(events, function (eventName) {
+    var exposedName = eventName;
+    googleMapObject.addListener(eventName, function (ev) {
+      vueElement.$emit(exposedName, ev);
+    });
+  });
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+module.exports = isObjectLike;
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -409,7 +472,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -419,35 +482,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _forEach2 = __webpack_require__(73);
-
-var _forEach3 = _interopRequireDefault(_forEach2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/* vim: set softtabstop=2 shiftwidth=2 expandtab : */
-
-exports.default = function (vueElement, googleMapObject, events) {
-  (0, _forEach3.default)(events, function (eventName) {
-    var exposedName = eventName;
-    googleMapObject.addListener(eventName, function (ev) {
-      vueElement.$emit(exposedName, ev);
-    });
-  });
-};
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _deferredReady = __webpack_require__(26);
+var _deferredReady = __webpack_require__(27);
 
 /**
  * @class MapElementMixin @mixins DeferredReadyMixin
@@ -507,11 +542,11 @@ exports.default = {
 }; /* vim: set softtabstop=2 shiftwidth=2 expandtab : */
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsNative = __webpack_require__(119),
-    getValue = __webpack_require__(156);
+var baseIsNative = __webpack_require__(116),
+    getValue = __webpack_require__(151);
 
 /**
  * Gets the native function at `key` of `object`.
@@ -530,7 +565,7 @@ module.exports = getNative;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -567,17 +602,17 @@ module.exports = isObject;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayMap = __webpack_require__(30),
-    baseClone = __webpack_require__(56),
-    baseUnset = __webpack_require__(134),
-    castPath = __webpack_require__(14),
+var arrayMap = __webpack_require__(32),
+    baseClone = __webpack_require__(65),
+    baseUnset = __webpack_require__(131),
+    castPath = __webpack_require__(15),
     copyObject = __webpack_require__(18),
-    customOmitClone = __webpack_require__(150),
-    flatRest = __webpack_require__(153),
-    getAllKeysIn = __webpack_require__(35);
+    customOmitClone = __webpack_require__(145),
+    flatRest = __webpack_require__(148),
+    getAllKeysIn = __webpack_require__(38);
 
 /** Used to compose bitmasks for cloning. */
 var CLONE_DEEP_FLAG = 1,
@@ -630,7 +665,7 @@ module.exports = omit;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /*
@@ -686,7 +721,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(2);
@@ -698,12 +733,12 @@ module.exports = Symbol;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12),
-    getRawTag = __webpack_require__(155),
-    objectToString = __webpack_require__(183);
+var Symbol = __webpack_require__(13),
+    getRawTag = __webpack_require__(150),
+    objectToString = __webpack_require__(178);
 
 /** `Object#toString` result references. */
 var nullTag = '[object Null]',
@@ -732,13 +767,13 @@ module.exports = baseGetTag;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArray = __webpack_require__(0),
-    isKey = __webpack_require__(39),
-    stringToPath = __webpack_require__(195),
-    toString = __webpack_require__(206);
+    isKey = __webpack_require__(42),
+    stringToPath = __webpack_require__(191),
+    toString = __webpack_require__(204);
 
 /**
  * Casts `value` to a path array if it's not one.
@@ -759,10 +794,10 @@ module.exports = castPath;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isSymbol = __webpack_require__(47);
+var isSymbol = __webpack_require__(51);
 
 /** Used as references for various `Number` constants. */
 var INFINITY = 1 / 0;
@@ -786,41 +821,6 @@ module.exports = toKey;
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is object-like. A value is object-like if it's not `null`
- * and has a `typeof` result of "object".
- *
- * @static
- * @memberOf _
- * @since 4.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
- * @example
- *
- * _.isObjectLike({});
- * // => true
- *
- * _.isObjectLike([1, 2, 3]);
- * // => true
- *
- * _.isObjectLike(_.noop);
- * // => false
- *
- * _.isObjectLike(null);
- * // => false
- */
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-
-module.exports = isObjectLike;
-
-
-/***/ }),
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -840,7 +840,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(235)
+var listToStyles = __webpack_require__(230)
 
 /*
 type StyleObject = {
@@ -868,13 +868,17 @@ var singletonElement = null
 var singletonCounter = 0
 var isProduction = false
 var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
 
 // Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 // tags it will allow on a page
 var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
 
-module.exports = function (parentId, list, _isProduction) {
+module.exports = function (parentId, list, _isProduction, _options) {
   isProduction = _isProduction
+
+  options = _options || {}
 
   var styles = listToStyles(parentId, list)
   addStylesToDom(styles)
@@ -939,7 +943,7 @@ function createStyleElement () {
 
 function addStyle (obj /* StyleObjectPart */) {
   var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
 
   if (styleElement) {
     if (isProduction) {
@@ -1021,6 +1025,9 @@ function applyToTag (styleElement, obj) {
   if (media) {
     styleElement.setAttribute('media', media)
   }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
 
   if (sourceMap) {
     // https://developer.chrome.com/devtools/docs/javascript-debugging
@@ -1045,8 +1052,8 @@ function applyToTag (styleElement, obj) {
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assignValue = __webpack_require__(32),
-    baseAssignValue = __webpack_require__(33);
+var assignValue = __webpack_require__(34),
+    baseAssignValue = __webpack_require__(35);
 
 /**
  * Copies properties of `source` to `object`.
@@ -1091,9 +1098,9 @@ module.exports = copyObject;
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayLikeKeys = __webpack_require__(54),
-    baseKeys = __webpack_require__(121),
-    isArrayLike = __webpack_require__(44);
+var arrayLikeKeys = __webpack_require__(64),
+    baseKeys = __webpack_require__(119),
+    isArrayLike = __webpack_require__(48);
 
 /**
  * Creates an array of the own enumerable property names of `object`.
@@ -1245,11 +1252,11 @@ var load = exports.load = function load(apiKey, version, libraries, loadCn) {
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listCacheClear = __webpack_require__(169),
-    listCacheDelete = __webpack_require__(170),
-    listCacheGet = __webpack_require__(171),
-    listCacheHas = __webpack_require__(172),
-    listCacheSet = __webpack_require__(173);
+var listCacheClear = __webpack_require__(164),
+    listCacheDelete = __webpack_require__(165),
+    listCacheGet = __webpack_require__(166),
+    listCacheHas = __webpack_require__(167),
+    listCacheSet = __webpack_require__(168);
 
 /**
  * Creates an list cache object.
@@ -1283,7 +1290,7 @@ module.exports = ListCache;
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var eq = __webpack_require__(41);
+var eq = __webpack_require__(45);
 
 /**
  * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -1310,8 +1317,8 @@ module.exports = assocIndexOf;
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var castPath = __webpack_require__(14),
-    toKey = __webpack_require__(15);
+var castPath = __webpack_require__(15),
+    toKey = __webpack_require__(16);
 
 /**
  * The base implementation of `_.get` without support for default values.
@@ -1340,7 +1347,7 @@ module.exports = baseGet;
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isKeyable = __webpack_require__(167);
+var isKeyable = __webpack_require__(162);
 
 /**
  * Gets the data for `map`.
@@ -1364,7 +1371,71 @@ module.exports = getMapData;
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(8);
+var DataView = __webpack_require__(96),
+    Map = __webpack_require__(29),
+    Promise = __webpack_require__(98),
+    Set = __webpack_require__(99),
+    WeakMap = __webpack_require__(101),
+    baseGetTag = __webpack_require__(14),
+    toSource = __webpack_require__(78);
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]',
+    objectTag = '[object Object]',
+    promiseTag = '[object Promise]',
+    setTag = '[object Set]',
+    weakMapTag = '[object WeakMap]';
+
+var dataViewTag = '[object DataView]';
+
+/** Used to detect maps, sets, and weakmaps. */
+var dataViewCtorString = toSource(DataView),
+    mapCtorString = toSource(Map),
+    promiseCtorString = toSource(Promise),
+    setCtorString = toSource(Set),
+    weakMapCtorString = toSource(WeakMap);
+
+/**
+ * Gets the `toStringTag` of `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+var getTag = baseGetTag;
+
+// Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
+if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
+    (Map && getTag(new Map) != mapTag) ||
+    (Promise && getTag(Promise.resolve()) != promiseTag) ||
+    (Set && getTag(new Set) != setTag) ||
+    (WeakMap && getTag(new WeakMap) != weakMapTag)) {
+  getTag = function(value) {
+    var result = baseGetTag(value),
+        Ctor = result == objectTag ? value.constructor : undefined,
+        ctorString = Ctor ? toSource(Ctor) : '';
+
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString: return dataViewTag;
+        case mapCtorString: return mapTag;
+        case promiseCtorString: return promiseTag;
+        case setCtorString: return setTag;
+        case weakMapCtorString: return weakMapTag;
+      }
+    }
+    return result;
+  };
+}
+
+module.exports = getTag;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__(9);
 
 /* Built-in method references that are verified to be native. */
 var nativeCreate = getNative(Object, 'create');
@@ -1373,7 +1444,7 @@ module.exports = nativeCreate;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1484,10 +1555,37 @@ var DeferredReadyMixin = exports.DeferredReadyMixin = {
 };
 
 /***/ }),
-/* 27 */
+/* 28 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(8),
+var getNative = __webpack_require__(9),
     root = __webpack_require__(2);
 
 /* Built-in method references that are verified to be native. */
@@ -1497,14 +1595,14 @@ module.exports = Map;
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapCacheClear = __webpack_require__(174),
-    mapCacheDelete = __webpack_require__(175),
-    mapCacheGet = __webpack_require__(176),
-    mapCacheHas = __webpack_require__(177),
-    mapCacheSet = __webpack_require__(178);
+var mapCacheClear = __webpack_require__(169),
+    mapCacheDelete = __webpack_require__(170),
+    mapCacheGet = __webpack_require__(171),
+    mapCacheHas = __webpack_require__(172),
+    mapCacheSet = __webpack_require__(173);
 
 /**
  * Creates a map cache object to store key-value pairs.
@@ -1535,15 +1633,15 @@ module.exports = MapCache;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(21),
-    stackClear = __webpack_require__(190),
-    stackDelete = __webpack_require__(191),
-    stackGet = __webpack_require__(192),
-    stackHas = __webpack_require__(193),
-    stackSet = __webpack_require__(194);
+    stackClear = __webpack_require__(186),
+    stackDelete = __webpack_require__(187),
+    stackGet = __webpack_require__(188),
+    stackHas = __webpack_require__(189),
+    stackSet = __webpack_require__(190);
 
 /**
  * Creates a stack cache object to store key-value pairs.
@@ -1568,7 +1666,7 @@ module.exports = Stack;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports) {
 
 /**
@@ -1595,7 +1693,7 @@ module.exports = arrayMap;
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 /**
@@ -1621,11 +1719,11 @@ module.exports = arrayPush;
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseAssignValue = __webpack_require__(33),
-    eq = __webpack_require__(41);
+var baseAssignValue = __webpack_require__(35),
+    eq = __webpack_require__(45);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1655,10 +1753,10 @@ module.exports = assignValue;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var defineProperty = __webpack_require__(61);
+var defineProperty = __webpack_require__(70);
 
 /**
  * The base implementation of `assignValue` and `assignMergeValue` without
@@ -1686,10 +1784,30 @@ module.exports = baseAssignValue;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.unary` without support for storing metadata.
+ *
+ * @private
+ * @param {Function} func The function to cap arguments for.
+ * @returns {Function} Returns the new capped function.
+ */
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+
+module.exports = baseUnary;
+
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Uint8Array = __webpack_require__(52);
+var Uint8Array = __webpack_require__(62);
 
 /**
  * Creates a clone of `arrayBuffer`.
@@ -1708,12 +1826,12 @@ module.exports = cloneArrayBuffer;
 
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetAllKeys = __webpack_require__(58),
-    getSymbolsIn = __webpack_require__(65),
-    keysIn = __webpack_require__(76);
+var baseGetAllKeys = __webpack_require__(67),
+    getSymbolsIn = __webpack_require__(74),
+    keysIn = __webpack_require__(82);
 
 /**
  * Creates an array of own and inherited enumerable property names and
@@ -1731,10 +1849,10 @@ module.exports = getAllKeysIn;
 
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(70);
+var overArg = __webpack_require__(77);
 
 /** Built-in value references. */
 var getPrototype = overArg(Object.getPrototypeOf, Object);
@@ -1743,11 +1861,11 @@ module.exports = getPrototype;
 
 
 /***/ }),
-/* 37 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayFilter = __webpack_require__(107),
-    stubArray = __webpack_require__(78);
+var arrayFilter = __webpack_require__(103),
+    stubArray = __webpack_require__(84);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1779,7 +1897,7 @@ module.exports = getSymbols;
 
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -1797,21 +1915,24 @@ var reIsUint = /^(?:0|[1-9]\d*)$/;
  * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
  */
 function isIndex(value, length) {
+  var type = typeof value;
   length = length == null ? MAX_SAFE_INTEGER : length;
+
   return !!length &&
-    (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length);
+    (type == 'number' ||
+      (type != 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 == 0 && value < length);
 }
 
 module.exports = isIndex;
 
 
 /***/ }),
-/* 39 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isArray = __webpack_require__(0),
-    isSymbol = __webpack_require__(47);
+    isSymbol = __webpack_require__(51);
 
 /** Used to match property names within property paths. */
 var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
@@ -1842,7 +1963,7 @@ module.exports = isKey;
 
 
 /***/ }),
-/* 40 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -1866,7 +1987,36 @@ module.exports = isPrototype;
 
 
 /***/ }),
-/* 41 */
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(72);
+
+/** Detect free variable `exports`. */
+var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+
+/** Detect free variable `module`. */
+var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
+
+/** Detect the popular CommonJS extension `module.exports`. */
+var moduleExports = freeModule && freeModule.exports === freeExports;
+
+/** Detect free variable `process` from Node.js. */
+var freeProcess = moduleExports && freeGlobal.process;
+
+/** Used to access faster Node.js helpers. */
+var nodeUtil = (function() {
+  try {
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+
+module.exports = nodeUtil;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)(module)))
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 /**
@@ -1909,7 +2059,7 @@ module.exports = eq;
 
 
 /***/ }),
-/* 42 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /**
@@ -1936,11 +2086,11 @@ module.exports = identity;
 
 
 /***/ }),
-/* 43 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsArguments = __webpack_require__(116),
-    isObjectLike = __webpack_require__(16);
+var baseIsArguments = __webpack_require__(112),
+    isObjectLike = __webpack_require__(6);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -1978,11 +2128,11 @@ module.exports = isArguments;
 
 
 /***/ }),
-/* 44 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(74),
-    isLength = __webpack_require__(46);
+var isFunction = __webpack_require__(80),
+    isLength = __webpack_require__(50);
 
 /**
  * Checks if `value` is array-like. A value is considered array-like if it's
@@ -2017,11 +2167,11 @@ module.exports = isArrayLike;
 
 
 /***/ }),
-/* 45 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(2),
-    stubFalse = __webpack_require__(205);
+    stubFalse = __webpack_require__(203);
 
 /** Detect free variable `exports`. */
 var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -2059,10 +2209,10 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)(module)))
 
 /***/ }),
-/* 46 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /** Used as references for various `Number` constants. */
@@ -2103,11 +2253,11 @@ module.exports = isLength;
 
 
 /***/ }),
-/* 47 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(13),
-    isObjectLike = __webpack_require__(16);
+var baseGetTag = __webpack_require__(14),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var symbolTag = '[object Symbol]';
@@ -2138,17 +2288,2474 @@ module.exports = isSymbol;
 
 
 /***/ }),
-/* 48 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/*
+Mixin for objects that are mounted by Google Maps
+Javascript API.
+
+These are objects that are sensitive to element resize
+operations so it exposes a property which accepts a bus
+
+*/
+
+exports.default = {
+  props: ['resizeBus'],
+
+  data: function data() {
+    return {
+      _actualResizeBus: null
+    };
+  },
+  created: function created() {
+    if (typeof this.resizeBus === 'undefined') {
+      this.$data._actualResizeBus = this.$gmapDefaultResizeBus;
+    } else {
+      this.$data._actualResizeBus = this.resizeBus;
+    }
+  },
+
+
+  methods: {
+    _resizeCallback: function _resizeCallback() {
+      this.resize();
+    },
+    _delayedResizeCallback: function _delayedResizeCallback() {
+      var _this = this;
+
+      this.$nextTick(function () {
+        return _this._resizeCallback();
+      });
+    }
+  },
+
+  watch: {
+    resizeBus: function resizeBus(newVal, oldVal) {
+      // eslint-disable-line no-unused-vars
+      this.$data._actualResizeBus = newVal;
+    },
+    '$data._actualResizeBus': function $data_actualResizeBus(newVal, oldVal) {
+      if (oldVal) {
+        oldVal.$off('resize', this._delayedResizeCallback);
+      }
+      if (newVal) {
+        newVal.$on('resize', this._delayedResizeCallback);
+      }
+    }
+  },
+
+  destroyed: function destroyed() {
+    if (this.$data._actualResizeBus) {
+      this.$data._actualResizeBus.$off('resize', this._delayedResizeCallback);
+    }
+  }
+};
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+const name_months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+const daysOfTheWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'суб', 'вс'];
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data: () => ({
+        daysCalendar: [],
+        selectedForm: [],
+        currentMonthInfo: {}
+    }),
+    computed: {
+        refreshMonth: function () {
+            this.daysCalendar = month.createMonth();
+            // console.log(this.daysCalendar);
+            return this.daysCalendar;
+        },
+        currentDay: function () {
+            this.selectDay();
+            return this.daysCalendar;
+        },
+        currentMonth: function () {
+            this.currentMonthInfo.index = month.infoMonth()[0];
+            this.currentMonthInfo.year = month.infoMonth()[1];
+            this.currentMonthInfo.name = name_months[this.currentMonthInfo.index];
+            this.currentMonthInfo.first = month.determineDayOfWeekOfFirstDay();
+            // month.name = name_months[arr_months[idx] - 12];
+            return this.currentMonthInfo;
+        }
+    },
+    methods: {
+        selectDay(event) {
+            console.log(event.target.attributes.day_num.value);
+            this.daysCalendar.forEach(day => {
+                day[2] = false;
+                if (day[0] == +event.target.attributes.day_num.value) {
+                    day[2] = true;
+                    console.log(day);
+                    //    return;
+                }
+            });
+            // this.daysCalendar[event.target.attributes.day_num.value - 1][2] = true;
+            this.selectedForm.date = event.target.attributes.day_num.value;
+            //    return this.daysCalendar[event.target.attributes.day_num.value][2];
+            this.$forceUpdate();
+        }
+        // infoMonth(){
+
+        // }
+    }
+});
+var Day = function (val, currentMonth, currentDay) {
+    // Приватная функция
+    var log = function (message) {
+        console.log(message);
+    };
+    // Публичное свойство
+    this.val = val;
+    this.currentMonth = currentMonth;
+    this.currentDay = currentDay;
+
+    // Публичный метод
+    this.logger = function (message) {
+        log('Public ' + message);
+    };
+};
+var getMonthIndex = new Date().getMonth() + 0;
+class Month {
+    constructor(index) {
+        this.name = '';
+        this.index = index;
+        this.countsDays = 0;
+        this.days = [];
+        this.previousDaysMonth = [];
+        this.nextDaysMonth = [];
+        this.year = new Date().getFullYear();
+    }
+    createMonth() {
+        // console.log('hello', this.index);
+        //  console.log(this.index + 'индекс');
+        // console.log(new Date(this.year, this.index, 0).getDate());
+        // console.log(typeof new Date(this.year, this.index, 0).getDate());
+
+        this.countsDays = new Date(this.year, this.index + 1, 0).getDate(); //количество дней в текущем месяце
+        console.log('counts', this.countsDays);
+        console.log("days:", new Date(this.year, this.index - 1, 0).getDate(), new Date(this.year, this.index, 0).getDate(), new Date(this.year, this.index + 1, 0).getDate(), new Date(this.year, this.index + 2, 0).getDate());
+        // не забыть проверить.если это текущий месяц, то искать текущий день
+        let tempDays = [];
+        var d = new Date();
+
+        for (let i = 1; i <= this.countsDays; i++) {
+            //                let temp day = [];
+            let currentDay = false;
+            //                console.log(d.getDate())
+            let selectDay = false;
+            let notEvents = false;
+            if (d.getDate() == i) {
+                // console.log('dfkd');
+                currentDay = true;
+            }
+            tempDays.push([i, currentDay, selectDay]);
+            //                console.log(i, d)
+        }
+        // console.log('calendar-d', tempDays)
+        // this.daysCalendar = tempDays;
+        // console.log('hhh', this.daysCalendar);
+        // this.daysCalendar = tempDays;
+        //------------------------------------
+        this.daysCalendar = this.determineDayOfWeekOfFirstDay(tempDays);
+        // console.log('kkk', this.daysCalendar);
+        return this.daysCalendar;
+        //            today = new Date().getDate()
+    }
+    infoMonth() {
+        // console.log(this.index+"----index");
+        let informMonth = [this.index, this.year];
+        return informMonth;
+    }
+    // previousDays(){
+    //     var d = new Date();
+    //     var n = d.getDay();
+
+    // };
+
+
+    //-------------------------------------------
+    determineDayOfWeekOfFirstDay(tD) {
+        console.log(this.year, this.index);
+        let first_day_of_the_week = new Date(this.year, this.index).getDay() - 1; //-- день недели первого дня месяца
+        if (first_day_of_the_week < 0) {
+            first_day_of_the_week = first_day_of_the_week + 7;
+        }
+        let tempCountsD = new Date(this.year, this.index, 0).getDate(); //-- ко-во дней
+        let lastDay_of_the_week = new Date(this.year, this.index, this.countsDays).getDay(); //-- день недели последнего дня месяца
+        console.log("lastDay_of_the_week", lastDay_of_the_week);
+        console.log("first_day_of_the_week", first_day_of_the_week);
+        let temp = getDaysPrevMonth(first_day_of_the_week);
+        function getDaysPrevMonth(firstDay) {
+            let tempDays = [];
+            // если вск === 0, то ставить до 6 дней пустых, руками
+            // for ( let l = 0; l < firstDay; l++ ){
+            for (let l = firstDay - 1; l >= 0; l--) {
+                let currentDay = false;
+                let selectDay = false;
+                let notEvents = true;
+                tempDays.push([tempCountsD - l, currentDay, selectDay, notEvents]);
+                // tempDays.push(['temp', currentDay, selectDay, notEvents]);
+                // console.log("tempDays[]", tempDays);
+            }
+            // console.log("tempDays", tempDays);
+            return tempDays;
+            // this.daysCalendar.splice(0, 0, tempDays);
+        }
+        for (let i = 1; i <= first_day_of_the_week; i++) {
+            // this.daysCalendar.splice(i, 0, temp[i]);
+        }
+        let tempLast = getDaysNextMonth(lastDay_of_the_week);
+        function getDaysNextMonth(lastDay) {
+            let tempDays = [];
+            // если вск === 0, то ставить до 6 дней пустых, руками
+            for (let l = 1; l <= 7 - lastDay; l++) {
+                // for ( let l = lastDay - 1; l >= 0; l-- ){
+                let currentDay = false;
+                let selectDay = false;
+                let notEvents = true;
+                tempDays.push([l, currentDay, selectDay, notEvents]);
+                // tempDays.push(['temp', currentDay, selectDay, notEvents]);
+                // console.log("tempDays[]", tempDays);
+            }
+            // console.log("tempDays", tempDays);
+            return tempDays;
+            // this.daysCalendar.splice(0, 0, tempDays);
+        }
+        // temp.forEach( f => {
+        //     console.log(f);
+        //     this.daysCalendar.splice(0, 0, temp);
+        // })
+        this.daysCalendar = temp.concat(tD, tempLast);
+        // console.log('concat',this.daysCalendar);
+
+        return this.daysCalendar;
+    }
+
+}
+
+const month = new Month(getMonthIndex);
+// const month = new Month(2);
+//создать функцию получения индекса месяца
+const myMonth = month.createMonth();
+
+//------------ apply,call,bind     
+
+
+function filter_generator(flag) {
+    // ф-ции фильтров
+    // var arr = arr;
+    if (flag) {
+        return function () {
+            // arr.sort(a,b);
+            console.log('this.msg', this.arr);
+        };
+    } else {
+        return function () {
+            // arr.sort(a,b);
+            console.log('this.msg', this.arr);
+        };
+    }
+}
+var ruleSortF = filter_generator(true); //flag F
+var ruleSortT = filter_generator(false); //flag T
+
+function RuleGenerator(arr, rule) {
+    // this.rule = form.querSelectorAll('INPUT');
+    this.arr = arr;
+    this.msg = 'My sort';
+
+    this.sort = rule.bind(this);
+
+    this.test = function () {
+        console.log("this sort(test)");
+    };
+}
+
+var filter_1 = new RuleGenerator([4, 5], ruleSortF);
+
+var filter_2 = new RuleGenerator([4, 5, 9], ruleSortT);
+
+var resF1 = filter_1.sort();
+var resF2 = filter_2.sort();
+filter_1.test();
+console.log(resF1);
+console.log(resF2);
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__, {
+    load: {
+        key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',
+        v: '3'
+        // libraries: 'places' // Only if you need Autocomplete
+    }
+});
+/* harmony default export */ __webpack_exports__["a"] = ({
+    data() {
+        return {
+
+            markers: [{
+                coordinates: {
+                    lat: 53.90,
+                    lng: 27.50
+                },
+
+                coordinatesInfo: {
+                    lat: 53.91,
+                    lng: 27.50
+                },
+
+                name: 'Minsk',
+                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+            }, {
+
+                coordinates: {
+                    lat: 53.88,
+                    lng: 27.46
+                },
+
+                coordinatesInfo: {
+                    lat: 53.89,
+                    lng: 27.46
+                },
+
+                name: 'Uzda',
+                icon: 'img/map_icon.png'
+            }],
+
+            places: [{
+                name: "г. Узда",
+                index: "tab_1",
+                information: {
+                    address: 'г. Узда',
+                    phone: '3784273648'
+                }
+
+            }, {
+                name: "г. Минск",
+                index: "tab_2",
+                information: {
+                    address: 'г. Минск',
+                    phone: '2344354888'
+                }
+
+            }],
+
+            styles: [{
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                    "color": "#ffffff"
+                }]
+            }, {
+                "featureType": "all",
+                "elementType": "labels.text.stroke",
+                "stylers": [{
+                    "visibility": "on"
+                }, {
+                    "color": "#3e606f"
+                }, {
+                    "weight": 2
+                }, {
+                    "gamma": 0.84
+                }]
+            }, {
+                "featureType": "all",
+                "elementType": "labels.icon",
+                "stylers": [{
+                    "visibility": "off"
+                }]
+            }, {
+                "featureType": "administrative",
+                "elementType": "geometry",
+                "stylers": [{
+                    "weight": 0.6
+                }, {
+                    "color": "#1a3541"
+                }]
+            }, {
+                "featureType": "administrative.neighborhood",
+                "elementType": "all",
+                "stylers": [{
+                    "visibility": "off"
+                }]
+            }, {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [{
+                    "color": "#2b7396"
+                }]
+            }, {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{
+                    "color": "#306782"
+                }]
+            }, {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [{
+                    "color": "#5388a2"
+                }]
+            }, {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [{
+                    "visibility": "simplified"
+                }]
+            }, {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [{
+                    "lightness": -37
+                }, {
+                    "visibility": "simplified"
+                }]
+            }, {
+                "featureType": "road",
+                "elementType": "geometry.fill",
+                "stylers": [{
+                    "visibility": "simplified"
+                }]
+            }, {
+                "featureType": "road",
+                "elementType": "geometry.stroke",
+                "stylers": [{
+                    "visibility": "simplified"
+                }]
+            }, {
+                "featureType": "road",
+                "elementType": "labels.text",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "weight": ".25"
+                }, {
+                    "gamma": "1"
+                }, {
+                    "color": "#cdcdcd"
+                }]
+            }, {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#214658"
+                }]
+            }, {
+                "featureType": "road.local",
+                "elementType": "all",
+                "stylers": [{
+                    "visibility": "simplified"
+                }, {
+                    "color": "#144056"
+                }]
+            }, {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                    "visibility": "on"
+                }, {
+                    "color": "#8ba0ab"
+                }]
+            }, {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [{
+                    "color": "#406d80"
+                }]
+            }, {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{
+                    "color": "#193341"
+                }]
+            }]
+        };
+    },
+    methods: {
+
+        choose(idx) {
+            //        choose(idx) {
+            //            this.places.forEach(place => {
+            //                place.chosen = false;
+            //            });
+            //
+            //            this.places[idx].chosen = true;
+            //            this.$emit('choose_place', this.places[idx].address);
+            //            this.$forceUpdate();
+            console.log(idx);
+            //            console.log('sdsdfsd')
+        }
+    }
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+	data: () => ({ text: 'Hello from Vue' })
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _omit2 = __webpack_require__(11);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _pickBy2 = __webpack_require__(201);
+
+var _pickBy3 = _interopRequireDefault(_pickBy2);
+
+var _clone2 = __webpack_require__(4);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _propsBinder = __webpack_require__(1);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _simulateArrowDown = __webpack_require__(87);
+
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+
+var _getPropsValuesMixin = __webpack_require__(3);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _manager = __webpack_require__(20);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  bounds: {
+    type: Object
+  },
+  componentRestrictions: {
+    type: Object
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  },
+  placeholder: {
+    required: false,
+    type: String
+  },
+  selectFirstOnEnter: {
+    require: false,
+    type: Boolean,
+    default: false
+  },
+  value: {
+    type: String,
+    default: ''
+  },
+  options: {
+    type: Object
+  }
+};
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default],
+
+  mounted: function mounted() {
+    var _this = this;
+
+    _manager.loaded.then(function () {
+      var options = (0, _clone3.default)(_this.getPropsValues());
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+
+      /* eslint-disable no-unused-vars */
+      var finalOptions = (0, _pickBy3.default)(Object.assign({}, (0, _omit3.default)(options, ['options', 'selectFirstOnEnter', 'value', 'place', 'placeholder']), options.options), function (v, k) {
+        return v !== undefined;
+      }
+
+      // Component restrictions is rather particular. Undefined not allowed
+      );_this.$watch('componentRestrictions', function (v) {
+        if (v !== undefined) {
+          _this.$autocomplete.setComponentRestrictions(v);
+        }
+      });
+
+      _this.$autocomplete = new google.maps.places.Autocomplete(_this.$refs.input, finalOptions);
+      (0, _propsBinder2.default)(_this, _this.$autocomplete, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'value', 'componentRestrictions']));
+
+      _this.$autocomplete.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.$autocomplete.getPlace());
+      });
+    });
+  },
+
+  props: props
+};
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(4);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(11);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _propsBinder = __webpack_require__(1);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _eventsBinder = __webpack_require__(5);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _mapElementMixin = __webpack_require__(8);
+
+var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  options: {
+    type: Object,
+    required: false,
+    default: function _default() {
+      return {};
+    }
+  },
+  opened: {
+    type: Boolean,
+    default: true
+  },
+  position: {
+    type: Object,
+    twoWay: true
+  },
+  zIndex: {
+    type: Number,
+    twoWay: true
+  }
+};
+
+var events = ['domready', 'closeclick', 'content_changed'];
+
+exports.default = {
+  mixins: [_mapElementMixin2.default],
+  replace: false,
+  props: props,
+
+  mounted: function mounted() {
+    var el = this.$refs.flyaway;
+    el.parentNode.removeChild(el);
+  },
+  deferredReady: function deferredReady() {
+    this.$markerObject = null;
+    this.$markerComponent = this.$findAncestor(function (ans) {
+      return ans.$markerObject;
+    });
+
+    if (this.$markerComponent) {
+      this.$markerObject = this.$markerComponent.$markerObject;
+    }
+    this.createInfoWindow();
+  },
+  destroyed: function destroyed() {
+    if (this.disconnect) {
+      this.disconnect();
+    }
+    if (this.$infoWindow) {
+      this.$infoWindow.setMap(null);
+    }
+  },
+
+  methods: {
+    openInfoWindow: function openInfoWindow() {
+      if (this.opened) {
+        if (this.$markerObject !== null) {
+          this.$infoWindow.open(this.$map, this.$markerObject);
+        } else {
+          this.$infoWindow.open(this.$map);
+        }
+      } else {
+        this.$infoWindow.close();
+      }
+    },
+    createInfoWindow: function createInfoWindow() {
+      var _this = this;
+
+      // setting options
+      var options = (0, _clone3.default)(this.options);
+      options.content = this.$refs.flyaway;
+
+      // only set the position if the info window is not bound to a marker
+      if (this.$markerComponent === null) {
+        options.position = this.position;
+      }
+
+      this.$infoWindow = new google.maps.InfoWindow(options);
+
+      // Binding
+      (0, _propsBinder2.default)(this, this.$infoWindow, (0, _omit3.default)(props, ['opened']));
+      (0, _eventsBinder2.default)(this, this.$infoWindow, events);
+
+      this.openInfoWindow();
+      this.$watch('opened', function () {
+        _this.openInfoWindow();
+      });
+    }
+  }
+};
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(4);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(11);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _manager = __webpack_require__(20);
+
+var _deferredReady = __webpack_require__(27);
+
+var _eventsBinder = __webpack_require__(5);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(1);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _getPropsValuesMixin = __webpack_require__(3);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _mountableMixin = __webpack_require__(52);
+
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  center: {
+    required: true,
+    twoWay: true,
+    type: Object
+  },
+  zoom: {
+    required: false,
+    twoWay: true,
+    type: Number
+  },
+  heading: {
+    type: Number,
+    twoWay: true
+  },
+  mapTypeId: {
+    twoWay: true,
+    type: String
+  },
+  bounds: {
+    twoWay: true,
+    type: Object
+  },
+  tilt: {
+    twoWay: true,
+    type: Number
+  },
+  options: {
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+
+var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'idle', 'mousemove', 'mouseout', 'mouseover', 'resize', 'rightclick', 'tilesloaded'];
+
+// Plain Google Maps methods exposed here for convenience
+var linkedMethods = ['panBy', 'panTo', 'panToBounds', 'fitBounds'].reduce(function (all, methodName) {
+  all[methodName] = function () {
+    if (this.$mapObject) this.$mapObject[methodName].apply(this.$mapObject, arguments);
+  };
+  return all;
+}, {}
+
+// Other convenience methods exposed by Vue Google Maps
+);var customMethods = {
+  resize: function resize() {
+    if (this.$mapObject) {
+      google.maps.event.trigger(this.$mapObject, 'resize');
+    }
+  },
+  resizePreserveCenter: function resizePreserveCenter() {
+    if (!this.$mapObject) return;
+
+    var oldCenter = this.$mapObject.getCenter();
+    google.maps.event.trigger(this.$mapObject, 'resize');
+    this.$mapObject.setCenter(oldCenter);
+  },
+
+  /// Override mountableMixin::_resizeCallback
+  /// because resizePreserveCenter is usually the
+  /// expected behaviour
+  _resizeCallback: function _resizeCallback() {
+    this.resizePreserveCenter();
+  }
+};
+
+// Methods is a combination of customMethods and linkedMethods
+var methods = Object.assign({}, customMethods, linkedMethods);
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
+  props: props,
+  replace: false, // necessary for css styles
+
+  created: function created() {
+    var _this = this;
+
+    this.$mapCreated = new Promise(function (resolve, reject) {
+      _this.$mapCreatedDeferred = { resolve: resolve, reject: reject };
+    });
+
+    var updateCenter = function updateCenter() {
+      if (!_this.$mapObject) return;
+
+      _this.$mapObject.setCenter({
+        lat: _this.finalLat,
+        lng: _this.finalLng
+      });
+    };
+    this.$watch('finalLat', updateCenter);
+    this.$watch('finalLng', updateCenter);
+  },
+
+  computed: {
+    finalLat: function finalLat() {
+      return this.center && typeof this.center.lat === 'function' ? this.center.lat() : this.center.lat;
+    },
+    finalLng: function finalLng() {
+      return this.center && typeof this.center.lng === 'function' ? this.center.lng() : this.center.lng;
+    }
+  },
+
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$mapObject) {
+        this.$mapObject.setZoom(_zoom);
+      }
+    }
+  },
+
+  deferredReady: function deferredReady() {
+    var _this2 = this;
+
+    return _manager.loaded.then(function () {
+      // getting the DOM element where to create the map
+      var element = _this2.$refs['vue-map'];
+
+      // creating the map
+      var copiedData = (0, _clone3.default)(_this2.getPropsValues());
+      delete copiedData.options;
+      var options = (0, _clone3.default)(_this2.options);
+      Object.assign(options, copiedData);
+      _this2.$mapObject = new google.maps.Map(element, options);
+
+      // binding properties (two and one way)
+      (0, _propsBinder2.default)(_this2, _this2.$mapObject, (0, _omit3.default)(props, ['center', 'zoom', 'bounds']));
+
+      // manually trigger center and zoom
+      _this2.$mapObject.addListener('center_changed', function () {
+        _this2.$emit('center_changed', _this2.$mapObject.getCenter());
+      });
+      _this2.$mapObject.addListener('zoom_changed', function () {
+        _this2.$emit('zoom_changed', _this2.$mapObject.getZoom());
+      });
+      _this2.$mapObject.addListener('bounds_changed', function () {
+        _this2.$emit('bounds_changed', _this2.$mapObject.getBounds());
+      });
+
+      //binding events
+      (0, _eventsBinder2.default)(_this2, _this2.$mapObject, events);
+
+      _this2.$mapCreatedDeferred.resolve(_this2.$mapObject);
+
+      return _this2.$mapCreated;
+    }).catch(function (error) {
+      throw error;
+    });
+  },
+
+  methods: methods
+};
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _clone2 = __webpack_require__(4);
+
+var _clone3 = _interopRequireDefault(_clone2);
+
+var _omit2 = __webpack_require__(11);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _propsBinder = __webpack_require__(1);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _simulateArrowDown = __webpack_require__(87);
+
+var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
+
+var _getPropsValuesMixin = __webpack_require__(3);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _manager = __webpack_require__(20);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  bounds: {
+    type: Object
+  },
+  defaultPlace: {
+    type: String,
+    default: ''
+  },
+  componentRestrictions: {
+    type: Object,
+    default: null
+  },
+  types: {
+    type: Array,
+    default: function _default() {
+      return [];
+    }
+  },
+  placeholder: {
+    required: false,
+    type: String
+  },
+  className: {
+    required: false,
+    type: String
+  },
+  label: {
+    required: false,
+    type: String,
+    default: null
+  },
+  selectFirstOnEnter: {
+    require: false,
+    type: Boolean,
+    default: false
+  }
+};
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default],
+
+  mounted: function mounted() {
+    var _this = this;
+
+    var input = this.$refs.input;
+
+    // Allow default place to be set
+    input.value = this.defaultPlace;
+    this.$watch('defaultPlace', function () {
+      input.value = _this.defaultPlace;
+    });
+
+    _manager.loaded.then(function () {
+      var options = (0, _clone3.default)(_this.getPropsValues());
+      if (_this.selectFirstOnEnter) {
+        (0, _simulateArrowDown2.default)(_this.$refs.input);
+      }
+
+      if (typeof google.maps.places.Autocomplete !== 'function') {
+        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
+      }
+
+      _this.autoCompleter = new google.maps.places.Autocomplete(_this.$refs.input, options);
+      (0, _propsBinder2.default)(_this, _this.autoCompleter, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'defaultPlace', 'className', 'label']));
+
+      _this.autoCompleter.addListener('place_changed', function () {
+        _this.$emit('place_changed', _this.autoCompleter.getPlace());
+      });
+    });
+  },
+  created: function created() {
+    console.warn('The PlaceInput class is deprecated! Please consider using the Autocomplete input instead'); //eslint-disable-line no-console
+  },
+
+  props: props
+};
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _omit2 = __webpack_require__(11);
+
+var _omit3 = _interopRequireDefault(_omit2);
+
+var _manager = __webpack_require__(20);
+
+var _deferredReady = __webpack_require__(27);
+
+var _eventsBinder = __webpack_require__(5);
+
+var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
+
+var _propsBinder = __webpack_require__(1);
+
+var _propsBinder2 = _interopRequireDefault(_propsBinder);
+
+var _getPropsValuesMixin = __webpack_require__(3);
+
+var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
+
+var _mountableMixin = __webpack_require__(52);
+
+var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
+
+var props = {
+  zoom: {
+    twoWay: true,
+    type: Number
+  },
+  pov: {
+    twoWay: true,
+    type: Object,
+    trackProperties: ['pitch', 'heading']
+  },
+  position: {
+    twoWay: true,
+    type: Object
+  },
+  pano: {
+    twoWay: true,
+    type: String
+  },
+  motionTracking: {
+    twoWay: false,
+    type: Boolean
+  },
+  visible: {
+    twoWay: true,
+    type: Boolean,
+    default: true
+  },
+  options: {
+    twoWay: false,
+    type: Object,
+    default: function _default() {
+      return {};
+    }
+  }
+};
+
+var events = ['closeclick', 'status_changed'];
+
+// Other convenience methods exposed by Vue Google Maps
+var customMethods = {
+  resize: function resize() {
+    if (this.$panoObject) {
+      google.maps.event.trigger(this.$panoObject, 'resize');
+    }
+  }
+};
+
+// Methods is a combination of customMethods and linkedMethods
+var methods = Object.assign({}, customMethods);
+
+exports.default = {
+  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
+  props: props,
+  replace: false, // necessary for css styles
+  methods: methods,
+
+  created: function created() {
+    var _this = this;
+
+    this.$panoCreated = new Promise(function (resolve, reject) {
+      _this.$panoCreatedDeferred = { resolve: resolve, reject: reject };
+    });
+
+    var updateCenter = function updateCenter() {
+      if (!_this.panoObject) return;
+
+      _this.$panoObject.setPosition({
+        lat: _this.finalLat,
+        lng: _this.finalLng
+      });
+    };
+    this.$watch('finalLat', updateCenter);
+    this.$watch('finalLng', updateCenter);
+  },
+
+  computed: {
+    finalLat: function finalLat() {
+      return this.position && typeof this.position.lat === 'function' ? this.position.lat() : this.position.lat;
+    },
+    finalLng: function finalLng() {
+      return this.position && typeof this.position.lng === 'function' ? this.position.lng() : this.position.lng;
+    }
+  },
+
+  watch: {
+    zoom: function zoom(_zoom) {
+      if (this.$panoObject) {
+        this.$panoObject.setZoom(_zoom);
+      }
+    }
+  },
+
+  deferredReady: function deferredReady() {
+    var _this2 = this;
+
+    return _manager.loaded.then(function () {
+      // getting the DOM element where to create the map
+      var element = _this2.$refs['vue-street-view-pano'];
+
+      // creating the map
+      var options = Object.assign({}, _this2.options, (0, _omit3.default)(_this2.getPropsValues(), ['options']));
+
+      _this2.$panoObject = new google.maps.StreetViewPanorama(element, options);
+
+      // binding properties (two and one way)
+      (0, _propsBinder2.default)(_this2, _this2.$panoObject, (0, _omit3.default)(props, ['position', 'zoom']));
+
+      //binding events
+      (0, _eventsBinder2.default)(_this2, _this2.$panoObject, events);
+
+      _this2.$panoCreatedDeferred.resolve(_this2.$panoObject);
+
+      return _this2.$panoCreated;
+    }).catch(function (error) {
+      throw error;
+    });
+  }
+};
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(2);
+
+/** Built-in value references. */
+var Uint8Array = root.Uint8Array;
+
+module.exports = Uint8Array;
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.forEach` for arrays without support for
+ * iteratee shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns `array`.
+ */
+function arrayEach(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (iteratee(array[index], index, array) === false) {
+      break;
+    }
+  }
+  return array;
+}
+
+module.exports = arrayEach;
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseTimes = __webpack_require__(129),
+    isArguments = __webpack_require__(47),
+    isArray = __webpack_require__(0),
+    isBuffer = __webpack_require__(49),
+    isIndex = __webpack_require__(41),
+    isTypedArray = __webpack_require__(81);
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Creates an array of the enumerable property names of the array-like `value`.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @param {boolean} inherited Specify returning inherited property names.
+ * @returns {Array} Returns the array of property names.
+ */
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray(value),
+      isArg = !isArr && isArguments(value),
+      isBuff = !isArr && !isArg && isBuffer(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? baseTimes(value.length, String) : [],
+      length = result.length;
+
+  for (var key in value) {
+    if ((inherited || hasOwnProperty.call(value, key)) &&
+        !(skipIndexes && (
+           // Safari 9 has enumerable `arguments.length` in strict mode.
+           key == 'length' ||
+           // Node.js 0.10 has enumerable non-index properties on buffers.
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           // Skip index properties.
+           isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+module.exports = arrayLikeKeys;
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__(31),
+    arrayEach = __webpack_require__(63),
+    assignValue = __webpack_require__(34),
+    baseAssign = __webpack_require__(105),
+    baseAssignIn = __webpack_require__(106),
+    cloneBuffer = __webpack_require__(134),
+    copyArray = __webpack_require__(139),
+    copySymbols = __webpack_require__(140),
+    copySymbolsIn = __webpack_require__(141),
+    getAllKeys = __webpack_require__(73),
+    getAllKeysIn = __webpack_require__(38),
+    getTag = __webpack_require__(25),
+    initCloneArray = __webpack_require__(158),
+    initCloneByTag = __webpack_require__(159),
+    initCloneObject = __webpack_require__(160),
+    isArray = __webpack_require__(0),
+    isBuffer = __webpack_require__(49),
+    isMap = __webpack_require__(196),
+    isObject = __webpack_require__(10),
+    isSet = __webpack_require__(198),
+    keys = __webpack_require__(19);
+
+/** Used to compose bitmasks for cloning. */
+var CLONE_DEEP_FLAG = 1,
+    CLONE_FLAT_FLAG = 2,
+    CLONE_SYMBOLS_FLAG = 4;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    arrayTag = '[object Array]',
+    boolTag = '[object Boolean]',
+    dateTag = '[object Date]',
+    errorTag = '[object Error]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    mapTag = '[object Map]',
+    numberTag = '[object Number]',
+    objectTag = '[object Object]',
+    regexpTag = '[object RegExp]',
+    setTag = '[object Set]',
+    stringTag = '[object String]',
+    symbolTag = '[object Symbol]',
+    weakMapTag = '[object WeakMap]';
+
+var arrayBufferTag = '[object ArrayBuffer]',
+    dataViewTag = '[object DataView]',
+    float32Tag = '[object Float32Array]',
+    float64Tag = '[object Float64Array]',
+    int8Tag = '[object Int8Array]',
+    int16Tag = '[object Int16Array]',
+    int32Tag = '[object Int32Array]',
+    uint8Tag = '[object Uint8Array]',
+    uint8ClampedTag = '[object Uint8ClampedArray]',
+    uint16Tag = '[object Uint16Array]',
+    uint32Tag = '[object Uint32Array]';
+
+/** Used to identify `toStringTag` values supported by `_.clone`. */
+var cloneableTags = {};
+cloneableTags[argsTag] = cloneableTags[arrayTag] =
+cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
+cloneableTags[boolTag] = cloneableTags[dateTag] =
+cloneableTags[float32Tag] = cloneableTags[float64Tag] =
+cloneableTags[int8Tag] = cloneableTags[int16Tag] =
+cloneableTags[int32Tag] = cloneableTags[mapTag] =
+cloneableTags[numberTag] = cloneableTags[objectTag] =
+cloneableTags[regexpTag] = cloneableTags[setTag] =
+cloneableTags[stringTag] = cloneableTags[symbolTag] =
+cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
+cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+cloneableTags[errorTag] = cloneableTags[funcTag] =
+cloneableTags[weakMapTag] = false;
+
+/**
+ * The base implementation of `_.clone` and `_.cloneDeep` which tracks
+ * traversed objects.
+ *
+ * @private
+ * @param {*} value The value to clone.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Deep clone
+ *  2 - Flatten inherited properties
+ *  4 - Clone symbols
+ * @param {Function} [customizer] The function to customize cloning.
+ * @param {string} [key] The key of `value`.
+ * @param {Object} [object] The parent object of `value`.
+ * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
+ * @returns {*} Returns the cloned value.
+ */
+function baseClone(value, bitmask, customizer, key, object, stack) {
+  var result,
+      isDeep = bitmask & CLONE_DEEP_FLAG,
+      isFlat = bitmask & CLONE_FLAT_FLAG,
+      isFull = bitmask & CLONE_SYMBOLS_FLAG;
+
+  if (customizer) {
+    result = object ? customizer(value, key, object, stack) : customizer(value);
+  }
+  if (result !== undefined) {
+    return result;
+  }
+  if (!isObject(value)) {
+    return value;
+  }
+  var isArr = isArray(value);
+  if (isArr) {
+    result = initCloneArray(value);
+    if (!isDeep) {
+      return copyArray(value, result);
+    }
+  } else {
+    var tag = getTag(value),
+        isFunc = tag == funcTag || tag == genTag;
+
+    if (isBuffer(value)) {
+      return cloneBuffer(value, isDeep);
+    }
+    if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
+      result = (isFlat || isFunc) ? {} : initCloneObject(value);
+      if (!isDeep) {
+        return isFlat
+          ? copySymbolsIn(value, baseAssignIn(result, value))
+          : copySymbols(value, baseAssign(result, value));
+      }
+    } else {
+      if (!cloneableTags[tag]) {
+        return object ? value : {};
+      }
+      result = initCloneByTag(value, tag, isDeep);
+    }
+  }
+  // Check for circular references and return its corresponding clone.
+  stack || (stack = new Stack);
+  var stacked = stack.get(value);
+  if (stacked) {
+    return stacked;
+  }
+  stack.set(value, result);
+
+  if (isSet(value)) {
+    value.forEach(function(subValue) {
+      result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+    });
+
+    return result;
+  }
+
+  if (isMap(value)) {
+    value.forEach(function(subValue, key) {
+      result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+    });
+
+    return result;
+  }
+
+  var keysFunc = isFull
+    ? (isFlat ? getAllKeysIn : getAllKeys)
+    : (isFlat ? keysIn : keys);
+
+  var props = isArr ? undefined : keysFunc(value);
+  arrayEach(props || value, function(subValue, key) {
+    if (props) {
+      key = subValue;
+      subValue = value[key];
+    }
+    // Recursively populate clone (susceptible to call stack limits).
+    assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+  });
+  return result;
+}
+
+module.exports = baseClone;
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseFor = __webpack_require__(110),
+    keys = __webpack_require__(19);
+
+/**
+ * The base implementation of `_.forOwn` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The object to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Object} Returns `object`.
+ */
+function baseForOwn(object, iteratee) {
+  return object && baseFor(object, iteratee, keys);
+}
+
+module.exports = baseForOwn;
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__(33),
+    isArray = __webpack_require__(0);
+
+/**
+ * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
+ * `keysFunc` and `symbolsFunc` to get the enumerable property names and
+ * symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Function} keysFunc The function to get the keys of `object`.
+ * @param {Function} symbolsFunc The function to get the symbols of `object`.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+}
+
+module.exports = baseGetAllKeys;
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsEqualDeep = __webpack_require__(113),
+    isObjectLike = __webpack_require__(6);
+
+/**
+ * The base implementation of `_.isEqual` which supports partial comparisons
+ * and tracks traversed objects.
+ *
+ * @private
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @param {boolean} bitmask The bitmask flags.
+ *  1 - Unordered comparison
+ *  2 - Partial comparison
+ * @param {Function} [customizer] The function to customize comparisons.
+ * @param {Object} [stack] Tracks traversed `value` and `other` objects.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ */
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
+    return value !== value && other !== other;
+  }
+  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+}
+
+module.exports = baseIsEqual;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseMatches = __webpack_require__(121),
+    baseMatchesProperty = __webpack_require__(122),
+    identity = __webpack_require__(46),
+    isArray = __webpack_require__(0),
+    property = __webpack_require__(202);
+
+/**
+ * The base implementation of `_.iteratee`.
+ *
+ * @private
+ * @param {*} [value=_.identity] The value to convert to an iteratee.
+ * @returns {Function} Returns the iteratee.
+ */
+function baseIteratee(value) {
+  // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
+  // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
+  if (typeof value == 'function') {
+    return value;
+  }
+  if (value == null) {
+    return identity;
+  }
+  if (typeof value == 'object') {
+    return isArray(value)
+      ? baseMatchesProperty(value[0], value[1])
+      : baseMatches(value);
+  }
+  return property(value);
+}
+
+module.exports = baseIteratee;
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var getNative = __webpack_require__(9);
+
+var defineProperty = (function() {
+  try {
+    var func = getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}());
+
+module.exports = defineProperty;
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var SetCache = __webpack_require__(100),
+    arraySome = __webpack_require__(104),
+    cacheHas = __webpack_require__(132);
+
+/** Used to compose bitmasks for value comparisons. */
+var COMPARE_PARTIAL_FLAG = 1,
+    COMPARE_UNORDERED_FLAG = 2;
+
+/**
+ * A specialized version of `baseIsEqualDeep` for arrays with support for
+ * partial deep comparisons.
+ *
+ * @private
+ * @param {Array} array The array to compare.
+ * @param {Array} other The other array to compare.
+ * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
+ * @param {Function} customizer The function to customize comparisons.
+ * @param {Function} equalFunc The function to determine equivalents of values.
+ * @param {Object} stack Tracks traversed `array` and `other` objects.
+ * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
+ */
+function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
+      arrLength = array.length,
+      othLength = other.length;
+
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  // Assume cyclic values are equal.
+  var stacked = stack.get(array);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
+
+  stack.set(array, other);
+  stack.set(other, array);
+
+  // Ignore non-index properties.
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, arrValue, index, other, array, stack)
+        : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    // Recursively compare arrays (susceptible to call stack limits).
+    if (seen) {
+      if (!arraySome(other, function(othValue, othIndex) {
+            if (!cacheHas(seen, othIndex) &&
+                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+              return seen.push(othIndex);
+            }
+          })) {
+        result = false;
+        break;
+      }
+    } else if (!(
+          arrValue === othValue ||
+            equalFunc(arrValue, othValue, bitmask, customizer, stack)
+        )) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+
+module.exports = equalArrays;
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetAllKeys = __webpack_require__(67),
+    getSymbols = __webpack_require__(40),
+    keys = __webpack_require__(19);
+
+/**
+ * Creates an array of own enumerable property names and symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names and symbols.
+ */
+function getAllKeys(object) {
+  return baseGetAllKeys(object, keys, getSymbols);
+}
+
+module.exports = getAllKeys;
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayPush = __webpack_require__(33),
+    getPrototype = __webpack_require__(39),
+    getSymbols = __webpack_require__(40),
+    stubArray = __webpack_require__(84);
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+
+/**
+ * Creates an array of the own and inherited enumerable symbols of `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of symbols.
+ */
+var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
+  var result = [];
+  while (object) {
+    arrayPush(result, getSymbols(object));
+    object = getPrototype(object);
+  }
+  return result;
+};
+
+module.exports = getSymbolsIn;
+
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(10);
+
+/**
+ * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` if suitable for strict
+ *  equality comparisons, else `false`.
+ */
+function isStrictComparable(value) {
+  return value === value && !isObject(value);
+}
+
+module.exports = isStrictComparable;
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `matchesProperty` for source values suitable
+ * for strict equality comparisons, i.e. `===`.
+ *
+ * @private
+ * @param {string} key The key of the property to get.
+ * @param {*} srcValue The value to match.
+ * @returns {Function} Returns the new spec function.
+ */
+function matchesStrictComparable(key, srcValue) {
+  return function(object) {
+    if (object == null) {
+      return false;
+    }
+    return object[key] === srcValue &&
+      (srcValue !== undefined || (key in Object(object)));
+  };
+}
+
+module.exports = matchesStrictComparable;
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports) {
+
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+module.exports = overArg;
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/**
+ * Converts `func` to its source code.
+ *
+ * @private
+ * @param {Function} func The function to convert.
+ * @returns {string} Returns the source code.
+ */
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+
+module.exports = toSource;
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayEach = __webpack_require__(63),
+    baseEach = __webpack_require__(108),
+    castFunction = __webpack_require__(133),
+    isArray = __webpack_require__(0);
+
+/**
+ * Iterates over elements of `collection` and invokes `iteratee` for each element.
+ * The iteratee is invoked with three arguments: (value, index|key, collection).
+ * Iteratee functions may exit iteration early by explicitly returning `false`.
+ *
+ * **Note:** As with other "Collections" methods, objects with a "length"
+ * property are iterated like arrays. To avoid this behavior use `_.forIn`
+ * or `_.forOwn` for object iteration.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @alias each
+ * @category Collection
+ * @param {Array|Object} collection The collection to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Array|Object} Returns `collection`.
+ * @see _.forEachRight
+ * @example
+ *
+ * _.forEach([1, 2], function(value) {
+ *   console.log(value);
+ * });
+ * // => Logs `1` then `2`.
+ *
+ * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+ *   console.log(key);
+ * });
+ * // => Logs 'a' then 'b' (iteration order is not guaranteed).
+ */
+function forEach(collection, iteratee) {
+  var func = isArray(collection) ? arrayEach : baseEach;
+  return func(collection, castFunction(iteratee));
+}
+
+module.exports = forEach;
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(14),
+    isObject = __webpack_require__(10);
+
+/** `Object#toString` result references. */
+var asyncTag = '[object AsyncFunction]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    proxyTag = '[object Proxy]';
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  if (!isObject(value)) {
+    return false;
+  }
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+  var tag = baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+
+module.exports = isFunction;
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsTypedArray = __webpack_require__(118),
+    baseUnary = __webpack_require__(36),
+    nodeUtil = __webpack_require__(44);
+
+/* Node.js helper references. */
+var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+
+/**
+ * Checks if `value` is classified as a typed array.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+ * @example
+ *
+ * _.isTypedArray(new Uint8Array);
+ * // => true
+ *
+ * _.isTypedArray([]);
+ * // => false
+ */
+var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+
+module.exports = isTypedArray;
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeKeys = __webpack_require__(64),
+    baseKeysIn = __webpack_require__(120),
+    isArrayLike = __webpack_require__(48);
+
+/**
+ * Creates an array of the own and inherited enumerable property names of `object`.
+ *
+ * **Note:** Non-object values are coerced to objects.
+ *
+ * @static
+ * @memberOf _
+ * @since 3.0.0
+ * @category Object
+ * @param {Object} object The object to query.
+ * @returns {Array} Returns the array of property names.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ *   this.b = 2;
+ * }
+ *
+ * Foo.prototype.c = 3;
+ *
+ * _.keysIn(new Foo);
+ * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
+ */
+function keysIn(object) {
+  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+}
+
+module.exports = keysIn;
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseAssignValue = __webpack_require__(35),
+    baseForOwn = __webpack_require__(66),
+    baseIteratee = __webpack_require__(69);
+
+/**
+ * Creates an object with the same keys as `object` and values generated
+ * by running each own enumerable string keyed property of `object` thru
+ * `iteratee`. The iteratee is invoked with three arguments:
+ * (value, key, object).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Object
+ * @param {Object} object The object to iterate over.
+ * @param {Function} [iteratee=_.identity] The function invoked per iteration.
+ * @returns {Object} Returns the new mapped object.
+ * @see _.mapKeys
+ * @example
+ *
+ * var users = {
+ *   'fred':    { 'user': 'fred',    'age': 40 },
+ *   'pebbles': { 'user': 'pebbles', 'age': 1 }
+ * };
+ *
+ * _.mapValues(users, function(o) { return o.age; });
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.mapValues(users, 'age');
+ * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+ */
+function mapValues(object, iteratee) {
+  var result = {};
+  iteratee = baseIteratee(iteratee, 3);
+
+  baseForOwn(object, function(value, key, object) {
+    baseAssignValue(result, key, iteratee(value, key, object));
+  });
+  return result;
+}
+
+module.exports = mapValues;
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns a new empty array.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {Array} Returns the new empty array.
+ * @example
+ *
+ * var arrays = _.times(2, _.stubArray);
+ *
+ * console.log(arrays);
+ * // => [[], []]
+ *
+ * console.log(arrays[0] === arrays[1]);
+ * // => false
+ */
+function stubArray() {
+  return [];
+}
+
+module.exports = stubArray;
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/*!
- * Vue.js v2.5.2
+ * Vue.js v2.5.13
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
 /*  */
+
+var emptyObject = Object.freeze({});
 
 // these helpers produces better vm code in JS engines due to their
 // explicitness and function inlining
@@ -2175,6 +4782,8 @@ function isPrimitive (value) {
   return (
     typeof value === 'string' ||
     typeof value === 'number' ||
+    // $flow-disable-line
+    typeof value === 'symbol' ||
     typeof value === 'boolean'
   )
 }
@@ -2483,6 +5092,7 @@ var config = ({
   /**
    * Option merge strategies (used in core/util/options)
    */
+  // $flow-disable-line
   optionMergeStrategies: Object.create(null),
 
   /**
@@ -2523,6 +5133,7 @@ var config = ({
   /**
    * Custom user key aliases for v-on
    */
+  // $flow-disable-line
   keyCodes: Object.create(null),
 
   /**
@@ -2567,8 +5178,6 @@ var config = ({
 
 /*  */
 
-var emptyObject = Object.freeze({});
-
 /**
  * Check if a string starts with $ or _
  */
@@ -2609,17 +5218,20 @@ function parsePath (path) {
 
 /*  */
 
+
 // can we use __proto__?
 var hasProto = '__proto__' in {};
 
 // Browser environment sniffing
 var inBrowser = typeof window !== 'undefined';
+var inWeex = typeof WXEnvironment !== 'undefined' && !!WXEnvironment.platform;
+var weexPlatform = inWeex && WXEnvironment.platform.toLowerCase();
 var UA = inBrowser && window.navigator.userAgent.toLowerCase();
 var isIE = UA && /msie|trident/.test(UA);
 var isIE9 = UA && UA.indexOf('msie 9.0') > 0;
 var isEdge = UA && UA.indexOf('edge/') > 0;
-var isAndroid = UA && UA.indexOf('android') > 0;
-var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
+var isAndroid = (UA && UA.indexOf('android') > 0) || (weexPlatform === 'android');
+var isIOS = (UA && /iphone|ipad|ipod|ios/.test(UA)) || (weexPlatform === 'ios');
 var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
 
 // Firefox has a "watch" function on Object.prototype...
@@ -2857,9 +5469,9 @@ var VNode = function VNode (
   this.elm = elm;
   this.ns = undefined;
   this.context = context;
-  this.functionalContext = undefined;
-  this.functionalOptions = undefined;
-  this.functionalScopeId = undefined;
+  this.fnContext = undefined;
+  this.fnOptions = undefined;
+  this.fnScopeId = undefined;
   this.key = data && data.key;
   this.componentOptions = componentOptions;
   this.componentInstance = undefined;
@@ -2903,6 +5515,7 @@ function createTextVNode (val) {
 // multiple renders, cloning them avoids errors when DOM manipulations rely
 // on their elm reference.
 function cloneVNode (vnode, deep) {
+  var componentOptions = vnode.componentOptions;
   var cloned = new VNode(
     vnode.tag,
     vnode.data,
@@ -2910,16 +5523,24 @@ function cloneVNode (vnode, deep) {
     vnode.text,
     vnode.elm,
     vnode.context,
-    vnode.componentOptions,
+    componentOptions,
     vnode.asyncFactory
   );
   cloned.ns = vnode.ns;
   cloned.isStatic = vnode.isStatic;
   cloned.key = vnode.key;
   cloned.isComment = vnode.isComment;
+  cloned.fnContext = vnode.fnContext;
+  cloned.fnOptions = vnode.fnOptions;
+  cloned.fnScopeId = vnode.fnScopeId;
   cloned.isCloned = true;
-  if (deep && vnode.children) {
-    cloned.children = cloneVNodes(vnode.children);
+  if (deep) {
+    if (vnode.children) {
+      cloned.children = cloneVNodes(vnode.children, true);
+    }
+    if (componentOptions && componentOptions.children) {
+      componentOptions.children = cloneVNodes(componentOptions.children, true);
+    }
   }
   return cloned
 }
@@ -2947,8 +5568,7 @@ var arrayMethods = Object.create(arrayProto);[
   'splice',
   'sort',
   'reverse'
-]
-.forEach(function (method) {
+].forEach(function (method) {
   // cache original method
   var original = arrayProto[method];
   def(arrayMethods, method, function mutator () {
@@ -3152,7 +5772,7 @@ function set (target, key, val) {
     target.splice(key, 1, val);
     return val
   }
-  if (hasOwn(target, key)) {
+  if (key in target && !(key in Object.prototype)) {
     target[key] = val;
     return val
   }
@@ -3280,18 +5900,18 @@ function mergeDataOrFn (
     // it has to be a function to pass previous merges.
     return function mergedDataFn () {
       return mergeData(
-        typeof childVal === 'function' ? childVal.call(this) : childVal,
-        typeof parentVal === 'function' ? parentVal.call(this) : parentVal
+        typeof childVal === 'function' ? childVal.call(this, this) : childVal,
+        typeof parentVal === 'function' ? parentVal.call(this, this) : parentVal
       )
     }
-  } else if (parentVal || childVal) {
+  } else {
     return function mergedInstanceDataFn () {
       // instance merge
       var instanceData = typeof childVal === 'function'
-        ? childVal.call(vm)
+        ? childVal.call(vm, vm)
         : childVal;
       var defaultData = typeof parentVal === 'function'
-        ? parentVal.call(vm)
+        ? parentVal.call(vm, vm)
         : parentVal;
       if (instanceData) {
         return mergeData(instanceData, defaultData)
@@ -3318,7 +5938,7 @@ strats.data = function (
 
       return parentVal
     }
-    return mergeDataOrFn.call(this, parentVal, childVal)
+    return mergeDataOrFn(parentVal, childVal)
   }
 
   return mergeDataOrFn(parentVal, childVal, vm)
@@ -3443,13 +6063,23 @@ var defaultStrat = function (parentVal, childVal) {
  */
 function checkComponents (options) {
   for (var key in options.components) {
-    var lower = key.toLowerCase();
-    if (isBuiltInTag(lower) || config.isReservedTag(lower)) {
-      warn(
-        'Do not use built-in or reserved HTML elements as component ' +
-        'id: ' + key
-      );
-    }
+    validateComponentName(key);
+  }
+}
+
+function validateComponentName (name) {
+  if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+    warn(
+      'Invalid component name: "' + name + '". Component names ' +
+      'can only contain alphanumeric characters and the hyphen, ' +
+      'and must start with a letter.'
+    );
+  }
+  if (isBuiltInTag(name) || config.isReservedTag(name)) {
+    warn(
+      'Do not use built-in or reserved HTML elements as component ' +
+      'id: ' + name
+    );
   }
 }
 
@@ -3496,6 +6126,7 @@ function normalizeProps (options, vm) {
  */
 function normalizeInject (options, vm) {
   var inject = options.inject;
+  if (!inject) { return }
   var normalized = options.inject = {};
   if (Array.isArray(inject)) {
     for (var i = 0; i < inject.length; i++) {
@@ -3508,7 +6139,7 @@ function normalizeInject (options, vm) {
         ? extend({ from: key }, val)
         : { from: val };
     }
-  } else if (process.env.NODE_ENV !== 'production' && inject) {
+  } else if (process.env.NODE_ENV !== 'production') {
     warn(
       "Invalid value for option \"inject\": expected an Array or an Object, " +
       "but got " + (toRawType(inject)) + ".",
@@ -3650,7 +6281,11 @@ function validateProp (
     observe(value);
     observerState.shouldConvert = prevShouldConvert;
   }
-  if (process.env.NODE_ENV !== 'production') {
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    // skip validation for weex recycle-list child component props
+    !(false && isObject(value) && ('@binding' in value))
+  ) {
     assertProp(prop, key, value, vm, absent);
   }
   return value
@@ -3828,7 +6463,7 @@ function logError (err, vm, info) {
     warn(("Error in " + info + ": \"" + (err.toString()) + "\""), vm);
   }
   /* istanbul ignore else */
-  if (inBrowser && typeof console !== 'undefined') {
+  if ((inBrowser || inWeex) && typeof console !== 'undefined') {
     console.error(err);
   } else {
     throw err
@@ -4052,6 +6687,43 @@ if (process.env.NODE_ENV !== 'production') {
 
 /*  */
 
+var seenObjects = new _Set();
+
+/**
+ * Recursively traverse an object to evoke all converted
+ * getters, so that every nested property inside the object
+ * is collected as a "deep" dependency.
+ */
+function traverse (val) {
+  _traverse(val, seenObjects);
+  seenObjects.clear();
+}
+
+function _traverse (val, seen) {
+  var i, keys;
+  var isA = Array.isArray(val);
+  if ((!isA && !isObject(val)) || Object.isFrozen(val)) {
+    return
+  }
+  if (val.__ob__) {
+    var depId = val.__ob__.dep.id;
+    if (seen.has(depId)) {
+      return
+    }
+    seen.add(depId);
+  }
+  if (isA) {
+    i = val.length;
+    while (i--) { _traverse(val[i], seen); }
+  } else {
+    keys = Object.keys(val);
+    i = keys.length;
+    while (i--) { _traverse(val[keys[i]], seen); }
+  }
+}
+
+/*  */
+
 var normalizeEvent = cached(function (name) {
   var passive = name.charAt(0) === '&';
   name = passive ? name.slice(1) : name;
@@ -4093,11 +6765,12 @@ function updateListeners (
   remove$$1,
   vm
 ) {
-  var name, cur, old, event;
+  var name, def, cur, old, event;
   for (name in on) {
-    cur = on[name];
+    def = cur = on[name];
     old = oldOn[name];
     event = normalizeEvent(name);
+    /* istanbul ignore if */
     if (isUndef(cur)) {
       process.env.NODE_ENV !== 'production' && warn(
         "Invalid handler for event \"" + (event.name) + "\": got " + String(cur),
@@ -4107,7 +6780,7 @@ function updateListeners (
       if (isUndef(cur.fns)) {
         cur = on[name] = createFnInvoker(cur);
       }
-      add(event.name, cur, event.once, event.capture, event.passive);
+      add(event.name, cur, event.once, event.capture, event.passive, event.params);
     } else if (cur !== old) {
       old.fns = cur;
       on[name] = old;
@@ -4124,6 +6797,9 @@ function updateListeners (
 /*  */
 
 function mergeVNodeHook (def, hookKey, hook) {
+  if (def instanceof VNode) {
+    def = def.data.hook || (def.data.hook = {});
+  }
   var invoker;
   var oldHook = def[hookKey];
 
@@ -4491,6 +7167,7 @@ function updateComponentListeners (
 ) {
   target = vm;
   updateListeners(listeners, oldListeners || {}, add, remove$1, vm);
+  target = undefined;
 }
 
 function eventsMixin (Vue) {
@@ -4546,7 +7223,7 @@ function eventsMixin (Vue) {
     if (!cbs) {
       return vm
     }
-    if (arguments.length === 1) {
+    if (!fn) {
       vm._events[event] = null;
       return vm
     }
@@ -4597,6 +7274,8 @@ function eventsMixin (Vue) {
 
 /*  */
 
+
+
 /**
  * Runtime helper for resolving raw children VNodes into a slot object.
  */
@@ -4608,7 +7287,6 @@ function resolveSlots (
   if (!children) {
     return slots
   }
-  var defaultSlot = [];
   for (var i = 0, l = children.length; i < l; i++) {
     var child = children[i];
     var data = child.data;
@@ -4618,29 +7296,31 @@ function resolveSlots (
     }
     // named slots should only be respected if the vnode was rendered in the
     // same context.
-    if ((child.context === context || child.functionalContext === context) &&
+    if ((child.context === context || child.fnContext === context) &&
       data && data.slot != null
     ) {
-      var name = child.data.slot;
+      var name = data.slot;
       var slot = (slots[name] || (slots[name] = []));
       if (child.tag === 'template') {
-        slot.push.apply(slot, child.children);
+        slot.push.apply(slot, child.children || []);
       } else {
         slot.push(child);
       }
     } else {
-      defaultSlot.push(child);
+      (slots.default || (slots.default = [])).push(child);
     }
   }
-  // ignore whitespace
-  if (!defaultSlot.every(isWhitespace)) {
-    slots.default = defaultSlot;
+  // ignore slots that contains only whitespace
+  for (var name$1 in slots) {
+    if (slots[name$1].every(isWhitespace)) {
+      delete slots[name$1];
+    }
   }
   return slots
 }
 
 function isWhitespace (node) {
-  return node.isComment || node.text === ' '
+  return (node.isComment && !node.asyncFactory) || node.text === ' '
 }
 
 function resolveScopedSlots (
@@ -4836,7 +7516,10 @@ function mountComponent (
     };
   }
 
-  vm._watcher = new Watcher(vm, updateComponent, noop);
+  // we set this to vm._watcher inside the watcher's constructor
+  // since the watcher's initial patch may call $forceUpdate (e.g. inside child
+  // component's mounted hook), which relies on vm._watcher being already defined
+  new Watcher(vm, updateComponent, noop, null, true /* isRenderWatcher */);
   hydrating = false;
 
   // manually mounted instance, call mounted on self
@@ -5123,9 +7806,13 @@ var Watcher = function Watcher (
   vm,
   expOrFn,
   cb,
-  options
+  options,
+  isRenderWatcher
 ) {
   this.vm = vm;
+  if (isRenderWatcher) {
+    vm._watcher = this;
+  }
   vm._watchers.push(this);
   // options
   if (options) {
@@ -5319,40 +8006,6 @@ Watcher.prototype.teardown = function teardown () {
   }
 };
 
-/**
- * Recursively traverse an object to evoke all converted
- * getters, so that every nested property inside the object
- * is collected as a "deep" dependency.
- */
-var seenObjects = new _Set();
-function traverse (val) {
-  seenObjects.clear();
-  _traverse(val, seenObjects);
-}
-
-function _traverse (val, seen) {
-  var i, keys;
-  var isA = Array.isArray(val);
-  if ((!isA && !isObject(val)) || !Object.isExtensible(val)) {
-    return
-  }
-  if (val.__ob__) {
-    var depId = val.__ob__.dep.id;
-    if (seen.has(depId)) {
-      return
-    }
-    seen.add(depId);
-  }
-  if (isA) {
-    i = val.length;
-    while (i--) { _traverse(val[i], seen); }
-  } else {
-    keys = Object.keys(val);
-    i = keys.length;
-    while (i--) { _traverse(val[keys[i]], seen); }
-  }
-}
-
 /*  */
 
 var sharedPropertyDefinition = {
@@ -5490,6 +8143,7 @@ function getData (data, vm) {
 var computedWatcherOptions = { lazy: true };
 
 function initComputed (vm, computed) {
+  // $flow-disable-line
   var watchers = vm._computedWatchers = Object.create(null);
   // computed properties are just getters during SSR
   var isSSR = isServerRendering();
@@ -5720,11 +8374,11 @@ function resolveInject (inject, vm) {
     // inject is :any because flow is not smart enough to figure out cached
     var result = Object.create(null);
     var keys = hasSymbol
-        ? Reflect.ownKeys(inject).filter(function (key) {
-          /* istanbul ignore next */
-          return Object.getOwnPropertyDescriptor(inject, key).enumerable
-        })
-        : Object.keys(inject);
+      ? Reflect.ownKeys(inject).filter(function (key) {
+        /* istanbul ignore next */
+        return Object.getOwnPropertyDescriptor(inject, key).enumerable
+      })
+      : Object.keys(inject);
 
     for (var i = 0; i < keys.length; i++) {
       var key = keys[i];
@@ -5798,6 +8452,7 @@ function renderSlot (
   bindObject
 ) {
   var scopedSlotFn = this.$scopedSlots[name];
+  var nodes;
   if (scopedSlotFn) { // scoped slot
     props = props || {};
     if (bindObject) {
@@ -5809,19 +8464,28 @@ function renderSlot (
       }
       props = extend(extend({}, bindObject), props);
     }
-    return scopedSlotFn(props) || fallback
+    nodes = scopedSlotFn(props) || fallback;
   } else {
     var slotNodes = this.$slots[name];
     // warn duplicate slot usage
-    if (slotNodes && process.env.NODE_ENV !== 'production') {
-      slotNodes._rendered && warn(
-        "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
-        "- this will likely cause render errors.",
-        this
-      );
+    if (slotNodes) {
+      if (process.env.NODE_ENV !== 'production' && slotNodes._rendered) {
+        warn(
+          "Duplicate presence of slot \"" + name + "\" found in the same render tree " +
+          "- this will likely cause render errors.",
+          this
+        );
+      }
       slotNodes._rendered = true;
     }
-    return slotNodes || fallback
+    nodes = slotNodes || fallback;
+  }
+
+  var target = props && props.slot;
+  if (target) {
+    return this.$createElement('template', { slot: target }, nodes)
+  } else {
+    return nodes
   }
 }
 
@@ -5922,10 +8586,7 @@ function renderStatic (
   index,
   isInFor
 ) {
-  // static trees can be rendered once and cached on the contructor options
-  // so every instance shares the same cached trees
-  var renderFns = this.$options.staticRenderFns;
-  var cached = renderFns.cached || (renderFns.cached = []);
+  var cached = this._staticTrees || (this._staticTrees = []);
   var tree = cached[index];
   // if has already-rendered static tree and not inside v-for,
   // we can reuse the same tree by doing a shallow clone.
@@ -5935,7 +8596,11 @@ function renderStatic (
       : cloneVNode(tree)
   }
   // otherwise, render a fresh tree.
-  tree = cached[index] = renderFns[index].call(this._renderProxy, null, this);
+  tree = cached[index] = this.$options.staticRenderFns[index].call(
+    this._renderProxy,
+    null,
+    this // for render fns generated for functional component templates
+  );
   markStatic(tree, ("__static__" + index), false);
   return tree
 }
@@ -6053,8 +8718,8 @@ function FunctionalRenderContext (
     this._c = function (a, b, c, d) {
       var vnode = createElement(contextVm, a, b, c, d, needNormalization);
       if (vnode) {
-        vnode.functionalScopeId = options._scopeId;
-        vnode.functionalContext = parent;
+        vnode.fnScopeId = options._scopeId;
+        vnode.fnContext = parent;
       }
       return vnode
     };
@@ -6095,8 +8760,8 @@ function createFunctionalComponent (
   var vnode = options.render.call(null, renderContext._c, renderContext);
 
   if (vnode instanceof VNode) {
-    vnode.functionalContext = contextVm;
-    vnode.functionalOptions = options;
+    vnode.fnContext = contextVm;
+    vnode.fnOptions = options;
     if (data.slot) {
       (vnode.data || (vnode.data = {})).slot = data.slot;
     }
@@ -6110,6 +8775,25 @@ function mergeProps (to, from) {
     to[camelize(key)] = from[key];
   }
 }
+
+/*  */
+
+
+
+
+// Register the component hook to weex native render engine.
+// The hook will be triggered by native, not javascript.
+
+
+// Updates the state of the component to weex native render engine.
+
+/*  */
+
+// https://github.com/Hanks10100/weex-native-directive/tree/master/component
+
+// listening on native callback
+
+/*  */
 
 /*  */
 
@@ -6278,6 +8962,11 @@ function createComponent (
     { Ctor: Ctor, propsData: propsData, listeners: listeners, tag: tag, children: children },
     asyncFactory
   );
+
+  // Weex specific: invoke recycle-list optimized @render function for
+  // extracting cell-slot template.
+  // https://github.com/Hanks10100/weex-native-directive/tree/master/component
+  /* istanbul ignore if */
   return vnode
 }
 
@@ -6287,15 +8976,10 @@ function createComponentInstanceForVnode (
   parentElm,
   refElm
 ) {
-  var vnodeComponentOptions = vnode.componentOptions;
   var options = {
     _isComponent: true,
     parent: parent,
-    propsData: vnodeComponentOptions.propsData,
-    _componentTag: vnodeComponentOptions.tag,
     _parentVnode: vnode,
-    _parentListeners: vnodeComponentOptions.listeners,
-    _renderChildren: vnodeComponentOptions.children,
     _parentElm: parentElm || null,
     _refElm: refElm || null
   };
@@ -6305,7 +8989,7 @@ function createComponentInstanceForVnode (
     options.render = inlineTemplate.render;
     options.staticRenderFns = inlineTemplate.staticRenderFns;
   }
-  return new vnodeComponentOptions.Ctor(options)
+  return new vnode.componentOptions.Ctor(options)
 }
 
 function mergeHooks (data) {
@@ -6393,11 +9077,13 @@ function _createElement (
   if (process.env.NODE_ENV !== 'production' &&
     isDef(data) && isDef(data.key) && !isPrimitive(data.key)
   ) {
-    warn(
-      'Avoid using non-primitive value as key, ' +
-      'use string/number value instead.',
-      context
-    );
+    {
+      warn(
+        'Avoid using non-primitive value as key, ' +
+        'use string/number value instead.',
+        context
+      );
+    }
   }
   // support single function children as default scoped slot
   if (Array.isArray(children) &&
@@ -6467,6 +9153,7 @@ function applyNS (vnode, ns, force) {
 
 function initRender (vm) {
   vm._vnode = null; // the root of the child tree
+  vm._staticTrees = null; // v-once cached trees
   var options = vm.$options;
   var parentVnode = vm.$vnode = options._parentVnode; // the placeholder node in parent tree
   var renderContext = parentVnode && parentVnode.context;
@@ -6518,7 +9205,9 @@ function renderMixin (Vue) {
       // last render. They need to be cloned to ensure "freshness" for this render.
       for (var key in vm.$slots) {
         var slot = vm.$slots[key];
-        if (slot._rendered) {
+        // _rendered is a flag added by renderSlot, but may not be present
+        // if the slot is passed from manually written render functions
+        if (slot._rendered || (slot[0] && slot[0].elm)) {
           vm.$slots[key] = cloneVNodes(slot, true /* deep */);
         }
       }
@@ -6636,14 +9325,18 @@ function initMixin (Vue) {
 function initInternalComponent (vm, options) {
   var opts = vm.$options = Object.create(vm.constructor.options);
   // doing this because it's faster than dynamic enumeration.
+  var parentVnode = options._parentVnode;
   opts.parent = options.parent;
-  opts.propsData = options.propsData;
-  opts._parentVnode = options._parentVnode;
-  opts._parentListeners = options._parentListeners;
-  opts._renderChildren = options._renderChildren;
-  opts._componentTag = options._componentTag;
+  opts._parentVnode = parentVnode;
   opts._parentElm = options._parentElm;
   opts._refElm = options._refElm;
+
+  var vnodeComponentOptions = parentVnode.componentOptions;
+  opts.propsData = vnodeComponentOptions.propsData;
+  opts._parentListeners = vnodeComponentOptions.listeners;
+  opts._renderChildren = vnodeComponentOptions.children;
+  opts._componentTag = vnodeComponentOptions.tag;
+
   if (options.render) {
     opts.render = options.render;
     opts.staticRenderFns = options.staticRenderFns;
@@ -6777,14 +9470,8 @@ function initExtend (Vue) {
     }
 
     var name = extendOptions.name || Super.options.name;
-    if (process.env.NODE_ENV !== 'production') {
-      if (!/^[a-zA-Z][\w-]*$/.test(name)) {
-        warn(
-          'Invalid component name: "' + name + '". Component names ' +
-          'can only contain alphanumeric characters and the hyphen, ' +
-          'and must start with a letter.'
-        );
-      }
+    if (process.env.NODE_ENV !== 'production' && name) {
+      validateComponentName(name);
     }
 
     var Sub = function VueComponent (options) {
@@ -6866,13 +9553,8 @@ function initAssetRegisters (Vue) {
         return this.options[type + 's'][id]
       } else {
         /* istanbul ignore if */
-        if (process.env.NODE_ENV !== 'production') {
-          if (type === 'component' && config.isReservedTag(id)) {
-            warn(
-              'Do not use built-in or reserved HTML elements as component ' +
-              'id: ' + id
-            );
-          }
+        if (process.env.NODE_ENV !== 'production' && type === 'component') {
+          validateComponentName(id);
         }
         if (type === 'component' && isPlainObject(definition)) {
           definition.name = definition.name || id;
@@ -6928,7 +9610,7 @@ function pruneCacheEntry (
   current
 ) {
   var cached$$1 = cache[key];
-  if (cached$$1 && cached$$1 !== current) {
+  if (cached$$1 && (!current || cached$$1.tag !== current.tag)) {
     cached$$1.componentInstance.$destroy();
   }
   cache[key] = null;
@@ -6970,21 +9652,27 @@ var KeepAlive = {
   },
 
   render: function render () {
-    var vnode = getFirstComponentChild(this.$slots.default);
+    var slot = this.$slots.default;
+    var vnode = getFirstComponentChild(slot);
     var componentOptions = vnode && vnode.componentOptions;
     if (componentOptions) {
       // check pattern
       var name = getComponentName(componentOptions);
-      if (name && (
-        (this.include && !matches(this.include, name)) ||
-        (this.exclude && matches(this.exclude, name))
-      )) {
+      var ref = this;
+      var include = ref.include;
+      var exclude = ref.exclude;
+      if (
+        // not included
+        (include && (!name || !matches(include, name))) ||
+        // excluded
+        (exclude && name && matches(exclude, name))
+      ) {
         return vnode
       }
 
-      var ref = this;
-      var cache = ref.cache;
-      var keys = ref.keys;
+      var ref$1 = this;
+      var cache = ref$1.cache;
+      var keys = ref$1.keys;
       var key = vnode.key == null
         // same constructor may get registered as different local components
         // so cid alone is not enough (#3269)
@@ -7006,7 +9694,7 @@ var KeepAlive = {
 
       vnode.data.keepAlive = true;
     }
-    return vnode
+    return vnode || (slot && slot[0])
   }
 };
 
@@ -7073,7 +9761,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.5.2';
+Vue$3.version = '2.5.13';
 
 /*  */
 
@@ -7125,12 +9813,12 @@ function genClassForVnode (vnode) {
   var childNode = vnode;
   while (isDef(childNode.componentInstance)) {
     childNode = childNode.componentInstance._vnode;
-    if (childNode.data) {
+    if (childNode && childNode.data) {
       data = mergeClassData(childNode.data, data);
     }
   }
   while (isDef(parentNode = parentNode.parent)) {
-    if (parentNode.data) {
+    if (parentNode && parentNode.data) {
       data = mergeClassData(data, parentNode.data);
     }
   }
@@ -7500,7 +10188,23 @@ function createPatchFunction (backend) {
     }
   }
 
-  var inPre = 0;
+  function isUnknownElement$$1 (vnode, inVPre) {
+    return (
+      !inVPre &&
+      !vnode.ns &&
+      !(
+        config.ignoredElements.length &&
+        config.ignoredElements.some(function (ignore) {
+          return isRegExp(ignore)
+            ? ignore.test(vnode.tag)
+            : ignore === vnode.tag
+        })
+      ) &&
+      config.isUnknownElement(vnode.tag)
+    )
+  }
+
+  var creatingElmInVPre = 0;
   function createElm (vnode, insertedVnodeQueue, parentElm, refElm, nested) {
     vnode.isRootInsert = !nested; // for transition enter check
     if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
@@ -7513,21 +10217,9 @@ function createPatchFunction (backend) {
     if (isDef(tag)) {
       if (process.env.NODE_ENV !== 'production') {
         if (data && data.pre) {
-          inPre++;
+          creatingElmInVPre++;
         }
-        if (
-          !inPre &&
-          !vnode.ns &&
-          !(
-            config.ignoredElements.length &&
-            config.ignoredElements.some(function (ignore) {
-              return isRegExp(ignore)
-                ? ignore.test(tag)
-                : ignore === tag
-            })
-          ) &&
-          config.isUnknownElement(tag)
-        ) {
+        if (isUnknownElement$$1(vnode, creatingElmInVPre)) {
           warn(
             'Unknown custom element: <' + tag + '> - did you ' +
             'register the component correctly? For recursive components, ' +
@@ -7551,7 +10243,7 @@ function createPatchFunction (backend) {
       }
 
       if (process.env.NODE_ENV !== 'production' && data && data.pre) {
-        inPre--;
+        creatingElmInVPre--;
       }
     } else if (isTrue(vnode.isComment)) {
       vnode.elm = nodeOps.createComment(vnode.text);
@@ -7637,11 +10329,14 @@ function createPatchFunction (backend) {
 
   function createChildren (vnode, children, insertedVnodeQueue) {
     if (Array.isArray(children)) {
+      if (process.env.NODE_ENV !== 'production') {
+        checkDuplicateKeys(children);
+      }
       for (var i = 0; i < children.length; ++i) {
         createElm(children[i], insertedVnodeQueue, vnode.elm, null, true);
       }
     } else if (isPrimitive(vnode.text)) {
-      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(vnode.text));
+      nodeOps.appendChild(vnode.elm, nodeOps.createTextNode(String(vnode.text)));
     }
   }
 
@@ -7668,7 +10363,7 @@ function createPatchFunction (backend) {
   // of going through the normal attribute patching process.
   function setScope (vnode) {
     var i;
-    if (isDef(i = vnode.functionalScopeId)) {
+    if (isDef(i = vnode.fnScopeId)) {
       nodeOps.setAttribute(vnode.elm, i, '');
     } else {
       var ancestor = vnode;
@@ -7682,7 +10377,7 @@ function createPatchFunction (backend) {
     // for slot content they should also get the scopeId from the host instance.
     if (isDef(i = activeInstance) &&
       i !== vnode.context &&
-      i !== vnode.functionalContext &&
+      i !== vnode.fnContext &&
       isDef(i = i.$options._scopeId)
     ) {
       nodeOps.setAttribute(vnode.elm, i, '');
@@ -7768,6 +10463,10 @@ function createPatchFunction (backend) {
     // during leaving transitions
     var canMove = !removeOnly;
 
+    if (process.env.NODE_ENV !== 'production') {
+      checkDuplicateKeys(newCh);
+    }
+
     while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
       if (isUndef(oldStartVnode)) {
         oldStartVnode = oldCh[++oldStartIdx]; // Vnode has been moved left
@@ -7800,13 +10499,6 @@ function createPatchFunction (backend) {
           createElm(newStartVnode, insertedVnodeQueue, parentElm, oldStartVnode.elm);
         } else {
           vnodeToMove = oldCh[idxInOld];
-          /* istanbul ignore if */
-          if (process.env.NODE_ENV !== 'production' && !vnodeToMove) {
-            warn(
-              'It seems there are duplicate keys that is causing an update error. ' +
-              'Make sure each v-for item has a unique key.'
-            );
-          }
           if (sameVnode(vnodeToMove, newStartVnode)) {
             patchVnode(vnodeToMove, newStartVnode, insertedVnodeQueue);
             oldCh[idxInOld] = undefined;
@@ -7824,6 +10516,24 @@ function createPatchFunction (backend) {
       addVnodes(parentElm, refElm, newCh, newStartIdx, newEndIdx, insertedVnodeQueue);
     } else if (newStartIdx > newEndIdx) {
       removeVnodes(parentElm, oldCh, oldStartIdx, oldEndIdx);
+    }
+  }
+
+  function checkDuplicateKeys (children) {
+    var seenKeys = {};
+    for (var i = 0; i < children.length; i++) {
+      var vnode = children[i];
+      var key = vnode.key;
+      if (isDef(key)) {
+        if (seenKeys[key]) {
+          warn(
+            ("Duplicate keys detected: '" + key + "'. This may cause an update error."),
+            vnode.context
+          );
+        } else {
+          seenKeys[key] = true;
+        }
+      }
     }
   }
 
@@ -7906,27 +10616,32 @@ function createPatchFunction (backend) {
     }
   }
 
-  var bailed = false;
+  var hydrationBailed = false;
   // list of modules that can skip create hook during hydration because they
   // are already rendered on the client or has no need for initialization
-  var isRenderedModule = makeMap('attrs,style,class,staticClass,staticStyle,key');
+  // Note: style is excluded because it relies on initial clone for future
+  // deep updates (#7063).
+  var isRenderedModule = makeMap('attrs,class,staticClass,staticStyle,key');
 
   // Note: this is a browser-only function so we can assume elms are DOM nodes.
-  function hydrate (elm, vnode, insertedVnodeQueue) {
-    if (isTrue(vnode.isComment) && isDef(vnode.asyncFactory)) {
-      vnode.elm = elm;
-      vnode.isAsyncPlaceholder = true;
-      return true
-    }
-    if (process.env.NODE_ENV !== 'production') {
-      if (!assertNodeMatch(elm, vnode)) {
-        return false
-      }
-    }
-    vnode.elm = elm;
+  function hydrate (elm, vnode, insertedVnodeQueue, inVPre) {
+    var i;
     var tag = vnode.tag;
     var data = vnode.data;
     var children = vnode.children;
+    inVPre = inVPre || (data && data.pre);
+    vnode.elm = elm;
+
+    if (isTrue(vnode.isComment) && isDef(vnode.asyncFactory)) {
+      vnode.isAsyncPlaceholder = true;
+      return true
+    }
+    // assert node match
+    if (process.env.NODE_ENV !== 'production') {
+      if (!assertNodeMatch(elm, vnode, inVPre)) {
+        return false
+      }
+    }
     if (isDef(data)) {
       if (isDef(i = data.hook) && isDef(i = i.init)) { i(vnode, true /* hydrating */); }
       if (isDef(i = vnode.componentInstance)) {
@@ -7947,9 +10662,9 @@ function createPatchFunction (backend) {
               /* istanbul ignore if */
               if (process.env.NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
-                !bailed
+                !hydrationBailed
               ) {
-                bailed = true;
+                hydrationBailed = true;
                 console.warn('Parent: ', elm);
                 console.warn('server innerHTML: ', i);
                 console.warn('client innerHTML: ', elm.innerHTML);
@@ -7961,7 +10676,7 @@ function createPatchFunction (backend) {
             var childrenMatch = true;
             var childNode = elm.firstChild;
             for (var i$1 = 0; i$1 < children.length; i$1++) {
-              if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue)) {
+              if (!childNode || !hydrate(childNode, children[i$1], insertedVnodeQueue, inVPre)) {
                 childrenMatch = false;
                 break
               }
@@ -7973,9 +10688,9 @@ function createPatchFunction (backend) {
               /* istanbul ignore if */
               if (process.env.NODE_ENV !== 'production' &&
                 typeof console !== 'undefined' &&
-                !bailed
+                !hydrationBailed
               ) {
-                bailed = true;
+                hydrationBailed = true;
                 console.warn('Parent: ', elm);
                 console.warn('Mismatching childNodes vs. VNodes: ', elm.childNodes, children);
               }
@@ -7985,11 +10700,17 @@ function createPatchFunction (backend) {
         }
       }
       if (isDef(data)) {
+        var fullInvoke = false;
         for (var key in data) {
           if (!isRenderedModule(key)) {
+            fullInvoke = true;
             invokeCreateHooks(vnode, insertedVnodeQueue);
             break
           }
+        }
+        if (!fullInvoke && data['class']) {
+          // ensure collecting deps for deep class bindings for future updates
+          traverse(data['class']);
         }
       }
     } else if (elm.data !== vnode.text) {
@@ -7998,10 +10719,10 @@ function createPatchFunction (backend) {
     return true
   }
 
-  function assertNodeMatch (node, vnode) {
+  function assertNodeMatch (node, vnode, inVPre) {
     if (isDef(vnode.tag)) {
-      return (
-        vnode.tag.indexOf('vue-component') === 0 ||
+      return vnode.tag.indexOf('vue-component') === 0 || (
+        !isUnknownElement$$1(vnode, inVPre) &&
         vnode.tag.toLowerCase() === (node.tagName && node.tagName.toLowerCase())
       )
     } else {
@@ -8054,9 +10775,12 @@ function createPatchFunction (backend) {
           // create an empty node and replace it
           oldVnode = emptyNodeAt(oldVnode);
         }
+
         // replacing existing element
         var oldElm = oldVnode.elm;
         var parentElm$1 = nodeOps.parentNode(oldElm);
+
+        // create new node
         createElm(
           vnode,
           insertedVnodeQueue,
@@ -8067,9 +10791,8 @@ function createPatchFunction (backend) {
           nodeOps.nextSibling(oldElm)
         );
 
+        // update parent placeholder node element, recursively
         if (isDef(vnode.parent)) {
-          // component root element replaced.
-          // update parent placeholder node element, recursively
           var ancestor = vnode.parent;
           var patchable = isPatchable(vnode);
           while (ancestor) {
@@ -8098,6 +10821,7 @@ function createPatchFunction (backend) {
           }
         }
 
+        // destroy old node
         if (isDef(parentElm$1)) {
           removeVnodes(parentElm$1, [oldVnode], 0, 0);
         } else if (isDef(oldVnode.tag)) {
@@ -8163,14 +10887,14 @@ function _update (oldVnode, vnode) {
       }
     };
     if (isCreate) {
-      mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', callInsert);
+      mergeVNodeHook(vnode, 'insert', callInsert);
     } else {
       callInsert();
     }
   }
 
   if (dirsWithPostpatch.length) {
-    mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'postpatch', function () {
+    mergeVNodeHook(vnode, 'postpatch', function () {
       for (var i = 0; i < dirsWithPostpatch.length; i++) {
         callHook$1(dirsWithPostpatch[i], 'componentUpdated', vnode, oldVnode);
       }
@@ -8195,17 +10919,20 @@ function normalizeDirectives$1 (
 ) {
   var res = Object.create(null);
   if (!dirs) {
+    // $flow-disable-line
     return res
   }
   var i, dir;
   for (i = 0; i < dirs.length; i++) {
     dir = dirs[i];
     if (!dir.modifiers) {
+      // $flow-disable-line
       dir.modifiers = emptyModifiers;
     }
     res[getRawDirName(dir)] = dir;
     dir.def = resolveAsset(vm.$options, 'directives', dir.name, true);
   }
+  // $flow-disable-line
   return res
 }
 
@@ -8258,7 +10985,7 @@ function updateAttrs (oldVnode, vnode) {
   // #4391: in IE9, setting type can reset value for input[type=radio]
   // #6666: IE/Edge forces progress value down to 1 before setting a max
   /* istanbul ignore if */
-  if ((isIE9 || isEdge) && attrs.value !== oldAttrs.value) {
+  if ((isIE || isEdge) && attrs.value !== oldAttrs.value) {
     setAttr(elm, 'value', attrs.value);
   }
   for (key in oldAttrs) {
@@ -8298,6 +11025,23 @@ function setAttr (el, key, value) {
     if (isFalsyAttrValue(value)) {
       el.removeAttribute(key);
     } else {
+      // #7138: IE10 & 11 fires input event when setting placeholder on
+      // <textarea>... block the first input event and remove the blocker
+      // immediately.
+      /* istanbul ignore if */
+      if (
+        isIE && !isIE9 &&
+        el.tagName === 'TEXTAREA' &&
+        key === 'placeholder' && !el.__ieph
+      ) {
+        var blocker = function (e) {
+          e.stopImmediatePropagation();
+          el.removeEventListener('input', blocker);
+        };
+        el.addEventListener('input', blocker);
+        // $flow-disable-line
+        el.__ieph = true; /* IE placeholder patched */
+      }
       el.setAttribute(key, value);
     }
   }
@@ -8461,10 +11205,18 @@ function pluckModuleFunction (
 
 function addProp (el, name, value) {
   (el.props || (el.props = [])).push({ name: name, value: value });
+  el.plain = false;
 }
 
 function addAttr (el, name, value) {
   (el.attrs || (el.attrs = [])).push({ name: name, value: value });
+  el.plain = false;
+}
+
+// add a raw attr (use this in preTransforms)
+function addRawAttr (el, name, value) {
+  el.attrsMap[name] = value;
+  el.attrsList.push({ name: name, value: value });
 }
 
 function addDirective (
@@ -8476,6 +11228,7 @@ function addDirective (
   modifiers
 ) {
   (el.directives || (el.directives = [])).push({ name: name, rawName: rawName, value: value, arg: arg, modifiers: modifiers });
+  el.plain = false;
 }
 
 function addHandler (
@@ -8486,39 +11239,59 @@ function addHandler (
   important,
   warn
 ) {
+  modifiers = modifiers || emptyObject;
   // warn prevent and passive modifier
   /* istanbul ignore if */
   if (
     process.env.NODE_ENV !== 'production' && warn &&
-    modifiers && modifiers.prevent && modifiers.passive
+    modifiers.prevent && modifiers.passive
   ) {
     warn(
       'passive and prevent can\'t be used together. ' +
       'Passive handler can\'t prevent default event.'
     );
   }
+
   // check capture modifier
-  if (modifiers && modifiers.capture) {
+  if (modifiers.capture) {
     delete modifiers.capture;
     name = '!' + name; // mark the event as captured
   }
-  if (modifiers && modifiers.once) {
+  if (modifiers.once) {
     delete modifiers.once;
     name = '~' + name; // mark the event as once
   }
   /* istanbul ignore if */
-  if (modifiers && modifiers.passive) {
+  if (modifiers.passive) {
     delete modifiers.passive;
     name = '&' + name; // mark the event as passive
   }
+
+  // normalize click.right and click.middle since they don't actually fire
+  // this is technically browser-specific, but at least for now browsers are
+  // the only target envs that have right/middle clicks.
+  if (name === 'click') {
+    if (modifiers.right) {
+      name = 'contextmenu';
+      delete modifiers.right;
+    } else if (modifiers.middle) {
+      name = 'mouseup';
+    }
+  }
+
   var events;
-  if (modifiers && modifiers.native) {
+  if (modifiers.native) {
     delete modifiers.native;
     events = el.nativeEvents || (el.nativeEvents = {});
   } else {
     events = el.events || (el.events = {});
   }
-  var newHandler = { value: value, modifiers: modifiers };
+
+  var newHandler = { value: value };
+  if (modifiers !== emptyObject) {
+    newHandler.modifiers = modifiers;
+  }
+
   var handlers = events[name];
   /* istanbul ignore if */
   if (Array.isArray(handlers)) {
@@ -8528,6 +11301,8 @@ function addHandler (
   } else {
     events[name] = newHandler;
   }
+
+  el.plain = false;
 }
 
 function getBindingAttr (
@@ -8794,11 +11569,11 @@ function genCheckboxModel (
   var falseValueBinding = getBindingAttr(el, 'false-value') || 'false';
   addProp(el, 'checked',
     "Array.isArray(" + value + ")" +
-      "?_i(" + value + "," + valueBinding + ")>-1" + (
-        trueValueBinding === 'true'
-          ? (":(" + value + ")")
-          : (":_q(" + value + "," + trueValueBinding + ")")
-      )
+    "?_i(" + value + "," + valueBinding + ")>-1" + (
+      trueValueBinding === 'true'
+        ? (":(" + value + ")")
+        : (":_q(" + value + "," + trueValueBinding + ")")
+    )
   );
   addHandler(el, 'change',
     "var $$a=" + value + "," +
@@ -8815,9 +11590,9 @@ function genCheckboxModel (
 }
 
 function genRadioModel (
-    el,
-    value,
-    modifiers
+  el,
+  value,
+  modifiers
 ) {
   var number = modifiers && modifiers.number;
   var valueBinding = getBindingAttr(el, 'value') || 'null';
@@ -8827,9 +11602,9 @@ function genRadioModel (
 }
 
 function genSelect (
-    el,
-    value,
-    modifiers
+  el,
+  value,
+  modifiers
 ) {
   var number = modifiers && modifiers.number;
   var selectedVal = "Array.prototype.filter" +
@@ -8849,6 +11624,19 @@ function genDefaultModel (
   modifiers
 ) {
   var type = el.attrsMap.type;
+
+  // warn if v-bind:value conflicts with v-model
+  if (process.env.NODE_ENV !== 'production') {
+    var value$1 = el.attrsMap['v-bind:value'] || el.attrsMap[':value'];
+    if (value$1) {
+      var binding = el.attrsMap['v-bind:value'] ? 'v-bind:value' : ':value';
+      warn$1(
+        binding + "=\"" + value$1 + "\" conflicts with v-model on the same element " +
+        'because the latter already expands to a value binding internally'
+      );
+    }
+  }
+
   var ref = modifiers || {};
   var lazy = ref.lazy;
   var number = ref.number;
@@ -8955,6 +11743,7 @@ function updateDOMListeners (oldVnode, vnode) {
   target$1 = vnode.elm;
   normalizeEvents(on);
   updateListeners(on, oldOn, add$1, remove$2, vnode.context);
+  target$1 = undefined;
 }
 
 var events = {
@@ -9018,12 +11807,12 @@ function updateDOMProps (oldVnode, vnode) {
 function shouldUpdateValue (elm, checkVal) {
   return (!elm.composing && (
     elm.tagName === 'OPTION' ||
-    isDirty(elm, checkVal) ||
-    isInputChanged(elm, checkVal)
+    isNotInFocusAndDirty(elm, checkVal) ||
+    isDirtyWithModifiers(elm, checkVal)
   ))
 }
 
-function isDirty (elm, checkVal) {
+function isNotInFocusAndDirty (elm, checkVal) {
   // return true when textbox (.number and .trim) loses focus and its value is
   // not equal to the updated value
   var notInFocus = true;
@@ -9033,14 +11822,20 @@ function isDirty (elm, checkVal) {
   return notInFocus && elm.value !== checkVal
 }
 
-function isInputChanged (elm, newVal) {
+function isDirtyWithModifiers (elm, newVal) {
   var value = elm.value;
   var modifiers = elm._vModifiers; // injected by v-model runtime
-  if (isDef(modifiers) && modifiers.number) {
-    return toNumber(value) !== toNumber(newVal)
-  }
-  if (isDef(modifiers) && modifiers.trim) {
-    return value.trim() !== newVal.trim()
+  if (isDef(modifiers)) {
+    if (modifiers.lazy) {
+      // inputs with lazy should only be updated when not in focus
+      return false
+    }
+    if (modifiers.number) {
+      return toNumber(value) !== toNumber(newVal)
+    }
+    if (modifiers.trim) {
+      return value.trim() !== newVal.trim()
+    }
   }
   return value !== newVal
 }
@@ -9098,7 +11893,10 @@ function getStyle (vnode, checkChild) {
     var childNode = vnode;
     while (childNode.componentInstance) {
       childNode = childNode.componentInstance._vnode;
-      if (childNode.data && (styleData = normalizeStyleData(childNode.data))) {
+      if (
+        childNode && childNode.data &&
+        (styleData = normalizeStyleData(childNode.data))
+      ) {
         extend(res, styleData);
       }
     }
@@ -9560,7 +12358,7 @@ function enter (vnode, toggleDisplay) {
 
   if (!vnode.data.show) {
     // remove pending leave element on enter by injecting an insert hook
-    mergeVNodeHook(vnode.data.hook || (vnode.data.hook = {}), 'insert', function () {
+    mergeVNodeHook(vnode, 'insert', function () {
       var parent = el.parentNode;
       var pendingNode = parent && parent._pending && parent._pending[vnode.key];
       if (pendingNode &&
@@ -9611,12 +12409,12 @@ function leave (vnode, rm) {
   }
 
   var data = resolveTransition(vnode.data.transition);
-  if (isUndef(data)) {
+  if (isUndef(data) || el.nodeType !== 1) {
     return rm()
   }
 
   /* istanbul ignore if */
-  if (isDef(el._leaveCb) || el.nodeType !== 1) {
+  if (isDef(el._leaveCb)) {
     return
   }
 
@@ -9799,10 +12597,17 @@ if (isIE9) {
   });
 }
 
-var model$1 = {
-  inserted: function inserted (el, binding, vnode) {
+var directive = {
+  inserted: function inserted (el, binding, vnode, oldVnode) {
     if (vnode.tag === 'select') {
-      setSelected(el, binding, vnode.context);
+      // #6903
+      if (oldVnode.elm && !oldVnode.elm._vOptions) {
+        mergeVNodeHook(vnode, 'postpatch', function () {
+          directive.componentUpdated(el, binding, vnode);
+        });
+      } else {
+        setSelected(el, binding, vnode.context);
+      }
       el._vOptions = [].map.call(el.options, getValue);
     } else if (vnode.tag === 'textarea' || isTextInputType(el.type)) {
       el._vModifiers = binding.modifiers;
@@ -9823,6 +12628,7 @@ var model$1 = {
       }
     }
   },
+
   componentUpdated: function componentUpdated (el, binding, vnode) {
     if (vnode.tag === 'select') {
       setSelected(el, binding, vnode.context);
@@ -9981,7 +12787,7 @@ var show = {
 };
 
 var platformDirectives = {
-  model: model$1,
+  model: directive,
   show: show
 };
 
@@ -10063,7 +12869,7 @@ var Transition = {
   render: function render (h) {
     var this$1 = this;
 
-    var children = this.$options._renderChildren;
+    var children = this.$slots.default;
     if (!children) {
       return
     }
@@ -10142,7 +12948,9 @@ var Transition = {
       oldChild &&
       oldChild.data &&
       !isSameChild(child, oldChild) &&
-      !isAsyncPlaceholder(oldChild)
+      !isAsyncPlaceholder(oldChild) &&
+      // #6687 component root is a comment node
+      !(oldChild.componentInstance && oldChild.componentInstance._vnode.isComment)
     ) {
       // replace old child transition data with fresh one
       // important for dynamic transitions!
@@ -10244,7 +13052,7 @@ var TransitionGroup = {
       this._vnode,
       this.kept,
       false, // hydrating
-      true // removeOnly (!important, avoids unnecessary moves)
+      true // removeOnly (!important avoids unnecessary moves)
     );
     this._vnode = this.kept;
   },
@@ -10398,19 +13206,6 @@ Vue$3.nextTick(function () {
 
 /*  */
 
-// check whether current browser encodes a char inside attribute values
-function shouldDecode (content, encoded) {
-  var div = document.createElement('div');
-  div.innerHTML = "<div a=\"" + content + "\"/>";
-  return div.innerHTML.indexOf(encoded) > 0
-}
-
-// #3663
-// IE encodes newlines inside attribute values while other browsers don't
-var shouldDecodeNewlines = inBrowser ? shouldDecode('\n', '&#10;') : false;
-
-/*  */
-
 var defaultTagRE = /\{\{((?:.|\n)+?)\}\}/g;
 var regexEscapeRE = /[-.*+?^${}()|[\]\/\\]/g;
 
@@ -10419,6 +13214,8 @@ var buildRegex = cached(function (delimiters) {
   var close = delimiters[1].replace(regexEscapeRE, '\\$&');
   return new RegExp(open + '((?:.|\\n)+?)' + close, 'g')
 });
+
+
 
 function parseText (
   text,
@@ -10429,23 +13226,30 @@ function parseText (
     return
   }
   var tokens = [];
+  var rawTokens = [];
   var lastIndex = tagRE.lastIndex = 0;
-  var match, index;
+  var match, index, tokenValue;
   while ((match = tagRE.exec(text))) {
     index = match.index;
     // push text token
     if (index > lastIndex) {
-      tokens.push(JSON.stringify(text.slice(lastIndex, index)));
+      rawTokens.push(tokenValue = text.slice(lastIndex, index));
+      tokens.push(JSON.stringify(tokenValue));
     }
     // tag token
     var exp = parseFilters(match[1].trim());
     tokens.push(("_s(" + exp + ")"));
+    rawTokens.push({ '@binding': exp });
     lastIndex = index + match[0].length;
   }
   if (lastIndex < text.length) {
-    tokens.push(JSON.stringify(text.slice(lastIndex)));
+    rawTokens.push(tokenValue = text.slice(lastIndex));
+    tokens.push(JSON.stringify(tokenValue));
   }
-  return tokens.join('+')
+  return {
+    expression: tokens.join('+'),
+    tokens: rawTokens
+  }
 }
 
 /*  */
@@ -10454,8 +13258,8 @@ function transformNode (el, options) {
   var warn = options.warn || baseWarn;
   var staticClass = getAndRemoveAttr(el, 'class');
   if (process.env.NODE_ENV !== 'production' && staticClass) {
-    var expression = parseText(staticClass, options.delimiters);
-    if (expression) {
+    var res = parseText(staticClass, options.delimiters);
+    if (res) {
       warn(
         "class=\"" + staticClass + "\": " +
         'Interpolation inside attributes has been removed. ' +
@@ -10498,8 +13302,8 @@ function transformNode$1 (el, options) {
   if (staticStyle) {
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production') {
-      var expression = parseText(staticStyle, options.delimiters);
-      if (expression) {
+      var res = parseText(staticStyle, options.delimiters);
+      if (res) {
         warn(
           "style=\"" + staticStyle + "\": " +
           'Interpolation inside attributes has been removed. ' +
@@ -10607,10 +13411,11 @@ var decodingMap = {
   '&gt;': '>',
   '&quot;': '"',
   '&amp;': '&',
-  '&#10;': '\n'
+  '&#10;': '\n',
+  '&#9;': '\t'
 };
 var encodedAttr = /&(?:lt|gt|quot|amp);/g;
-var encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#10);/g;
+var encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#10|#9);/g;
 
 // #5992
 var isIgnoreNewlineTag = makeMap('pre,textarea', true);
@@ -10801,12 +13606,12 @@ function parseHTML (html, options) {
         if (args[5] === '') { delete args[5]; }
       }
       var value = args[3] || args[4] || args[5] || '';
+      var shouldDecodeNewlines = tagName === 'a' && args[1] === 'href'
+        ? options.shouldDecodeNewlinesForHref
+        : options.shouldDecodeNewlines;
       attrs[i] = {
         name: args[1],
-        value: decodeAttr(
-          value,
-          options.shouldDecodeNewlines
-        )
+        value: decodeAttr(value, shouldDecodeNewlines)
       };
     }
 
@@ -10880,7 +13685,8 @@ function parseHTML (html, options) {
 var onRE = /^@|^v-on:/;
 var dirRE = /^v-|^@|^:/;
 var forAliasRE = /(.*?)\s+(?:in|of)\s+(.*)/;
-var forIteratorRE = /\((\{[^}]*\}|[^,]*),([^,]*)(?:,([^,]*))?\)/;
+var forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
+var stripParensRE = /^\(|\)$/g;
 
 var argRE = /:(.*)$/;
 var bindRE = /^:|^v-bind:/;
@@ -10949,13 +13755,17 @@ function parse (
     }
   }
 
-  function endPre (element) {
+  function closeElement (element) {
     // check pre state
     if (element.pre) {
       inVPre = false;
     }
     if (platformIsPreTag(element.tag)) {
       inPre = false;
+    }
+    // apply post-transforms
+    for (var i = 0; i < postTransforms.length; i++) {
+      postTransforms[i](element, options);
     }
   }
 
@@ -10965,6 +13775,7 @@ function parse (
     isUnaryTag: options.isUnaryTag,
     canBeLeftOpenTag: options.canBeLeftOpenTag,
     shouldDecodeNewlines: options.shouldDecodeNewlines,
+    shouldDecodeNewlinesForHref: options.shouldDecodeNewlinesForHref,
     shouldKeepComment: options.comments,
     start: function start (tag, attrs, unary) {
       // check namespace.
@@ -11068,11 +13879,7 @@ function parse (
         currentParent = element;
         stack.push(element);
       } else {
-        endPre(element);
-      }
-      // apply post-transforms
-      for (var i$1 = 0; i$1 < postTransforms.length; i$1++) {
-        postTransforms[i$1](element, options);
+        closeElement(element);
       }
     },
 
@@ -11086,7 +13893,7 @@ function parse (
       // pop stack
       stack.length -= 1;
       currentParent = stack[stack.length - 1];
-      endPre(element);
+      closeElement(element);
     },
 
     chars: function chars (text) {
@@ -11118,11 +13925,12 @@ function parse (
         // only preserve whitespace if its not right after a starting tag
         : preserveWhitespace && children.length ? ' ' : '';
       if (text) {
-        var expression;
-        if (!inVPre && text !== ' ' && (expression = parseText(text, delimiters))) {
+        var res;
+        if (!inVPre && text !== ' ' && (res = parseText(text, delimiters))) {
           children.push({
             type: 2,
-            expression: expression,
+            expression: res.expression,
+            tokens: res.tokens,
             text: text
           });
         } else if (text !== ' ' || !children.length || children[children.length - 1].text !== ' ') {
@@ -11203,26 +14011,34 @@ function processRef (el) {
 function processFor (el) {
   var exp;
   if ((exp = getAndRemoveAttr(el, 'v-for'))) {
-    var inMatch = exp.match(forAliasRE);
-    if (!inMatch) {
-      process.env.NODE_ENV !== 'production' && warn$2(
+    var res = parseFor(exp);
+    if (res) {
+      extend(el, res);
+    } else if (process.env.NODE_ENV !== 'production') {
+      warn$2(
         ("Invalid v-for expression: " + exp)
       );
-      return
-    }
-    el.for = inMatch[2].trim();
-    var alias = inMatch[1].trim();
-    var iteratorMatch = alias.match(forIteratorRE);
-    if (iteratorMatch) {
-      el.alias = iteratorMatch[1].trim();
-      el.iterator1 = iteratorMatch[2].trim();
-      if (iteratorMatch[3]) {
-        el.iterator2 = iteratorMatch[3].trim();
-      }
-    } else {
-      el.alias = alias;
     }
   }
+}
+
+function parseFor (exp) {
+  var inMatch = exp.match(forAliasRE);
+  if (!inMatch) { return }
+  var res = {};
+  res.for = inMatch[2].trim();
+  var alias = inMatch[1].trim().replace(stripParensRE, '');
+  var iteratorMatch = alias.match(forIteratorRE);
+  if (iteratorMatch) {
+    res.alias = alias.replace(forIteratorRE, '');
+    res.iterator1 = iteratorMatch[1].trim();
+    if (iteratorMatch[2]) {
+      res.iterator2 = iteratorMatch[2].trim();
+    }
+  } else {
+    res.alias = alias;
+  }
+  return res
 }
 
 function processIf (el) {
@@ -11316,6 +14132,15 @@ function processSlot (el) {
       }
       el.slotScope = slotScope || getAndRemoveAttr(el, 'slot-scope');
     } else if ((slotScope = getAndRemoveAttr(el, 'slot-scope'))) {
+      /* istanbul ignore if */
+      if (process.env.NODE_ENV !== 'production' && el.attrsMap['v-for']) {
+        warn$2(
+          "Ambiguous combined usage of slot-scope and v-for on <" + (el.tag) + "> " +
+          "(v-for takes higher priority). Use a wrapper <template> for the " +
+          "scoped slot to make it clearer.",
+          true
+        );
+      }
       el.slotScope = slotScope;
     }
     var slotTarget = getBindingAttr(el, 'slot');
@@ -11323,7 +14148,7 @@ function processSlot (el) {
       el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget;
       // preserve slot as an attribute for native shadow DOM compat
       // only for non-scoped slots.
-      if (!el.slotScope) {
+      if (el.tag !== 'template' && !el.slotScope) {
         addAttr(el, 'slot', slotTarget);
       }
     }
@@ -11401,8 +14226,8 @@ function processAttrs (el) {
     } else {
       // literal attribute
       if (process.env.NODE_ENV !== 'production') {
-        var expression = parseText(value, delimiters);
-        if (expression) {
+        var res = parseText(value, delimiters);
+        if (res) {
           warn$2(
             name + "=\"" + value + "\": " +
             'Interpolation inside attributes has been removed. ' +
@@ -11412,6 +14237,13 @@ function processAttrs (el) {
         }
       }
       addAttr(el, name, JSON.stringify(value));
+      // #6887 firefox doesn't update muted state if set via attribute
+      // even immediately after element creation
+      if (!el.component &&
+          name === 'muted' &&
+          platformMustUseProp(el.tag, el.attrsMap.type, name)) {
+        addProp(el, name, 'true');
+      }
     }
   }
 }
@@ -11516,6 +14348,8 @@ function preTransformNode (el, options) {
       var typeBinding = getBindingAttr(el, 'type');
       var ifCondition = getAndRemoveAttr(el, 'v-if', true);
       var ifConditionExtra = ifCondition ? ("&&(" + ifCondition + ")") : "";
+      var hasElse = getAndRemoveAttr(el, 'v-else', true) != null;
+      var elseIfCondition = getAndRemoveAttr(el, 'v-else-if', true);
       // 1. checkbox
       var branch0 = cloneASTElement(el);
       // process for on the main node
@@ -11546,6 +14380,13 @@ function preTransformNode (el, options) {
         exp: ifCondition,
         block: branch2
       });
+
+      if (hasElse) {
+        branch0.else = true;
+      } else if (elseIfCondition) {
+        branch0.elseif = elseIfCondition;
+      }
+
       return branch0
     }
   }
@@ -11553,11 +14394,6 @@ function preTransformNode (el, options) {
 
 function cloneASTElement (el) {
   return createASTElement(el.tag, el.attrsList.slice(), el.parent)
-}
-
-function addRawAttr (el, name, value) {
-  el.attrsMap[name] = value;
-  el.attrsList.push({ name: name, value: value });
 }
 
 var model$2 = {
@@ -11777,18 +14613,7 @@ function genHandlers (
 ) {
   var res = isNative ? 'nativeOn:{' : 'on:{';
   for (var name in events) {
-    var handler = events[name];
-    // #5330: warn click.right, since right clicks do not actually fire click events.
-    if (process.env.NODE_ENV !== 'production' &&
-      name === 'click' &&
-      handler && handler.modifiers && handler.modifiers.right
-    ) {
-      warn(
-        "Use \"contextmenu\" instead of \"click.right\" since right clicks " +
-        "do not actually fire \"click\" events."
-      );
-    }
-    res += "\"" + name + "\":" + (genHandler(name, handler)) + ",";
+    res += "\"" + name + "\":" + (genHandler(name, events[name])) + ",";
   }
   return res.slice(0, -1) + '}'
 }
@@ -11809,9 +14634,11 @@ function genHandler (
   var isFunctionExpression = fnExpRE.test(handler.value);
 
   if (!handler.modifiers) {
-    return isMethodPath || isFunctionExpression
-      ? handler.value
-      : ("function($event){" + (handler.value) + "}") // inline statement
+    if (isMethodPath || isFunctionExpression) {
+      return handler.value
+    }
+    /* istanbul ignore if */
+    return ("function($event){" + (handler.value) + "}") // inline statement
   } else {
     var code = '';
     var genModifierCode = '';
@@ -11847,6 +14674,7 @@ function genHandler (
       : isFunctionExpression
         ? ("(" + (handler.value) + ")($event)")
         : handler.value;
+    /* istanbul ignore if */
     return ("function($event){" + code + handlerCode + "}")
   }
 }
@@ -12324,7 +15152,10 @@ function genProps (props) {
   var res = '';
   for (var i = 0; i < props.length; i++) {
     var prop = props[i];
-    res += "\"" + (prop.name) + "\":" + (transformSpecialNewlines(prop.value)) + ",";
+    /* istanbul ignore if */
+    {
+      res += "\"" + (prop.name) + "\":" + (transformSpecialNewlines(prop.value)) + ",";
+    }
   }
   return res.slice(0, -1)
 }
@@ -12350,9 +15181,6 @@ var prohibitedKeywordRE = new RegExp('\\b' + (
 var unaryOperatorsRE = new RegExp('\\b' + (
   'delete,typeof,void'
 ).split(',').join('\\s*\\([^\\)]*\\)|\\b') + '\\s*\\([^\\)]*\\)');
-
-// check valid identifier for v-for
-var identRE = /[A-Za-z_$][\w$]*/;
 
 // strip strings in expressions
 var stripStringRE = /'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|`(?:[^`\\]|\\.)*\$\{|\}(?:[^`\\]|\\.)*`|`(?:[^`\\]|\\.)*`/g;
@@ -12411,9 +15239,18 @@ function checkFor (node, text, errors) {
   checkIdentifier(node.iterator2, 'v-for iterator', text, errors);
 }
 
-function checkIdentifier (ident, type, text, errors) {
-  if (typeof ident === 'string' && !identRE.test(ident)) {
-    errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
+function checkIdentifier (
+  ident,
+  type,
+  text,
+  errors
+) {
+  if (typeof ident === 'string') {
+    try {
+      new Function(("var " + ident + "=_"));
+    } catch (e) {
+      errors.push(("invalid " + type + " \"" + ident + "\" in expression: " + (text.trim())));
+    }
   }
 }
 
@@ -12558,7 +15395,7 @@ function createCompilerCreator (baseCompile) {
         // merge custom directives
         if (options.directives) {
           finalOptions.directives = extend(
-            Object.create(baseOptions.directives),
+            Object.create(baseOptions.directives || null),
             options.directives
           );
         }
@@ -12596,7 +15433,9 @@ var createCompiler = createCompilerCreator(function baseCompile (
   options
 ) {
   var ast = parse(template.trim(), options);
-  optimize(ast, options);
+  if (options.optimize !== false) {
+    optimize(ast, options);
+  }
   var code = generate(ast, options);
   return {
     ast: ast,
@@ -12609,6 +15448,21 @@ var createCompiler = createCompilerCreator(function baseCompile (
 
 var ref$1 = createCompiler(baseOptions);
 var compileToFunctions = ref$1.compileToFunctions;
+
+/*  */
+
+// check whether current browser encodes a char inside attribute values
+var div;
+function getShouldDecode (href) {
+  div = div || document.createElement('div');
+  div.innerHTML = href ? "<a href=\"\n\"/>" : "<div a=\"\n\"/>";
+  return div.innerHTML.indexOf('&#10;') > 0
+}
+
+// #3663: IE encodes newlines inside attribute values while other browsers don't
+var shouldDecodeNewlines = inBrowser ? getShouldDecode(false) : false;
+// #6828: chrome encodes content in a[href]
+var shouldDecodeNewlinesForHref = inBrowser ? getShouldDecode(true) : false;
 
 /*  */
 
@@ -12667,6 +15521,7 @@ Vue$3.prototype.$mount = function (
 
       var ref = compileToFunctions(template, {
         shouldDecodeNewlines: shouldDecodeNewlines,
+        shouldDecodeNewlinesForHref: shouldDecodeNewlinesForHref,
         delimiters: options.delimiters,
         comments: options.comments
       }, this);
@@ -12703,1352 +15558,10 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(79), __webpack_require__(50), __webpack_require__(209).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(85), __webpack_require__(28), __webpack_require__(207).setImmediate))
 
 /***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/*
-Mixin for objects that are mounted by Google Maps
-Javascript API.
-
-These are objects that are sensitive to element resize
-operations so it exposes a property which accepts a bus
-
-*/
-
-exports.default = {
-  props: ['resizeBus'],
-
-  data: function data() {
-    return {
-      _actualResizeBus: null
-    };
-  },
-  created: function created() {
-    if (typeof this.resizeBus === 'undefined') {
-      this.$data._actualResizeBus = this.$gmapDefaultResizeBus;
-    } else {
-      this.$data._actualResizeBus = this.resizeBus;
-    }
-  },
-
-
-  methods: {
-    _resizeCallback: function _resizeCallback() {
-      this.resize();
-    },
-    _delayedResizeCallback: function _delayedResizeCallback() {
-      var _this = this;
-
-      this.$nextTick(function () {
-        return _this._resizeCallback();
-      });
-    }
-  },
-
-  watch: {
-    resizeBus: function resizeBus(newVal, oldVal) {
-      // eslint-disable-line no-unused-vars
-      this.$data._actualResizeBus = newVal;
-    },
-    '$data._actualResizeBus': function $data_actualResizeBus(newVal, oldVal) {
-      if (oldVal) {
-        oldVal.$off('resize', this._delayedResizeCallback);
-      }
-      if (newVal) {
-        newVal.$on('resize', this._delayedResizeCallback);
-      }
-    }
-  },
-
-  destroyed: function destroyed() {
-    if (this.$data._actualResizeBus) {
-      this.$data._actualResizeBus.$off('resize', this._delayedResizeCallback);
-    }
-  }
-};
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var root = __webpack_require__(2);
-
-/** Built-in value references. */
-var Uint8Array = root.Uint8Array;
-
-module.exports = Uint8Array;
-
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports) {
-
-/**
- * A specialized version of `_.forEach` for arrays without support for
- * iteratee shorthands.
- *
- * @private
- * @param {Array} [array] The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Array} Returns `array`.
- */
-function arrayEach(array, iteratee) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-
-  while (++index < length) {
-    if (iteratee(array[index], index, array) === false) {
-      break;
-    }
-  }
-  return array;
-}
-
-module.exports = arrayEach;
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseTimes = __webpack_require__(131),
-    isArguments = __webpack_require__(43),
-    isArray = __webpack_require__(0),
-    isBuffer = __webpack_require__(45),
-    isIndex = __webpack_require__(38),
-    isTypedArray = __webpack_require__(75);
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * Creates an array of the enumerable property names of the array-like `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @param {boolean} inherited Specify returning inherited property names.
- * @returns {Array} Returns the array of property names.
- */
-function arrayLikeKeys(value, inherited) {
-  var isArr = isArray(value),
-      isArg = !isArr && isArguments(value),
-      isBuff = !isArr && !isArg && isBuffer(value),
-      isType = !isArr && !isArg && !isBuff && isTypedArray(value),
-      skipIndexes = isArr || isArg || isBuff || isType,
-      result = skipIndexes ? baseTimes(value.length, String) : [],
-      length = result.length;
-
-  for (var key in value) {
-    if ((inherited || hasOwnProperty.call(value, key)) &&
-        !(skipIndexes && (
-           // Safari 9 has enumerable `arguments.length` in strict mode.
-           key == 'length' ||
-           // Node.js 0.10 has enumerable non-index properties on buffers.
-           (isBuff && (key == 'offset' || key == 'parent')) ||
-           // PhantomJS 2 has enumerable non-index properties on typed arrays.
-           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
-           // Skip index properties.
-           isIndex(key, length)
-        ))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-
-module.exports = arrayLikeKeys;
-
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports) {
-
-/**
- * A specialized version of `_.reduce` for arrays without support for
- * iteratee shorthands.
- *
- * @private
- * @param {Array} [array] The array to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @param {*} [accumulator] The initial value.
- * @param {boolean} [initAccum] Specify using the first element of `array` as
- *  the initial value.
- * @returns {*} Returns the accumulated value.
- */
-function arrayReduce(array, iteratee, accumulator, initAccum) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-
-  if (initAccum && length) {
-    accumulator = array[++index];
-  }
-  while (++index < length) {
-    accumulator = iteratee(accumulator, array[index], index, array);
-  }
-  return accumulator;
-}
-
-module.exports = arrayReduce;
-
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Stack = __webpack_require__(29),
-    arrayEach = __webpack_require__(53),
-    assignValue = __webpack_require__(32),
-    baseAssign = __webpack_require__(109),
-    baseAssignIn = __webpack_require__(110),
-    cloneBuffer = __webpack_require__(137),
-    copyArray = __webpack_require__(144),
-    copySymbols = __webpack_require__(145),
-    copySymbolsIn = __webpack_require__(146),
-    getAllKeys = __webpack_require__(64),
-    getAllKeysIn = __webpack_require__(35),
-    getTag = __webpack_require__(66),
-    initCloneArray = __webpack_require__(163),
-    initCloneByTag = __webpack_require__(164),
-    initCloneObject = __webpack_require__(165),
-    isArray = __webpack_require__(0),
-    isBuffer = __webpack_require__(45),
-    isObject = __webpack_require__(9),
-    keys = __webpack_require__(19);
-
-/** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG = 1,
-    CLONE_FLAT_FLAG = 2,
-    CLONE_SYMBOLS_FLAG = 4;
-
-/** `Object#toString` result references. */
-var argsTag = '[object Arguments]',
-    arrayTag = '[object Array]',
-    boolTag = '[object Boolean]',
-    dateTag = '[object Date]',
-    errorTag = '[object Error]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    mapTag = '[object Map]',
-    numberTag = '[object Number]',
-    objectTag = '[object Object]',
-    regexpTag = '[object RegExp]',
-    setTag = '[object Set]',
-    stringTag = '[object String]',
-    symbolTag = '[object Symbol]',
-    weakMapTag = '[object WeakMap]';
-
-var arrayBufferTag = '[object ArrayBuffer]',
-    dataViewTag = '[object DataView]',
-    float32Tag = '[object Float32Array]',
-    float64Tag = '[object Float64Array]',
-    int8Tag = '[object Int8Array]',
-    int16Tag = '[object Int16Array]',
-    int32Tag = '[object Int32Array]',
-    uint8Tag = '[object Uint8Array]',
-    uint8ClampedTag = '[object Uint8ClampedArray]',
-    uint16Tag = '[object Uint16Array]',
-    uint32Tag = '[object Uint32Array]';
-
-/** Used to identify `toStringTag` values supported by `_.clone`. */
-var cloneableTags = {};
-cloneableTags[argsTag] = cloneableTags[arrayTag] =
-cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] =
-cloneableTags[boolTag] = cloneableTags[dateTag] =
-cloneableTags[float32Tag] = cloneableTags[float64Tag] =
-cloneableTags[int8Tag] = cloneableTags[int16Tag] =
-cloneableTags[int32Tag] = cloneableTags[mapTag] =
-cloneableTags[numberTag] = cloneableTags[objectTag] =
-cloneableTags[regexpTag] = cloneableTags[setTag] =
-cloneableTags[stringTag] = cloneableTags[symbolTag] =
-cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] =
-cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
-cloneableTags[errorTag] = cloneableTags[funcTag] =
-cloneableTags[weakMapTag] = false;
-
-/**
- * The base implementation of `_.clone` and `_.cloneDeep` which tracks
- * traversed objects.
- *
- * @private
- * @param {*} value The value to clone.
- * @param {boolean} bitmask The bitmask flags.
- *  1 - Deep clone
- *  2 - Flatten inherited properties
- *  4 - Clone symbols
- * @param {Function} [customizer] The function to customize cloning.
- * @param {string} [key] The key of `value`.
- * @param {Object} [object] The parent object of `value`.
- * @param {Object} [stack] Tracks traversed objects and their clone counterparts.
- * @returns {*} Returns the cloned value.
- */
-function baseClone(value, bitmask, customizer, key, object, stack) {
-  var result,
-      isDeep = bitmask & CLONE_DEEP_FLAG,
-      isFlat = bitmask & CLONE_FLAT_FLAG,
-      isFull = bitmask & CLONE_SYMBOLS_FLAG;
-
-  if (customizer) {
-    result = object ? customizer(value, key, object, stack) : customizer(value);
-  }
-  if (result !== undefined) {
-    return result;
-  }
-  if (!isObject(value)) {
-    return value;
-  }
-  var isArr = isArray(value);
-  if (isArr) {
-    result = initCloneArray(value);
-    if (!isDeep) {
-      return copyArray(value, result);
-    }
-  } else {
-    var tag = getTag(value),
-        isFunc = tag == funcTag || tag == genTag;
-
-    if (isBuffer(value)) {
-      return cloneBuffer(value, isDeep);
-    }
-    if (tag == objectTag || tag == argsTag || (isFunc && !object)) {
-      result = (isFlat || isFunc) ? {} : initCloneObject(value);
-      if (!isDeep) {
-        return isFlat
-          ? copySymbolsIn(value, baseAssignIn(result, value))
-          : copySymbols(value, baseAssign(result, value));
-      }
-    } else {
-      if (!cloneableTags[tag]) {
-        return object ? value : {};
-      }
-      result = initCloneByTag(value, tag, baseClone, isDeep);
-    }
-  }
-  // Check for circular references and return its corresponding clone.
-  stack || (stack = new Stack);
-  var stacked = stack.get(value);
-  if (stacked) {
-    return stacked;
-  }
-  stack.set(value, result);
-
-  var keysFunc = isFull
-    ? (isFlat ? getAllKeysIn : getAllKeys)
-    : (isFlat ? keysIn : keys);
-
-  var props = isArr ? undefined : keysFunc(value);
-  arrayEach(props || value, function(subValue, key) {
-    if (props) {
-      key = subValue;
-      subValue = value[key];
-    }
-    // Recursively populate clone (susceptible to call stack limits).
-    assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
-  });
-  return result;
-}
-
-module.exports = baseClone;
-
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseFor = __webpack_require__(114),
-    keys = __webpack_require__(19);
-
-/**
- * The base implementation of `_.forOwn` without support for iteratee shorthands.
- *
- * @private
- * @param {Object} object The object to iterate over.
- * @param {Function} iteratee The function invoked per iteration.
- * @returns {Object} Returns `object`.
- */
-function baseForOwn(object, iteratee) {
-  return object && baseFor(object, iteratee, keys);
-}
-
-module.exports = baseForOwn;
-
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayPush = __webpack_require__(31),
-    isArray = __webpack_require__(0);
-
-/**
- * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
- * `keysFunc` and `symbolsFunc` to get the enumerable property names and
- * symbols of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {Function} keysFunc The function to get the keys of `object`.
- * @param {Function} symbolsFunc The function to get the symbols of `object`.
- * @returns {Array} Returns the array of property names and symbols.
- */
-function baseGetAllKeys(object, keysFunc, symbolsFunc) {
-  var result = keysFunc(object);
-  return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
-}
-
-module.exports = baseGetAllKeys;
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseIsEqualDeep = __webpack_require__(117),
-    isObjectLike = __webpack_require__(16);
-
-/**
- * The base implementation of `_.isEqual` which supports partial comparisons
- * and tracks traversed objects.
- *
- * @private
- * @param {*} value The value to compare.
- * @param {*} other The other value to compare.
- * @param {boolean} bitmask The bitmask flags.
- *  1 - Unordered comparison
- *  2 - Partial comparison
- * @param {Function} [customizer] The function to customize comparisons.
- * @param {Object} [stack] Tracks traversed `value` and `other` objects.
- * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
- */
-function baseIsEqual(value, other, bitmask, customizer, stack) {
-  if (value === other) {
-    return true;
-  }
-  if (value == null || other == null || (!isObjectLike(value) && !isObjectLike(other))) {
-    return value !== value && other !== other;
-  }
-  return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
-}
-
-module.exports = baseIsEqual;
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseMatches = __webpack_require__(123),
-    baseMatchesProperty = __webpack_require__(124),
-    identity = __webpack_require__(42),
-    isArray = __webpack_require__(0),
-    property = __webpack_require__(204);
-
-/**
- * The base implementation of `_.iteratee`.
- *
- * @private
- * @param {*} [value=_.identity] The value to convert to an iteratee.
- * @returns {Function} Returns the iteratee.
- */
-function baseIteratee(value) {
-  // Don't store the `typeof` result in a variable to avoid a JIT bug in Safari 9.
-  // See https://bugs.webkit.org/show_bug.cgi?id=156034 for more details.
-  if (typeof value == 'function') {
-    return value;
-  }
-  if (value == null) {
-    return identity;
-  }
-  if (typeof value == 'object') {
-    return isArray(value)
-      ? baseMatchesProperty(value[0], value[1])
-      : baseMatches(value);
-  }
-  return property(value);
-}
-
-module.exports = baseIteratee;
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var getNative = __webpack_require__(8);
-
-var defineProperty = (function() {
-  try {
-    var func = getNative(Object, 'defineProperty');
-    func({}, '', {});
-    return func;
-  } catch (e) {}
-}());
-
-module.exports = defineProperty;
-
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var SetCache = __webpack_require__(102),
-    arraySome = __webpack_require__(108),
-    cacheHas = __webpack_require__(135);
-
-/** Used to compose bitmasks for value comparisons. */
-var COMPARE_PARTIAL_FLAG = 1,
-    COMPARE_UNORDERED_FLAG = 2;
-
-/**
- * A specialized version of `baseIsEqualDeep` for arrays with support for
- * partial deep comparisons.
- *
- * @private
- * @param {Array} array The array to compare.
- * @param {Array} other The other array to compare.
- * @param {number} bitmask The bitmask flags. See `baseIsEqual` for more details.
- * @param {Function} customizer The function to customize comparisons.
- * @param {Function} equalFunc The function to determine equivalents of values.
- * @param {Object} stack Tracks traversed `array` and `other` objects.
- * @returns {boolean} Returns `true` if the arrays are equivalent, else `false`.
- */
-function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG,
-      arrLength = array.length,
-      othLength = other.length;
-
-  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
-    return false;
-  }
-  // Assume cyclic values are equal.
-  var stacked = stack.get(array);
-  if (stacked && stack.get(other)) {
-    return stacked == other;
-  }
-  var index = -1,
-      result = true,
-      seen = (bitmask & COMPARE_UNORDERED_FLAG) ? new SetCache : undefined;
-
-  stack.set(array, other);
-  stack.set(other, array);
-
-  // Ignore non-index properties.
-  while (++index < arrLength) {
-    var arrValue = array[index],
-        othValue = other[index];
-
-    if (customizer) {
-      var compared = isPartial
-        ? customizer(othValue, arrValue, index, other, array, stack)
-        : customizer(arrValue, othValue, index, array, other, stack);
-    }
-    if (compared !== undefined) {
-      if (compared) {
-        continue;
-      }
-      result = false;
-      break;
-    }
-    // Recursively compare arrays (susceptible to call stack limits).
-    if (seen) {
-      if (!arraySome(other, function(othValue, othIndex) {
-            if (!cacheHas(seen, othIndex) &&
-                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
-              return seen.push(othIndex);
-            }
-          })) {
-        result = false;
-        break;
-      }
-    } else if (!(
-          arrValue === othValue ||
-            equalFunc(arrValue, othValue, bitmask, customizer, stack)
-        )) {
-      result = false;
-      break;
-    }
-  }
-  stack['delete'](array);
-  stack['delete'](other);
-  return result;
-}
-
-module.exports = equalArrays;
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-module.exports = freeGlobal;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseGetAllKeys = __webpack_require__(58),
-    getSymbols = __webpack_require__(37),
-    keys = __webpack_require__(19);
-
-/**
- * Creates an array of own enumerable property names and symbols of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names and symbols.
- */
-function getAllKeys(object) {
-  return baseGetAllKeys(object, keys, getSymbols);
-}
-
-module.exports = getAllKeys;
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayPush = __webpack_require__(31),
-    getPrototype = __webpack_require__(36),
-    getSymbols = __webpack_require__(37),
-    stubArray = __webpack_require__(78);
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeGetSymbols = Object.getOwnPropertySymbols;
-
-/**
- * Creates an array of the own and inherited enumerable symbols of `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of symbols.
- */
-var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
-  var result = [];
-  while (object) {
-    arrayPush(result, getSymbols(object));
-    object = getPrototype(object);
-  }
-  return result;
-};
-
-module.exports = getSymbolsIn;
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var DataView = __webpack_require__(98),
-    Map = __webpack_require__(27),
-    Promise = __webpack_require__(100),
-    Set = __webpack_require__(101),
-    WeakMap = __webpack_require__(103),
-    baseGetTag = __webpack_require__(13),
-    toSource = __webpack_require__(72);
-
-/** `Object#toString` result references. */
-var mapTag = '[object Map]',
-    objectTag = '[object Object]',
-    promiseTag = '[object Promise]',
-    setTag = '[object Set]',
-    weakMapTag = '[object WeakMap]';
-
-var dataViewTag = '[object DataView]';
-
-/** Used to detect maps, sets, and weakmaps. */
-var dataViewCtorString = toSource(DataView),
-    mapCtorString = toSource(Map),
-    promiseCtorString = toSource(Promise),
-    setCtorString = toSource(Set),
-    weakMapCtorString = toSource(WeakMap);
-
-/**
- * Gets the `toStringTag` of `value`.
- *
- * @private
- * @param {*} value The value to query.
- * @returns {string} Returns the `toStringTag`.
- */
-var getTag = baseGetTag;
-
-// Fallback for data views, maps, sets, and weak maps in IE 11 and promises in Node.js < 6.
-if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
-    (Map && getTag(new Map) != mapTag) ||
-    (Promise && getTag(Promise.resolve()) != promiseTag) ||
-    (Set && getTag(new Set) != setTag) ||
-    (WeakMap && getTag(new WeakMap) != weakMapTag)) {
-  getTag = function(value) {
-    var result = baseGetTag(value),
-        Ctor = result == objectTag ? value.constructor : undefined,
-        ctorString = Ctor ? toSource(Ctor) : '';
-
-    if (ctorString) {
-      switch (ctorString) {
-        case dataViewCtorString: return dataViewTag;
-        case mapCtorString: return mapTag;
-        case promiseCtorString: return promiseTag;
-        case setCtorString: return setTag;
-        case weakMapCtorString: return weakMapTag;
-      }
-    }
-    return result;
-  };
-}
-
-module.exports = getTag;
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isObject = __webpack_require__(9);
-
-/**
- * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
- *
- * @private
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` if suitable for strict
- *  equality comparisons, else `false`.
- */
-function isStrictComparable(value) {
-  return value === value && !isObject(value);
-}
-
-module.exports = isStrictComparable;
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports) {
-
-/**
- * Converts `map` to its key-value pairs.
- *
- * @private
- * @param {Object} map The map to convert.
- * @returns {Array} Returns the key-value pairs.
- */
-function mapToArray(map) {
-  var index = -1,
-      result = Array(map.size);
-
-  map.forEach(function(value, key) {
-    result[++index] = [key, value];
-  });
-  return result;
-}
-
-module.exports = mapToArray;
-
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-/**
- * A specialized version of `matchesProperty` for source values suitable
- * for strict equality comparisons, i.e. `===`.
- *
- * @private
- * @param {string} key The key of the property to get.
- * @param {*} srcValue The value to match.
- * @returns {Function} Returns the new spec function.
- */
-function matchesStrictComparable(key, srcValue) {
-  return function(object) {
-    if (object == null) {
-      return false;
-    }
-    return object[key] === srcValue &&
-      (srcValue !== undefined || (key in Object(object)));
-  };
-}
-
-module.exports = matchesStrictComparable;
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports) {
-
-/**
- * Creates a unary function that invokes `func` with its argument transformed.
- *
- * @private
- * @param {Function} func The function to wrap.
- * @param {Function} transform The argument transform.
- * @returns {Function} Returns the new function.
- */
-function overArg(func, transform) {
-  return function(arg) {
-    return func(transform(arg));
-  };
-}
-
-module.exports = overArg;
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-/**
- * Converts `set` to an array of its values.
- *
- * @private
- * @param {Object} set The set to convert.
- * @returns {Array} Returns the values.
- */
-function setToArray(set) {
-  var index = -1,
-      result = Array(set.size);
-
-  set.forEach(function(value) {
-    result[++index] = value;
-  });
-  return result;
-}
-
-module.exports = setToArray;
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports) {
-
-/** Used for built-in method references. */
-var funcProto = Function.prototype;
-
-/** Used to resolve the decompiled source of functions. */
-var funcToString = funcProto.toString;
-
-/**
- * Converts `func` to its source code.
- *
- * @private
- * @param {Function} func The function to convert.
- * @returns {string} Returns the source code.
- */
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-
-module.exports = toSource;
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayEach = __webpack_require__(53),
-    baseEach = __webpack_require__(112),
-    castFunction = __webpack_require__(136),
-    isArray = __webpack_require__(0);
-
-/**
- * Iterates over elements of `collection` and invokes `iteratee` for each element.
- * The iteratee is invoked with three arguments: (value, index|key, collection).
- * Iteratee functions may exit iteration early by explicitly returning `false`.
- *
- * **Note:** As with other "Collections" methods, objects with a "length"
- * property are iterated like arrays. To avoid this behavior use `_.forIn`
- * or `_.forOwn` for object iteration.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @alias each
- * @category Collection
- * @param {Array|Object} collection The collection to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Array|Object} Returns `collection`.
- * @see _.forEachRight
- * @example
- *
- * _.forEach([1, 2], function(value) {
- *   console.log(value);
- * });
- * // => Logs `1` then `2`.
- *
- * _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
- *   console.log(key);
- * });
- * // => Logs 'a' then 'b' (iteration order is not guaranteed).
- */
-function forEach(collection, iteratee) {
-  var func = isArray(collection) ? arrayEach : baseEach;
-  return func(collection, castFunction(iteratee));
-}
-
-module.exports = forEach;
-
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseGetTag = __webpack_require__(13),
-    isObject = __webpack_require__(9);
-
-/** `Object#toString` result references. */
-var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    proxyTag = '[object Proxy]';
-
-/**
- * Checks if `value` is classified as a `Function` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a function, else `false`.
- * @example
- *
- * _.isFunction(_);
- * // => true
- *
- * _.isFunction(/abc/);
- * // => false
- */
-function isFunction(value) {
-  if (!isObject(value)) {
-    return false;
-  }
-  // The use of `Object#toString` avoids issues with the `typeof` operator
-  // in Safari 9 which returns 'object' for typed arrays and other constructors.
-  var tag = baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-}
-
-module.exports = isFunction;
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseIsTypedArray = __webpack_require__(120),
-    baseUnary = __webpack_require__(133),
-    nodeUtil = __webpack_require__(182);
-
-/* Node.js helper references. */
-var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
-
-/**
- * Checks if `value` is classified as a typed array.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
- * @example
- *
- * _.isTypedArray(new Uint8Array);
- * // => true
- *
- * _.isTypedArray([]);
- * // => false
- */
-var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
-
-module.exports = isTypedArray;
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayLikeKeys = __webpack_require__(54),
-    baseKeysIn = __webpack_require__(122),
-    isArrayLike = __webpack_require__(44);
-
-/**
- * Creates an array of the own and inherited enumerable property names of `object`.
- *
- * **Note:** Non-object values are coerced to objects.
- *
- * @static
- * @memberOf _
- * @since 3.0.0
- * @category Object
- * @param {Object} object The object to query.
- * @returns {Array} Returns the array of property names.
- * @example
- *
- * function Foo() {
- *   this.a = 1;
- *   this.b = 2;
- * }
- *
- * Foo.prototype.c = 3;
- *
- * _.keysIn(new Foo);
- * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
- */
-function keysIn(object) {
-  return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
-}
-
-module.exports = keysIn;
-
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var baseAssignValue = __webpack_require__(33),
-    baseForOwn = __webpack_require__(57),
-    baseIteratee = __webpack_require__(60);
-
-/**
- * Creates an object with the same keys as `object` and values generated
- * by running each own enumerable string keyed property of `object` thru
- * `iteratee`. The iteratee is invoked with three arguments:
- * (value, key, object).
- *
- * @static
- * @memberOf _
- * @since 2.4.0
- * @category Object
- * @param {Object} object The object to iterate over.
- * @param {Function} [iteratee=_.identity] The function invoked per iteration.
- * @returns {Object} Returns the new mapped object.
- * @see _.mapKeys
- * @example
- *
- * var users = {
- *   'fred':    { 'user': 'fred',    'age': 40 },
- *   'pebbles': { 'user': 'pebbles', 'age': 1 }
- * };
- *
- * _.mapValues(users, function(o) { return o.age; });
- * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
- *
- * // The `_.property` iteratee shorthand.
- * _.mapValues(users, 'age');
- * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
- */
-function mapValues(object, iteratee) {
-  var result = {};
-  iteratee = baseIteratee(iteratee, 3);
-
-  baseForOwn(object, function(value, key, object) {
-    baseAssignValue(result, key, iteratee(value, key, object));
-  });
-  return result;
-}
-
-module.exports = mapValues;
-
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns a new empty array.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {Array} Returns the new empty array.
- * @example
- *
- * var arrays = _.times(2, _.stubArray);
- *
- * console.log(arrays);
- * // => [[], []]
- *
- * console.log(arrays[0] === arrays[1]);
- * // => false
- */
-function stubArray() {
-  return [];
-}
-
-module.exports = stubArray;
-
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 80 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14088,35 +15601,35 @@ exports.default = function (input) {
 };
 
 /***/ }),
-/* 81 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vue = __webpack_require__(48);
+var _vue = __webpack_require__(86);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _Test = __webpack_require__(213);
+var _Test = __webpack_require__(210);
 
 var _Test2 = _interopRequireDefault(_Test);
 
-var _Social = __webpack_require__(212);
+var _Calendar = __webpack_require__(208);
 
-var _Social2 = _interopRequireDefault(_Social);
+var _Calendar2 = _interopRequireDefault(_Calendar);
 
-var _FilterFirst = __webpack_require__(210);
-
-var _FilterFirst2 = _interopRequireDefault(_FilterFirst);
-
-var _MapGoogle = __webpack_require__(211);
+var _MapGoogle = __webpack_require__(209);
 
 var _MapGoogle2 = _interopRequireDefault(_MapGoogle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 console.log('test');
+// import Social from './components/Social.vue'
+// import FilterFirst from './components/FilterFirst.vue'
+// import FilterSecond from './components/FilterSecond.vue'
+
 
 // import Tabscalendar from './components/Tabscalendar.vue'
 // import Calendar from './components/Calendar.vue'
@@ -14127,9 +15640,11 @@ console.log('test');
 window.Vue = _vue2.default;
 
 _vue2.default.component('test', _Test2.default);
-_vue2.default.component('socialsharning', _Social2.default);
-_vue2.default.component('mapgoogle', _MapGoogle2.default);
-_vue2.default.component('filterfirst', _FilterFirst2.default);
+_vue2.default.component('calendar', _Calendar2.default);
+// Vue.component('socialsharning', Social);
+// Vue.component('mapgoogle', MapGoogle);
+// Vue.component('filterfirst', FilterFirst);
+// Vue.component('filtersecond', FilterSecond);
 // Vue.component('tabscalendar', Tabscalendar);
 // Vue.component('calendar', Calendar);
 // Vue.component('tabscalendar', Tabscalendar);
@@ -14159,1223 +15674,16 @@ new _vue2.default({
 });
 
 /***/ }),
-/* 82 */
+/* 89 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 83 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: () => ({
-        text: 'Hello from Vue',
-        search: '',
-        arr: [{
-            title: "text",
-            number_f: 24
-        }, {
-            title: "name",
-            number_f: 6
-        }, {
-            title: "name text",
-            number_f: 1
-        }, {
-            title: "text",
-            number_f: 5
-        }, {
-            title: "name",
-            number_f: 83
-        }, {
-            title: "text",
-            number_f: 7
-        }, {
-            title: "text name",
-            number_f: 9
-        }],
-        sort_arr: []
-    }),
-    computed: {
-        //            selectedSortLtoG() {
-        //                return this.arr;
-        //            },
-        searchName() {
-            return this.arr.filter(post => {
-                console.log(post);
-                return post.title.toLowerCase().includes(this.search.toLowerCase());
-            });
-        }
-    },
-    //        watch: {
-    //
-    //        },
-    //        mounted: function(){
-    //            this.sortLtoG();
-    //        },
-    methods: {
-
-        //            addTempArray(){
-        //                this.sort_arr = this.arr;
-        //            },
-        //            searchName() {
-        //                console.log('67677')
-        //            },
-        sortLtoG() {
-            let temp_arr = this.arr;
-            this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, true);
-            //                console.dir(this.arr)
-        },
-        sortGtoL() {
-            let temp_arr = this.arr;
-            this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, false);
-            //                console.dir(this.arr)
-        },
-        quickSort(items, left, right, val_sort) {
-            let index;
-            //                console.dir(items);
-            if (items.length > 1) {
-                index = this.partition(items, left, right, val_sort);
-                if (left < index - 1) {
-                    this.quickSort(items, left, index - 1, val_sort);
-                }
-                if (index < right) {
-                    this.quickSort(items, index, right, val_sort);
-                }
-            }
-            return items;
-        },
-        partition(items, left, right, val_sort) {
-            let pivot = items[Math.floor((right + left) / 2)],
-                i = left,
-                j = right;
-
-            if (val_sort) {
-                while (i <= j) {
-                    while (items[i].number_f < pivot.number_f) {
-                        i++;
-                    }
-                    while (items[j].number_f > pivot.number_f) {
-                        j--;
-                    }
-                    if (i <= j) {
-                        this.swap(items, i, j);
-                        i++;
-                        j--;
-                    }
-                }
-                //                }
-            } else {
-                while (i <= j) {
-                    while (items[i].number_f > pivot.number_f) {
-                        i++;
-                    }
-                    while (items[j].number_f < pivot.number_f) {
-                        j--;
-                    }
-                    if (i <= j) {
-                        this.swap(items, i, j);
-                        i++;
-                        j--;
-                    }
-                }
-            }
-
-            return i;
-        },
-        swap(items, firstIndex, secondIndex) {
-            const temp = items[firstIndex].number_f;
-            items[firstIndex].number_f = items[secondIndex].number_f;
-            items[secondIndex].number_f = temp;
-        }
-    }
-
-});
-
-/***/ }),
-/* 84 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__ = __webpack_require__(242);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__, {
-    load: {
-        key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',
-        v: '3'
-        // libraries: 'places' // Only if you need Autocomplete
-    }
-});
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data() {
-        return {
-
-            markers: [{
-                coordinates: {
-                    lat: 53.90,
-                    lng: 27.50
-                },
-
-                coordinatesInfo: {
-                    lat: 53.91,
-                    lng: 27.50
-                },
-
-                name: 'Minsk',
-                icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-            }, {
-
-                coordinates: {
-                    lat: 53.88,
-                    lng: 27.46
-                },
-
-                coordinatesInfo: {
-                    lat: 53.89,
-                    lng: 27.46
-                },
-
-                name: 'Uzda',
-                icon: 'img/map_icon.png'
-            }],
-
-            places: [{
-                name: "г. Узда",
-                index: "tab_1",
-                information: {
-                    address: 'г. Узда',
-                    phone: '3784273648'
-                }
-
-            }, {
-                name: "г. Минск",
-                index: "tab_2",
-                information: {
-                    address: 'г. Минск',
-                    phone: '2344354888'
-                }
-
-            }],
-
-            styles: [{
-                "featureType": "all",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#ffffff"
-                }]
-            }, {
-                "featureType": "all",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                    "visibility": "on"
-                }, {
-                    "color": "#3e606f"
-                }, {
-                    "weight": 2
-                }, {
-                    "gamma": 0.84
-                }]
-            }, {
-                "featureType": "all",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "administrative",
-                "elementType": "geometry",
-                "stylers": [{
-                    "weight": 0.6
-                }, {
-                    "color": "#1a3541"
-                }]
-            }, {
-                "featureType": "administrative.neighborhood",
-                "elementType": "all",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            }, {
-                "featureType": "landscape",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#2b7396"
-                }]
-            }, {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#306782"
-                }]
-            }, {
-                "featureType": "poi.park",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#5388a2"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "all",
-                "stylers": [{
-                    "visibility": "simplified"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "geometry",
-                "stylers": [{
-                    "lightness": -37
-                }, {
-                    "visibility": "simplified"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                    "visibility": "simplified"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                    "visibility": "simplified"
-                }]
-            }, {
-                "featureType": "road",
-                "elementType": "labels.text",
-                "stylers": [{
-                    "visibility": "simplified"
-                }, {
-                    "weight": ".25"
-                }, {
-                    "gamma": "1"
-                }, {
-                    "color": "#cdcdcd"
-                }]
-            }, {
-                "featureType": "road.arterial",
-                "elementType": "geometry",
-                "stylers": [{
-                    "visibility": "simplified"
-                }, {
-                    "color": "#214658"
-                }]
-            }, {
-                "featureType": "road.local",
-                "elementType": "all",
-                "stylers": [{
-                    "visibility": "simplified"
-                }, {
-                    "color": "#144056"
-                }]
-            }, {
-                "featureType": "road.local",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "visibility": "on"
-                }, {
-                    "color": "#8ba0ab"
-                }]
-            }, {
-                "featureType": "transit",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#406d80"
-                }]
-            }, {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [{
-                    "color": "#193341"
-                }]
-            }]
-        };
-    },
-    methods: {
-
-        choose(idx) {
-            //        choose(idx) {
-            //            this.places.forEach(place => {
-            //                place.chosen = false;
-            //            });
-            //
-            //            this.places[idx].chosen = true;
-            //            this.$emit('choose_place', this.places[idx].address);
-            //            this.$forceUpdate();
-            console.log(idx);
-            //            console.log('sdsdfsd')
-        }
-    }
-});
-
-/***/ }),
-/* 85 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__ = __webpack_require__(228);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_social_sharing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__);
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: () => ({ text: 'Hello from Vue' })
-});
-
-/***/ }),
-/* 86 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-	data: () => ({ text: 'Hello from Vue' })
-});
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _omit2 = __webpack_require__(10);
-
-var _omit3 = _interopRequireDefault(_omit2);
-
-var _pickBy2 = __webpack_require__(203);
-
-var _pickBy3 = _interopRequireDefault(_pickBy2);
-
-var _clone2 = __webpack_require__(4);
-
-var _clone3 = _interopRequireDefault(_clone2);
-
-var _propsBinder = __webpack_require__(1);
-
-var _propsBinder2 = _interopRequireDefault(_propsBinder);
-
-var _simulateArrowDown = __webpack_require__(80);
-
-var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
-
-var _getPropsValuesMixin = __webpack_require__(3);
-
-var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
-
-var _manager = __webpack_require__(20);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var props = {
-  bounds: {
-    type: Object
-  },
-  componentRestrictions: {
-    type: Object
-  },
-  types: {
-    type: Array,
-    default: function _default() {
-      return [];
-    }
-  },
-  placeholder: {
-    required: false,
-    type: String
-  },
-  selectFirstOnEnter: {
-    require: false,
-    type: Boolean,
-    default: false
-  },
-  value: {
-    type: String,
-    default: ''
-  },
-  options: {
-    type: Object
-  }
-};
-
-exports.default = {
-  mixins: [_getPropsValuesMixin2.default],
-
-  mounted: function mounted() {
-    var _this = this;
-
-    _manager.loaded.then(function () {
-      var options = (0, _clone3.default)(_this.getPropsValues());
-      if (_this.selectFirstOnEnter) {
-        (0, _simulateArrowDown2.default)(_this.$refs.input);
-      }
-
-      if (typeof google.maps.places.Autocomplete !== 'function') {
-        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
-      }
-
-      /* eslint-disable no-unused-vars */
-      var finalOptions = (0, _pickBy3.default)(Object.assign({}, (0, _omit3.default)(options, ['options', 'selectFirstOnEnter', 'value', 'place', 'placeholder']), options.options), function (v, k) {
-        return v !== undefined;
-      }
-
-      // Component restrictions is rather particular. Undefined not allowed
-      );_this.$watch('componentRestrictions', function (v) {
-        if (v !== undefined) {
-          _this.$autocomplete.setComponentRestrictions(v);
-        }
-      });
-
-      _this.$autocomplete = new google.maps.places.Autocomplete(_this.$refs.input, finalOptions);
-      (0, _propsBinder2.default)(_this, _this.$autocomplete, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'value', 'componentRestrictions']));
-
-      _this.$autocomplete.addListener('place_changed', function () {
-        _this.$emit('place_changed', _this.$autocomplete.getPlace());
-      });
-    });
-  },
-
-  props: props
-};
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _clone2 = __webpack_require__(4);
-
-var _clone3 = _interopRequireDefault(_clone2);
-
-var _omit2 = __webpack_require__(10);
-
-var _omit3 = _interopRequireDefault(_omit2);
-
-var _propsBinder = __webpack_require__(1);
-
-var _propsBinder2 = _interopRequireDefault(_propsBinder);
-
-var _eventsBinder = __webpack_require__(6);
-
-var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
-
-var _mapElementMixin = __webpack_require__(7);
-
-var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var props = {
-  options: {
-    type: Object,
-    required: false,
-    default: function _default() {
-      return {};
-    }
-  },
-  opened: {
-    type: Boolean,
-    default: true
-  },
-  position: {
-    type: Object,
-    twoWay: true
-  },
-  zIndex: {
-    type: Number,
-    twoWay: true
-  }
-};
-
-var events = ['domready', 'closeclick', 'content_changed'];
-
-exports.default = {
-  mixins: [_mapElementMixin2.default],
-  replace: false,
-  props: props,
-
-  mounted: function mounted() {
-    var el = this.$refs.flyaway;
-    el.parentNode.removeChild(el);
-  },
-  deferredReady: function deferredReady() {
-    this.$markerObject = null;
-    this.$markerComponent = this.$findAncestor(function (ans) {
-      return ans.$markerObject;
-    });
-
-    if (this.$markerComponent) {
-      this.$markerObject = this.$markerComponent.$markerObject;
-    }
-    this.createInfoWindow();
-  },
-  destroyed: function destroyed() {
-    if (this.disconnect) {
-      this.disconnect();
-    }
-    if (this.$infoWindow) {
-      this.$infoWindow.setMap(null);
-    }
-  },
-
-  methods: {
-    openInfoWindow: function openInfoWindow() {
-      if (this.opened) {
-        if (this.$markerObject !== null) {
-          this.$infoWindow.open(this.$map, this.$markerObject);
-        } else {
-          this.$infoWindow.open(this.$map);
-        }
-      } else {
-        this.$infoWindow.close();
-      }
-    },
-    createInfoWindow: function createInfoWindow() {
-      var _this = this;
-
-      // setting options
-      var options = (0, _clone3.default)(this.options);
-      options.content = this.$refs.flyaway;
-
-      // only set the position if the info window is not bound to a marker
-      if (this.$markerComponent === null) {
-        options.position = this.position;
-      }
-
-      this.$infoWindow = new google.maps.InfoWindow(options);
-
-      // Binding
-      (0, _propsBinder2.default)(this, this.$infoWindow, (0, _omit3.default)(props, ['opened']));
-      (0, _eventsBinder2.default)(this, this.$infoWindow, events);
-
-      this.openInfoWindow();
-      this.$watch('opened', function () {
-        _this.openInfoWindow();
-      });
-    }
-  }
-};
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _clone2 = __webpack_require__(4);
-
-var _clone3 = _interopRequireDefault(_clone2);
-
-var _omit2 = __webpack_require__(10);
-
-var _omit3 = _interopRequireDefault(_omit2);
-
-var _manager = __webpack_require__(20);
-
-var _deferredReady = __webpack_require__(26);
-
-var _eventsBinder = __webpack_require__(6);
-
-var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
-
-var _propsBinder = __webpack_require__(1);
-
-var _propsBinder2 = _interopRequireDefault(_propsBinder);
-
-var _getPropsValuesMixin = __webpack_require__(3);
-
-var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
-
-var _mountableMixin = __webpack_require__(49);
-
-var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var props = {
-  center: {
-    required: true,
-    twoWay: true,
-    type: Object
-  },
-  zoom: {
-    required: false,
-    twoWay: true,
-    type: Number
-  },
-  heading: {
-    type: Number,
-    twoWay: true
-  },
-  mapTypeId: {
-    twoWay: true,
-    type: String
-  },
-  bounds: {
-    twoWay: true,
-    type: Object
-  },
-  tilt: {
-    twoWay: true,
-    type: Number
-  },
-  options: {
-    type: Object,
-    default: function _default() {
-      return {};
-    }
-  }
-};
-
-var events = ['click', 'dblclick', 'drag', 'dragend', 'dragstart', 'idle', 'mousemove', 'mouseout', 'mouseover', 'resize', 'rightclick', 'tilesloaded'];
-
-// Plain Google Maps methods exposed here for convenience
-var linkedMethods = ['panBy', 'panTo', 'panToBounds', 'fitBounds'].reduce(function (all, methodName) {
-  all[methodName] = function () {
-    if (this.$mapObject) this.$mapObject[methodName].apply(this.$mapObject, arguments);
-  };
-  return all;
-}, {}
-
-// Other convenience methods exposed by Vue Google Maps
-);var customMethods = {
-  resize: function resize() {
-    if (this.$mapObject) {
-      google.maps.event.trigger(this.$mapObject, 'resize');
-    }
-  },
-  resizePreserveCenter: function resizePreserveCenter() {
-    if (!this.$mapObject) return;
-
-    var oldCenter = this.$mapObject.getCenter();
-    google.maps.event.trigger(this.$mapObject, 'resize');
-    this.$mapObject.setCenter(oldCenter);
-  },
-
-  /// Override mountableMixin::_resizeCallback
-  /// because resizePreserveCenter is usually the
-  /// expected behaviour
-  _resizeCallback: function _resizeCallback() {
-    this.resizePreserveCenter();
-  }
-};
-
-// Methods is a combination of customMethods and linkedMethods
-var methods = Object.assign({}, customMethods, linkedMethods);
-
-exports.default = {
-  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
-  props: props,
-  replace: false, // necessary for css styles
-
-  created: function created() {
-    var _this = this;
-
-    this.$mapCreated = new Promise(function (resolve, reject) {
-      _this.$mapCreatedDeferred = { resolve: resolve, reject: reject };
-    });
-
-    var updateCenter = function updateCenter() {
-      if (!_this.$mapObject) return;
-
-      _this.$mapObject.setCenter({
-        lat: _this.finalLat,
-        lng: _this.finalLng
-      });
-    };
-    this.$watch('finalLat', updateCenter);
-    this.$watch('finalLng', updateCenter);
-  },
-
-  computed: {
-    finalLat: function finalLat() {
-      return this.center && typeof this.center.lat === 'function' ? this.center.lat() : this.center.lat;
-    },
-    finalLng: function finalLng() {
-      return this.center && typeof this.center.lng === 'function' ? this.center.lng() : this.center.lng;
-    }
-  },
-
-  watch: {
-    zoom: function zoom(_zoom) {
-      if (this.$mapObject) {
-        this.$mapObject.setZoom(_zoom);
-      }
-    }
-  },
-
-  deferredReady: function deferredReady() {
-    var _this2 = this;
-
-    return _manager.loaded.then(function () {
-      // getting the DOM element where to create the map
-      var element = _this2.$refs['vue-map'];
-
-      // creating the map
-      var copiedData = (0, _clone3.default)(_this2.getPropsValues());
-      delete copiedData.options;
-      var options = (0, _clone3.default)(_this2.options);
-      Object.assign(options, copiedData);
-      _this2.$mapObject = new google.maps.Map(element, options);
-
-      // binding properties (two and one way)
-      (0, _propsBinder2.default)(_this2, _this2.$mapObject, (0, _omit3.default)(props, ['center', 'zoom', 'bounds']));
-
-      // manually trigger center and zoom
-      _this2.$mapObject.addListener('center_changed', function () {
-        _this2.$emit('center_changed', _this2.$mapObject.getCenter());
-      });
-      _this2.$mapObject.addListener('zoom_changed', function () {
-        _this2.$emit('zoom_changed', _this2.$mapObject.getZoom());
-      });
-      _this2.$mapObject.addListener('bounds_changed', function () {
-        _this2.$emit('bounds_changed', _this2.$mapObject.getBounds());
-      });
-
-      //binding events
-      (0, _eventsBinder2.default)(_this2, _this2.$mapObject, events);
-
-      _this2.$mapCreatedDeferred.resolve(_this2.$mapObject);
-
-      return _this2.$mapCreated;
-    }).catch(function (error) {
-      throw error;
-    });
-  },
-
-  methods: methods
-};
-
-/***/ }),
 /* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _clone2 = __webpack_require__(4);
-
-var _clone3 = _interopRequireDefault(_clone2);
-
-var _omit2 = __webpack_require__(10);
-
-var _omit3 = _interopRequireDefault(_omit2);
-
-var _propsBinder = __webpack_require__(1);
-
-var _propsBinder2 = _interopRequireDefault(_propsBinder);
-
-var _simulateArrowDown = __webpack_require__(80);
-
-var _simulateArrowDown2 = _interopRequireDefault(_simulateArrowDown);
-
-var _getPropsValuesMixin = __webpack_require__(3);
-
-var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
-
-var _manager = __webpack_require__(20);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var props = {
-  bounds: {
-    type: Object
-  },
-  defaultPlace: {
-    type: String,
-    default: ''
-  },
-  componentRestrictions: {
-    type: Object,
-    default: null
-  },
-  types: {
-    type: Array,
-    default: function _default() {
-      return [];
-    }
-  },
-  placeholder: {
-    required: false,
-    type: String
-  },
-  className: {
-    required: false,
-    type: String
-  },
-  label: {
-    required: false,
-    type: String,
-    default: null
-  },
-  selectFirstOnEnter: {
-    require: false,
-    type: Boolean,
-    default: false
-  }
-};
-
-exports.default = {
-  mixins: [_getPropsValuesMixin2.default],
-
-  mounted: function mounted() {
-    var _this = this;
-
-    var input = this.$refs.input;
-
-    // Allow default place to be set
-    input.value = this.defaultPlace;
-    this.$watch('defaultPlace', function () {
-      input.value = _this.defaultPlace;
-    });
-
-    _manager.loaded.then(function () {
-      var options = (0, _clone3.default)(_this.getPropsValues());
-      if (_this.selectFirstOnEnter) {
-        (0, _simulateArrowDown2.default)(_this.$refs.input);
-      }
-
-      if (typeof google.maps.places.Autocomplete !== 'function') {
-        throw new Error('google.maps.places.Autocomplete is undefined. Did you add \'places\' to libraries when loading Google Maps?');
-      }
-
-      _this.autoCompleter = new google.maps.places.Autocomplete(_this.$refs.input, options);
-      (0, _propsBinder2.default)(_this, _this.autoCompleter, (0, _omit3.default)(props, ['placeholder', 'place', 'selectFirstOnEnter', 'defaultPlace', 'className', 'label']));
-
-      _this.autoCompleter.addListener('place_changed', function () {
-        _this.$emit('place_changed', _this.autoCompleter.getPlace());
-      });
-    });
-  },
-  created: function created() {
-    console.warn('The PlaceInput class is deprecated! Please consider using the Autocomplete input instead'); //eslint-disable-line no-console
-  },
-
-  props: props
-};
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _omit2 = __webpack_require__(10);
-
-var _omit3 = _interopRequireDefault(_omit2);
-
-var _manager = __webpack_require__(20);
-
-var _deferredReady = __webpack_require__(26);
-
-var _eventsBinder = __webpack_require__(6);
-
-var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
-
-var _propsBinder = __webpack_require__(1);
-
-var _propsBinder2 = _interopRequireDefault(_propsBinder);
-
-var _getPropsValuesMixin = __webpack_require__(3);
-
-var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
-
-var _mountableMixin = __webpack_require__(49);
-
-var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
-
-var props = {
-  zoom: {
-    twoWay: true,
-    type: Number
-  },
-  pov: {
-    twoWay: true,
-    type: Object,
-    trackProperties: ['pitch', 'heading']
-  },
-  position: {
-    twoWay: true,
-    type: Object
-  },
-  pano: {
-    twoWay: true,
-    type: String
-  },
-  motionTracking: {
-    twoWay: false,
-    type: Boolean
-  },
-  visible: {
-    twoWay: true,
-    type: Boolean,
-    default: true
-  },
-  options: {
-    twoWay: false,
-    type: Object,
-    default: function _default() {
-      return {};
-    }
-  }
-};
-
-var events = ['closeclick', 'status_changed'];
-
-// Other convenience methods exposed by Vue Google Maps
-var customMethods = {
-  resize: function resize() {
-    if (this.$panoObject) {
-      google.maps.event.trigger(this.$panoObject, 'resize');
-    }
-  }
-};
-
-// Methods is a combination of customMethods and linkedMethods
-var methods = Object.assign({}, customMethods);
-
-exports.default = {
-  mixins: [_getPropsValuesMixin2.default, _deferredReady.DeferredReadyMixin, _mountableMixin2.default],
-  props: props,
-  replace: false, // necessary for css styles
-  methods: methods,
-
-  created: function created() {
-    var _this = this;
-
-    this.$panoCreated = new Promise(function (resolve, reject) {
-      _this.$panoCreatedDeferred = { resolve: resolve, reject: reject };
-    });
-
-    var updateCenter = function updateCenter() {
-      if (!_this.panoObject) return;
-
-      _this.$panoObject.setPosition({
-        lat: _this.finalLat,
-        lng: _this.finalLng
-      });
-    };
-    this.$watch('finalLat', updateCenter);
-    this.$watch('finalLng', updateCenter);
-  },
-
-  computed: {
-    finalLat: function finalLat() {
-      return this.position && typeof this.position.lat === 'function' ? this.position.lat() : this.position.lat;
-    },
-    finalLng: function finalLng() {
-      return this.position && typeof this.position.lng === 'function' ? this.position.lng() : this.position.lng;
-    }
-  },
-
-  watch: {
-    zoom: function zoom(_zoom) {
-      if (this.$panoObject) {
-        this.$panoObject.setZoom(_zoom);
-      }
-    }
-  },
-
-  deferredReady: function deferredReady() {
-    var _this2 = this;
-
-    return _manager.loaded.then(function () {
-      // getting the DOM element where to create the map
-      var element = _this2.$refs['vue-street-view-pano'];
-
-      // creating the map
-      var options = Object.assign({}, _this2.options, (0, _omit3.default)(_this2.getPropsValues(), ['options']));
-
-      _this2.$panoObject = new google.maps.StreetViewPanorama(element, options);
-
-      // binding properties (two and one way)
-      (0, _propsBinder2.default)(_this2, _this2.$panoObject, (0, _omit3.default)(props, ['position', 'zoom']));
-
-      //binding events
-      (0, _eventsBinder2.default)(_this2, _this2.$panoObject, events);
-
-      _this2.$panoCreatedDeferred.resolve(_this2.$panoObject);
-
-      return _this2.$panoCreated;
-    }).catch(function (error) {
-      throw error;
-    });
-  }
-};
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(11)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.vue-street-view-pano-container {\n  position: relative;\n}\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/node_modules/vue2-google-maps/dist/components/node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue?057993de"],"names":[],"mappings":";AAWA;EACA,mBAAA;CACA;AAEA;EACA,QAAA,CAAA,SAAA,CAAA,OAAA,CAAA,UAAA;EACA,mBAAA;CACA","file":"streetViewPanorama.vue","sourcesContent":["<template>\n  <div class=\"vue-street-view-pano-container\">\n    <div ref=\"vue-street-view-pano\" class=\"vue-street-view-pano\"></div>\n    <slot></slot>\n  </div>\n</template>\n\n<script src=\"./streetViewPanoramaImpl.js\">\n</script>\n\n<style lang=\"css\">\n.vue-street-view-pano-container {\n  position: relative;\n}\n\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n</style>\n"],"sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(11)();
+exports = module.exports = __webpack_require__(12)();
 // imports
 
 
@@ -15386,15 +15694,57 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"source
 
 
 /***/ }),
-/* 94 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
+exports = module.exports = __webpack_require__(12)();
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n.map-container[data-v-4ffc6f57] {\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container[data-v-4ffc6f57]{\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container .vue-map[data-v-4ffc6f57]{\n        height: 500px !important;\n}\n\n\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/components/components/MapGoogle.vue?41e808a8"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAyUA,oBAAA;KACA,gBAAA;KACA,kBAAA;GACA,KAAA;;;GAGA,aAAA;IACA,kBAAA;GACA,KAAA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AAGA;QACA,yBAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n\n</template>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
+exports.push([module.i, "\n.particle-div{\n    width: 300px;\n    height: 300px;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/MapGoogle.vue"],"names":[],"mappings":";AAmCA;IACA,aAAA;IACA,cAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div>\n\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n    </div>\n\n</template>\n<style>\n    .particle-div{\n        width: 300px;\n        height: 300px;\n    }\n</style>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n.map-container[data-v-4b2ced6a] {\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container[data-v-4b2ced6a]{\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container .vue-map[data-v-4b2ced6a]{\n        height: 500px !important;\n}\n\n\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/MapGoogle.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAkVA,oBAAA;KACA,gBAAA;KACA,kBAAA;GACA,KAAA;;;GAGA,aAAA;IACA,kBAAA;GACA,KAAA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AAGA;QACA,yBAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div>\n\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n    </div>\n\n</template>\n<style>\n    .particle-div{\n        width: 300px;\n        height: 300px;\n    }\n</style>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.vue-map-container {\n  position: relative;\n}\n.vue-map-container .vue-map {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n.vue-map-hidden {\n  display: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/node_modules/vue2-google-maps/dist/components/node_modules/vue2-google-maps/dist/components/map.vue"],"names":[],"mappings":";AAcA;EACA,mBAAA;CACA;AAEA;EACA,QAAA,CAAA,SAAA,CAAA,OAAA,CAAA,UAAA;EACA,mBAAA;CACA;AACA;EACA,cAAA;CACA","file":"map.vue","sourcesContent":["<template>\n  <div class=\"vue-map-container\">\n    <div ref=\"vue-map\" class=\"vue-map\"></div>\n    <div class=\"vue-map-hidden\">\n      <slot></slot>\n    </div>\n    <slot name=\"visible\"></slot>\n  </div>\n</template>\n\n<script src=\"./mapImpl.js\">\n</script>\n\n<style lang=\"css\">\n.vue-map-container {\n  position: relative;\n}\n\n.vue-map-container .vue-map {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n.vue-map-hidden {\n  display: none;\n}\n</style>\n"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -15403,12 +15753,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
+exports = module.exports = __webpack_require__(12)();
 // imports
 
 
 // module
-exports.push([module.i, "\n.list[data-v-596512ba]{\n    width: 100%;\n    padding: 200px 0;\n}\n.item[data-v-596512ba]{\n    width: 100px;\n    height: 100px;\n    border: none;\n    background: slateblue;\n    display: inline-block;\n    margin-right: 10px;\n    margin-bottom: 10px;\n}\n.item p[data-v-596512ba]{\n    /*color: darkorange;*/\n    color: #ffffff;\n    /*display: block;*/\n    margin: 10px auto;\n    text-align: center;\n    width: 100%;\n    font-weight: bold;\n}\n.list_button[data-v-596512ba]{\n    width: 100%;\n    margin-bottom: 50px;\n}\n.list .red[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: firebrick;\n    border: none;\n}\n.list .green[data-v-596512ba]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: lightcoral;\n    border: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/components/components/FilterFirst.vue?87fece3a"],"names":[],"mappings":";AA2JA;IACA,YAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;IACA,aAAA;IACA,sBAAA;IACA,sBAAA;IACA,mBAAA;IACA,oBAAA;CACA;AACA;IACA,sBAAA;IACA,eAAA;IACA,mBAAA;IACA,kBAAA;IACA,mBAAA;IACA,YAAA;IACA,kBAAA;CACA;AACA;IACA,YAAA;IACA,oBAAA;CACA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,sBAAA;IACA,aAAA;CAEA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,uBAAA;IACA,aAAA;CACA","file":"FilterFirst.vue","sourcesContent":["<template>\n    <div class=\"list\">\n        <div class=\"list_button\">\n            <input v-model=\"search\"/>\n            <button v-on:click=\"sortLtoG\" class=\"red\">По возрастанию</button>\n            <button v-on:click=\"sortGtoL\" class=\"green\">По убыанию</button>\n        </div>\n\n\n        <div class=\"item\" v-for=\"i in searchName\">\n            <p>{{ i.number_f }}</p>\n            <p>{{ i.title }}</p>\n        </div>\n    </div>\n</template>\n<script>\n    export default {\n        data: () => ({\n            text: 'Hello from Vue',\n            search: '',\n            arr: [\n                {\n                    title: \"text\",\n                    number_f: 24\n                },\n                {\n                    title: \"name\",\n                    number_f: 6\n                },\n                {\n                    title: \"name text\",\n                    number_f: 1\n                },\n                {\n                    title: \"text\",\n                    number_f: 5\n                },\n                {\n                    title: \"name\",\n                    number_f: 83\n                },\n                {\n                    title: \"text\",\n                    number_f: 7\n                },\n                {\n                    title: \"text name\",\n                    number_f: 9\n                }\n            ],\n            sort_arr: []\n        }),\n        computed: {\n//            selectedSortLtoG() {\n//                return this.arr;\n//            },\n            searchName() {\n                return this.arr.filter(post => {\n                    console.log(post)\n                    return post.title.toLowerCase().includes(this.search.toLowerCase())\n                })\n            }\n        },\n//        watch: {\n//\n//        },\n//        mounted: function(){\n//            this.sortLtoG();\n//        },\n        methods: {\n\n//            addTempArray(){\n//                this.sort_arr = this.arr;\n//            },\n//            searchName() {\n//                console.log('67677')\n//            },\n            sortLtoG() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, true);\n//                console.dir(this.arr)\n            },\n            sortGtoL() {\n                let temp_arr = this.arr;\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1, false);\n//                console.dir(this.arr)\n            },\n            quickSort(items, left, right, val_sort) {\n                let index;\n//                console.dir(items);\n                if (items.length > 1) {\n                    index = this.partition(items, left, right, val_sort);\n                    if (left < index - 1) {\n                        this.quickSort(items, left, index - 1, val_sort);\n                    }\n                    if (index < right) {\n                        this.quickSort(items, index, right, val_sort);\n                    }\n                }\n                return items;\n            },\n            partition(items, left, right, val_sort) {\n                let pivot   = items[Math.floor((right + left) / 2)],\n                    i       = left,\n                    j       = right;\n\n                if ( val_sort ) {\n                    while (i <= j) {\n                        while (items[i].number_f < pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f > pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n//                }\n                } else {\n                    while (i <= j) {\n                        while (items[i].number_f > pivot.number_f) {\n                            i++;\n                        }\n                        while (items[j].number_f < pivot.number_f) {\n                            j--;\n                        }\n                        if (i <= j) {\n                            this.swap(items, i, j);\n                            i++;\n                            j--;\n                        }\n                    }\n                }\n\n\n                return i;\n            },\n            swap(items, firstIndex, secondIndex){\n                const temp = items[firstIndex].number_f;\n                items[firstIndex].number_f = items[secondIndex].number_f;\n                items[secondIndex].number_f = temp;\n            }\n        },\n\n    }\n\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n    .list{\n        width: 100%;\n        padding: 200px 0;\n    }\n    .item{\n        width: 100px;\n        height: 100px;\n        border: none;\n        background: slateblue;\n        display: inline-block;\n        margin-right: 10px;\n        margin-bottom: 10px;\n    }\n    .item p{\n        /*color: darkorange;*/\n        color: #ffffff;\n        /*display: block;*/\n        margin: 10px auto;\n        text-align: center;\n        width: 100%;\n        font-weight: bold;\n    }\n    .list_button{\n        width: 100%;\n        margin-bottom: 50px;\n    }\n    .list .red{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: firebrick;\n        border: none;\n\n    }\n    .list .green{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: lightcoral;\n        border: none;\n    }\n</style>\n\n"],"sourceRoot":""}]);
+exports.push([module.i, "\n.vue-street-view-pano-container {\n  position: relative;\n}\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/node_modules/vue2-google-maps/dist/components/node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue"],"names":[],"mappings":";AAWA;EACA,mBAAA;CACA;AAEA;EACA,QAAA,CAAA,SAAA,CAAA,OAAA,CAAA,UAAA;EACA,mBAAA;CACA","file":"streetViewPanorama.vue","sourcesContent":["<template>\n  <div class=\"vue-street-view-pano-container\">\n    <div ref=\"vue-street-view-pano\" class=\"vue-street-view-pano\"></div>\n    <slot></slot>\n  </div>\n</template>\n\n<script src=\"./streetViewPanoramaImpl.js\">\n</script>\n\n<style lang=\"css\">\n.vue-street-view-pano-container {\n  position: relative;\n}\n\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n</style>\n"],"sourceRoot":""}]);
 
 // exports
 
@@ -15417,35 +15767,7 @@ exports.push([module.i, "\n.list[data-v-596512ba]{\n    width: 100%;\n    paddin
 /* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(11)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Social.vue","sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(11)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.vue-map-container {\n  position: relative;\n}\n.vue-map-container .vue-map {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n.vue-map-hidden {\n  display: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/templateMap/node_modules/vue2-google-maps/dist/components/node_modules/vue2-google-maps/dist/components/map.vue?e1f76d12"],"names":[],"mappings":";AAcA;EACA,mBAAA;CACA;AAEA;EACA,QAAA,CAAA,SAAA,CAAA,OAAA,CAAA,UAAA;EACA,mBAAA;CACA;AACA;EACA,cAAA;CACA","file":"map.vue","sourcesContent":["<template>\n  <div class=\"vue-map-container\">\n    <div ref=\"vue-map\" class=\"vue-map\"></div>\n    <div class=\"vue-map-hidden\">\n      <slot></slot>\n    </div>\n    <slot name=\"visible\"></slot>\n  </div>\n</template>\n\n<script src=\"./mapImpl.js\">\n</script>\n\n<style lang=\"css\">\n.vue-map-container {\n  position: relative;\n}\n\n.vue-map-container .vue-map {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n.vue-map-hidden {\n  display: none;\n}\n</style>\n"],"sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 98 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var getNative = __webpack_require__(8),
+var getNative = __webpack_require__(9),
     root = __webpack_require__(2);
 
 /* Built-in method references that are verified to be native. */
@@ -15455,14 +15777,14 @@ module.exports = DataView;
 
 
 /***/ }),
-/* 99 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hashClear = __webpack_require__(158),
-    hashDelete = __webpack_require__(159),
-    hashGet = __webpack_require__(160),
-    hashHas = __webpack_require__(161),
-    hashSet = __webpack_require__(162);
+var hashClear = __webpack_require__(153),
+    hashDelete = __webpack_require__(154),
+    hashGet = __webpack_require__(155),
+    hashHas = __webpack_require__(156),
+    hashSet = __webpack_require__(157);
 
 /**
  * Creates a hash object.
@@ -15493,10 +15815,10 @@ module.exports = Hash;
 
 
 /***/ }),
-/* 100 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(8),
+var getNative = __webpack_require__(9),
     root = __webpack_require__(2);
 
 /* Built-in method references that are verified to be native. */
@@ -15506,10 +15828,10 @@ module.exports = Promise;
 
 
 /***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(8),
+var getNative = __webpack_require__(9),
     root = __webpack_require__(2);
 
 /* Built-in method references that are verified to be native. */
@@ -15519,12 +15841,12 @@ module.exports = Set;
 
 
 /***/ }),
-/* 102 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(28),
-    setCacheAdd = __webpack_require__(186),
-    setCacheHas = __webpack_require__(187);
+var MapCache = __webpack_require__(30),
+    setCacheAdd = __webpack_require__(181),
+    setCacheHas = __webpack_require__(182);
 
 /**
  *
@@ -15552,10 +15874,10 @@ module.exports = SetCache;
 
 
 /***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getNative = __webpack_require__(8),
+var getNative = __webpack_require__(9),
     root = __webpack_require__(2);
 
 /* Built-in method references that are verified to be native. */
@@ -15565,49 +15887,7 @@ module.exports = WeakMap;
 
 
 /***/ }),
-/* 104 */
-/***/ (function(module, exports) {
-
-/**
- * Adds the key-value `pair` to `map`.
- *
- * @private
- * @param {Object} map The map to modify.
- * @param {Array} pair The key-value pair to add.
- * @returns {Object} Returns `map`.
- */
-function addMapEntry(map, pair) {
-  // Don't return `map.set` because it's not chainable in IE 11.
-  map.set(pair[0], pair[1]);
-  return map;
-}
-
-module.exports = addMapEntry;
-
-
-/***/ }),
-/* 105 */
-/***/ (function(module, exports) {
-
-/**
- * Adds `value` to `set`.
- *
- * @private
- * @param {Object} set The set to modify.
- * @param {*} value The value to add.
- * @returns {Object} Returns `set`.
- */
-function addSetEntry(set, value) {
-  // Don't return `set.add` because it's not chainable in IE 11.
-  set.add(value);
-  return set;
-}
-
-module.exports = addSetEntry;
-
-
-/***/ }),
-/* 106 */
+/* 102 */
 /***/ (function(module, exports) {
 
 /**
@@ -15634,7 +15914,7 @@ module.exports = apply;
 
 
 /***/ }),
-/* 107 */
+/* 103 */
 /***/ (function(module, exports) {
 
 /**
@@ -15665,7 +15945,7 @@ module.exports = arrayFilter;
 
 
 /***/ }),
-/* 108 */
+/* 104 */
 /***/ (function(module, exports) {
 
 /**
@@ -15694,7 +15974,7 @@ module.exports = arraySome;
 
 
 /***/ }),
-/* 109 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyObject = __webpack_require__(18),
@@ -15717,11 +15997,11 @@ module.exports = baseAssign;
 
 
 /***/ }),
-/* 110 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyObject = __webpack_require__(18),
-    keysIn = __webpack_require__(76);
+    keysIn = __webpack_require__(82);
 
 /**
  * The base implementation of `_.assignIn` without support for multiple sources
@@ -15740,10 +16020,10 @@ module.exports = baseAssignIn;
 
 
 /***/ }),
-/* 111 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(9);
+var isObject = __webpack_require__(10);
 
 /** Built-in value references. */
 var objectCreate = Object.create;
@@ -15776,11 +16056,11 @@ module.exports = baseCreate;
 
 
 /***/ }),
-/* 112 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseForOwn = __webpack_require__(57),
-    createBaseEach = __webpack_require__(148);
+var baseForOwn = __webpack_require__(66),
+    createBaseEach = __webpack_require__(143);
 
 /**
  * The base implementation of `_.forEach` without support for iteratee shorthands.
@@ -15796,11 +16076,11 @@ module.exports = baseEach;
 
 
 /***/ }),
-/* 113 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayPush = __webpack_require__(31),
-    isFlattenable = __webpack_require__(166);
+var arrayPush = __webpack_require__(33),
+    isFlattenable = __webpack_require__(161);
 
 /**
  * The base implementation of `_.flatten` with support for restricting flattening.
@@ -15840,10 +16120,10 @@ module.exports = baseFlatten;
 
 
 /***/ }),
-/* 114 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createBaseFor = __webpack_require__(149);
+var createBaseFor = __webpack_require__(144);
 
 /**
  * The base implementation of `baseForOwn` which iterates over `object`
@@ -15862,7 +16142,7 @@ module.exports = baseFor;
 
 
 /***/ }),
-/* 115 */
+/* 111 */
 /***/ (function(module, exports) {
 
 /**
@@ -15881,11 +16161,11 @@ module.exports = baseHasIn;
 
 
 /***/ }),
-/* 116 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(13),
-    isObjectLike = __webpack_require__(16);
+var baseGetTag = __webpack_require__(14),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]';
@@ -15905,17 +16185,17 @@ module.exports = baseIsArguments;
 
 
 /***/ }),
-/* 117 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stack = __webpack_require__(29),
-    equalArrays = __webpack_require__(62),
-    equalByTag = __webpack_require__(151),
-    equalObjects = __webpack_require__(152),
-    getTag = __webpack_require__(66),
+var Stack = __webpack_require__(31),
+    equalArrays = __webpack_require__(71),
+    equalByTag = __webpack_require__(146),
+    equalObjects = __webpack_require__(147),
+    getTag = __webpack_require__(25),
     isArray = __webpack_require__(0),
-    isBuffer = __webpack_require__(45),
-    isTypedArray = __webpack_require__(75);
+    isBuffer = __webpack_require__(49),
+    isTypedArray = __webpack_require__(81);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -15994,11 +16274,35 @@ module.exports = baseIsEqualDeep;
 
 
 /***/ }),
-/* 118 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stack = __webpack_require__(29),
-    baseIsEqual = __webpack_require__(59);
+var getTag = __webpack_require__(25),
+    isObjectLike = __webpack_require__(6);
+
+/** `Object#toString` result references. */
+var mapTag = '[object Map]';
+
+/**
+ * The base implementation of `_.isMap` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+ */
+function baseIsMap(value) {
+  return isObjectLike(value) && getTag(value) == mapTag;
+}
+
+module.exports = baseIsMap;
+
+
+/***/ }),
+/* 115 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Stack = __webpack_require__(31),
+    baseIsEqual = __webpack_require__(68);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -16062,13 +16366,13 @@ module.exports = baseIsMatch;
 
 
 /***/ }),
-/* 119 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isFunction = __webpack_require__(74),
-    isMasked = __webpack_require__(168),
-    isObject = __webpack_require__(9),
-    toSource = __webpack_require__(72);
+var isFunction = __webpack_require__(80),
+    isMasked = __webpack_require__(163),
+    isObject = __webpack_require__(10),
+    toSource = __webpack_require__(78);
 
 /**
  * Used to match `RegExp`
@@ -16115,12 +16419,36 @@ module.exports = baseIsNative;
 
 
 /***/ }),
-/* 120 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(13),
-    isLength = __webpack_require__(46),
-    isObjectLike = __webpack_require__(16);
+var getTag = __webpack_require__(25),
+    isObjectLike = __webpack_require__(6);
+
+/** `Object#toString` result references. */
+var setTag = '[object Set]';
+
+/**
+ * The base implementation of `_.isSet` without Node.js optimizations.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+ */
+function baseIsSet(value) {
+  return isObjectLike(value) && getTag(value) == setTag;
+}
+
+module.exports = baseIsSet;
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(14),
+    isLength = __webpack_require__(50),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var argsTag = '[object Arguments]',
@@ -16181,11 +16509,11 @@ module.exports = baseIsTypedArray;
 
 
 /***/ }),
-/* 121 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPrototype = __webpack_require__(40),
-    nativeKeys = __webpack_require__(180);
+var isPrototype = __webpack_require__(43),
+    nativeKeys = __webpack_require__(176);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -16217,12 +16545,12 @@ module.exports = baseKeys;
 
 
 /***/ }),
-/* 122 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(9),
-    isPrototype = __webpack_require__(40),
-    nativeKeysIn = __webpack_require__(181);
+var isObject = __webpack_require__(10),
+    isPrototype = __webpack_require__(43),
+    nativeKeysIn = __webpack_require__(177);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -16256,12 +16584,12 @@ module.exports = baseKeysIn;
 
 
 /***/ }),
-/* 123 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsMatch = __webpack_require__(118),
-    getMatchData = __webpack_require__(154),
-    matchesStrictComparable = __webpack_require__(69);
+var baseIsMatch = __webpack_require__(115),
+    getMatchData = __webpack_require__(149),
+    matchesStrictComparable = __webpack_require__(76);
 
 /**
  * The base implementation of `_.matches` which doesn't clone `source`.
@@ -16284,16 +16612,16 @@ module.exports = baseMatches;
 
 
 /***/ }),
-/* 124 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIsEqual = __webpack_require__(59),
-    get = __webpack_require__(198),
-    hasIn = __webpack_require__(199),
-    isKey = __webpack_require__(39),
-    isStrictComparable = __webpack_require__(67),
-    matchesStrictComparable = __webpack_require__(69),
-    toKey = __webpack_require__(15);
+var baseIsEqual = __webpack_require__(68),
+    get = __webpack_require__(194),
+    hasIn = __webpack_require__(195),
+    isKey = __webpack_require__(42),
+    isStrictComparable = __webpack_require__(75),
+    matchesStrictComparable = __webpack_require__(76),
+    toKey = __webpack_require__(16);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -16323,12 +16651,12 @@ module.exports = baseMatchesProperty;
 
 
 /***/ }),
-/* 125 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGet = __webpack_require__(23),
-    baseSet = __webpack_require__(128),
-    castPath = __webpack_require__(14);
+    baseSet = __webpack_require__(126),
+    castPath = __webpack_require__(15);
 
 /**
  * The base implementation of  `_.pickBy` without support for iteratee shorthands.
@@ -16359,7 +16687,7 @@ module.exports = basePickBy;
 
 
 /***/ }),
-/* 126 */
+/* 124 */
 /***/ (function(module, exports) {
 
 /**
@@ -16379,7 +16707,7 @@ module.exports = baseProperty;
 
 
 /***/ }),
-/* 127 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGet = __webpack_require__(23);
@@ -16401,14 +16729,14 @@ module.exports = basePropertyDeep;
 
 
 /***/ }),
-/* 128 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var assignValue = __webpack_require__(32),
-    castPath = __webpack_require__(14),
-    isIndex = __webpack_require__(38),
-    isObject = __webpack_require__(9),
-    toKey = __webpack_require__(15);
+var assignValue = __webpack_require__(34),
+    castPath = __webpack_require__(15),
+    isIndex = __webpack_require__(41),
+    isObject = __webpack_require__(10),
+    toKey = __webpack_require__(16);
 
 /**
  * The base implementation of `_.set`.
@@ -16454,12 +16782,12 @@ module.exports = baseSet;
 
 
 /***/ }),
-/* 129 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var constant = __webpack_require__(196),
-    defineProperty = __webpack_require__(61),
-    identity = __webpack_require__(42);
+var constant = __webpack_require__(192),
+    defineProperty = __webpack_require__(70),
+    identity = __webpack_require__(46);
 
 /**
  * The base implementation of `setToString` without support for hot loop shorting.
@@ -16482,7 +16810,7 @@ module.exports = baseSetToString;
 
 
 /***/ }),
-/* 130 */
+/* 128 */
 /***/ (function(module, exports) {
 
 /**
@@ -16519,7 +16847,7 @@ module.exports = baseSlice;
 
 
 /***/ }),
-/* 131 */
+/* 129 */
 /***/ (function(module, exports) {
 
 /**
@@ -16545,13 +16873,13 @@ module.exports = baseTimes;
 
 
 /***/ }),
-/* 132 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12),
-    arrayMap = __webpack_require__(30),
+var Symbol = __webpack_require__(13),
+    arrayMap = __webpack_require__(32),
     isArray = __webpack_require__(0),
-    isSymbol = __webpack_require__(47);
+    isSymbol = __webpack_require__(51);
 
 /** Used as references for various `Number` constants. */
 var INFINITY = 1 / 0;
@@ -16588,33 +16916,13 @@ module.exports = baseToString;
 
 
 /***/ }),
-/* 133 */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.unary` without support for storing metadata.
- *
- * @private
- * @param {Function} func The function to cap arguments for.
- * @returns {Function} Returns the new capped function.
- */
-function baseUnary(func) {
-  return function(value) {
-    return func(value);
-  };
-}
-
-module.exports = baseUnary;
-
-
-/***/ }),
-/* 134 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var castPath = __webpack_require__(14),
-    last = __webpack_require__(201),
-    parent = __webpack_require__(185),
-    toKey = __webpack_require__(15);
+var castPath = __webpack_require__(15),
+    last = __webpack_require__(199),
+    parent = __webpack_require__(180),
+    toKey = __webpack_require__(16);
 
 /**
  * The base implementation of `_.unset`.
@@ -16634,7 +16942,7 @@ module.exports = baseUnset;
 
 
 /***/ }),
-/* 135 */
+/* 132 */
 /***/ (function(module, exports) {
 
 /**
@@ -16653,10 +16961,10 @@ module.exports = cacheHas;
 
 
 /***/ }),
-/* 136 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var identity = __webpack_require__(42);
+var identity = __webpack_require__(46);
 
 /**
  * Casts `value` to `identity` if it's not a function.
@@ -16673,7 +16981,7 @@ module.exports = castFunction;
 
 
 /***/ }),
-/* 137 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(2);
@@ -16712,13 +17020,13 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(53)(module)))
 
 /***/ }),
-/* 138 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cloneArrayBuffer = __webpack_require__(34);
+var cloneArrayBuffer = __webpack_require__(37);
 
 /**
  * Creates a clone of `dataView`.
@@ -16737,35 +17045,7 @@ module.exports = cloneDataView;
 
 
 /***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var addMapEntry = __webpack_require__(104),
-    arrayReduce = __webpack_require__(55),
-    mapToArray = __webpack_require__(68);
-
-/** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG = 1;
-
-/**
- * Creates a clone of `map`.
- *
- * @private
- * @param {Object} map The map to clone.
- * @param {Function} cloneFunc The function to clone values.
- * @param {boolean} [isDeep] Specify a deep clone.
- * @returns {Object} Returns the cloned map.
- */
-function cloneMap(map, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(mapToArray(map), CLONE_DEEP_FLAG) : mapToArray(map);
-  return arrayReduce(array, addMapEntry, new map.constructor);
-}
-
-module.exports = cloneMap;
-
-
-/***/ }),
-/* 140 */
+/* 136 */
 /***/ (function(module, exports) {
 
 /** Used to match `RegExp` flags from their coerced string values. */
@@ -16788,38 +17068,10 @@ module.exports = cloneRegExp;
 
 
 /***/ }),
-/* 141 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var addSetEntry = __webpack_require__(105),
-    arrayReduce = __webpack_require__(55),
-    setToArray = __webpack_require__(71);
-
-/** Used to compose bitmasks for cloning. */
-var CLONE_DEEP_FLAG = 1;
-
-/**
- * Creates a clone of `set`.
- *
- * @private
- * @param {Object} set The set to clone.
- * @param {Function} cloneFunc The function to clone values.
- * @param {boolean} [isDeep] Specify a deep clone.
- * @returns {Object} Returns the cloned set.
- */
-function cloneSet(set, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(setToArray(set), CLONE_DEEP_FLAG) : setToArray(set);
-  return arrayReduce(array, addSetEntry, new set.constructor);
-}
-
-module.exports = cloneSet;
-
-
-/***/ }),
-/* 142 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Symbol = __webpack_require__(12);
+var Symbol = __webpack_require__(13);
 
 /** Used to convert symbols to primitives and strings. */
 var symbolProto = Symbol ? Symbol.prototype : undefined,
@@ -16840,10 +17092,10 @@ module.exports = cloneSymbol;
 
 
 /***/ }),
-/* 143 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cloneArrayBuffer = __webpack_require__(34);
+var cloneArrayBuffer = __webpack_require__(37);
 
 /**
  * Creates a clone of `typedArray`.
@@ -16862,7 +17114,7 @@ module.exports = cloneTypedArray;
 
 
 /***/ }),
-/* 144 */
+/* 139 */
 /***/ (function(module, exports) {
 
 /**
@@ -16888,11 +17140,11 @@ module.exports = copyArray;
 
 
 /***/ }),
-/* 145 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyObject = __webpack_require__(18),
-    getSymbols = __webpack_require__(37);
+    getSymbols = __webpack_require__(40);
 
 /**
  * Copies own symbols of `source` to `object`.
@@ -16910,11 +17162,11 @@ module.exports = copySymbols;
 
 
 /***/ }),
-/* 146 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var copyObject = __webpack_require__(18),
-    getSymbolsIn = __webpack_require__(65);
+    getSymbolsIn = __webpack_require__(74);
 
 /**
  * Copies own and inherited symbols of `source` to `object`.
@@ -16932,7 +17184,7 @@ module.exports = copySymbolsIn;
 
 
 /***/ }),
-/* 147 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var root = __webpack_require__(2);
@@ -16944,10 +17196,10 @@ module.exports = coreJsData;
 
 
 /***/ }),
-/* 148 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArrayLike = __webpack_require__(44);
+var isArrayLike = __webpack_require__(48);
 
 /**
  * Creates a `baseEach` or `baseEachRight` function.
@@ -16982,7 +17234,7 @@ module.exports = createBaseEach;
 
 
 /***/ }),
-/* 149 */
+/* 144 */
 /***/ (function(module, exports) {
 
 /**
@@ -17013,10 +17265,10 @@ module.exports = createBaseFor;
 
 
 /***/ }),
-/* 150 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isPlainObject = __webpack_require__(200);
+var isPlainObject = __webpack_require__(197);
 
 /**
  * Used by `_.omit` to customize its `_.cloneDeep` use to only clone plain
@@ -17035,15 +17287,15 @@ module.exports = customOmitClone;
 
 
 /***/ }),
-/* 151 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12),
-    Uint8Array = __webpack_require__(52),
-    eq = __webpack_require__(41),
-    equalArrays = __webpack_require__(62),
-    mapToArray = __webpack_require__(68),
-    setToArray = __webpack_require__(71);
+var Symbol = __webpack_require__(13),
+    Uint8Array = __webpack_require__(62),
+    eq = __webpack_require__(45),
+    equalArrays = __webpack_require__(71),
+    mapToArray = __webpack_require__(174),
+    setToArray = __webpack_require__(183);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1,
@@ -17153,10 +17405,10 @@ module.exports = equalByTag;
 
 
 /***/ }),
-/* 152 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getAllKeys = __webpack_require__(64);
+var getAllKeys = __webpack_require__(73);
 
 /** Used to compose bitmasks for value comparisons. */
 var COMPARE_PARTIAL_FLAG = 1;
@@ -17248,12 +17500,12 @@ module.exports = equalObjects;
 
 
 /***/ }),
-/* 153 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var flatten = __webpack_require__(197),
-    overRest = __webpack_require__(184),
-    setToString = __webpack_require__(188);
+var flatten = __webpack_require__(193),
+    overRest = __webpack_require__(179),
+    setToString = __webpack_require__(184);
 
 /**
  * A specialized version of `baseRest` which flattens the rest array.
@@ -17270,10 +17522,10 @@ module.exports = flatRest;
 
 
 /***/ }),
-/* 154 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isStrictComparable = __webpack_require__(67),
+var isStrictComparable = __webpack_require__(75),
     keys = __webpack_require__(19);
 
 /**
@@ -17300,10 +17552,10 @@ module.exports = getMatchData;
 
 
 /***/ }),
-/* 155 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12);
+var Symbol = __webpack_require__(13);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -17352,7 +17604,7 @@ module.exports = getRawTag;
 
 
 /***/ }),
-/* 156 */
+/* 151 */
 /***/ (function(module, exports) {
 
 /**
@@ -17371,15 +17623,15 @@ module.exports = getValue;
 
 
 /***/ }),
-/* 157 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var castPath = __webpack_require__(14),
-    isArguments = __webpack_require__(43),
+var castPath = __webpack_require__(15),
+    isArguments = __webpack_require__(47),
     isArray = __webpack_require__(0),
-    isIndex = __webpack_require__(38),
-    isLength = __webpack_require__(46),
-    toKey = __webpack_require__(15);
+    isIndex = __webpack_require__(41),
+    isLength = __webpack_require__(50),
+    toKey = __webpack_require__(16);
 
 /**
  * Checks if `path` exists on `object`.
@@ -17416,10 +17668,10 @@ module.exports = hasPath;
 
 
 /***/ }),
-/* 158 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(25);
+var nativeCreate = __webpack_require__(26);
 
 /**
  * Removes all key-value entries from the hash.
@@ -17437,7 +17689,7 @@ module.exports = hashClear;
 
 
 /***/ }),
-/* 159 */
+/* 154 */
 /***/ (function(module, exports) {
 
 /**
@@ -17460,10 +17712,10 @@ module.exports = hashDelete;
 
 
 /***/ }),
-/* 160 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(25);
+var nativeCreate = __webpack_require__(26);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -17496,10 +17748,10 @@ module.exports = hashGet;
 
 
 /***/ }),
-/* 161 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(25);
+var nativeCreate = __webpack_require__(26);
 
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
@@ -17525,10 +17777,10 @@ module.exports = hashHas;
 
 
 /***/ }),
-/* 162 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var nativeCreate = __webpack_require__(25);
+var nativeCreate = __webpack_require__(26);
 
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -17554,7 +17806,7 @@ module.exports = hashSet;
 
 
 /***/ }),
-/* 163 */
+/* 158 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -17572,7 +17824,7 @@ var hasOwnProperty = objectProto.hasOwnProperty;
  */
 function initCloneArray(array) {
   var length = array.length,
-      result = array.constructor(length);
+      result = new array.constructor(length);
 
   // Add properties assigned by `RegExp#exec`.
   if (length && typeof array[0] == 'string' && hasOwnProperty.call(array, 'index')) {
@@ -17586,16 +17838,14 @@ module.exports = initCloneArray;
 
 
 /***/ }),
-/* 164 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cloneArrayBuffer = __webpack_require__(34),
-    cloneDataView = __webpack_require__(138),
-    cloneMap = __webpack_require__(139),
-    cloneRegExp = __webpack_require__(140),
-    cloneSet = __webpack_require__(141),
-    cloneSymbol = __webpack_require__(142),
-    cloneTypedArray = __webpack_require__(143);
+var cloneArrayBuffer = __webpack_require__(37),
+    cloneDataView = __webpack_require__(135),
+    cloneRegExp = __webpack_require__(136),
+    cloneSymbol = __webpack_require__(137),
+    cloneTypedArray = __webpack_require__(138);
 
 /** `Object#toString` result references. */
 var boolTag = '[object Boolean]',
@@ -17623,16 +17873,15 @@ var arrayBufferTag = '[object ArrayBuffer]',
  * Initializes an object clone based on its `toStringTag`.
  *
  * **Note:** This function only supports cloning values with tags of
- * `Boolean`, `Date`, `Error`, `Number`, `RegExp`, or `String`.
+ * `Boolean`, `Date`, `Error`, `Map`, `Number`, `RegExp`, `Set`, or `String`.
  *
  * @private
  * @param {Object} object The object to clone.
  * @param {string} tag The `toStringTag` of the object to clone.
- * @param {Function} cloneFunc The function to clone values.
  * @param {boolean} [isDeep] Specify a deep clone.
  * @returns {Object} Returns the initialized clone.
  */
-function initCloneByTag(object, tag, cloneFunc, isDeep) {
+function initCloneByTag(object, tag, isDeep) {
   var Ctor = object.constructor;
   switch (tag) {
     case arrayBufferTag:
@@ -17651,7 +17900,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
       return cloneTypedArray(object, isDeep);
 
     case mapTag:
-      return cloneMap(object, isDeep, cloneFunc);
+      return new Ctor;
 
     case numberTag:
     case stringTag:
@@ -17661,7 +17910,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
       return cloneRegExp(object);
 
     case setTag:
-      return cloneSet(object, isDeep, cloneFunc);
+      return new Ctor;
 
     case symbolTag:
       return cloneSymbol(object);
@@ -17672,12 +17921,12 @@ module.exports = initCloneByTag;
 
 
 /***/ }),
-/* 165 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseCreate = __webpack_require__(111),
-    getPrototype = __webpack_require__(36),
-    isPrototype = __webpack_require__(40);
+var baseCreate = __webpack_require__(107),
+    getPrototype = __webpack_require__(39),
+    isPrototype = __webpack_require__(43);
 
 /**
  * Initializes an object clone.
@@ -17696,11 +17945,11 @@ module.exports = initCloneObject;
 
 
 /***/ }),
-/* 166 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Symbol = __webpack_require__(12),
-    isArguments = __webpack_require__(43),
+var Symbol = __webpack_require__(13),
+    isArguments = __webpack_require__(47),
     isArray = __webpack_require__(0);
 
 /** Built-in value references. */
@@ -17722,7 +17971,7 @@ module.exports = isFlattenable;
 
 
 /***/ }),
-/* 167 */
+/* 162 */
 /***/ (function(module, exports) {
 
 /**
@@ -17743,10 +17992,10 @@ module.exports = isKeyable;
 
 
 /***/ }),
-/* 168 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var coreJsData = __webpack_require__(147);
+var coreJsData = __webpack_require__(142);
 
 /** Used to detect methods masquerading as native. */
 var maskSrcKey = (function() {
@@ -17769,7 +18018,7 @@ module.exports = isMasked;
 
 
 /***/ }),
-/* 169 */
+/* 164 */
 /***/ (function(module, exports) {
 
 /**
@@ -17788,7 +18037,7 @@ module.exports = listCacheClear;
 
 
 /***/ }),
-/* 170 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(22);
@@ -17829,7 +18078,7 @@ module.exports = listCacheDelete;
 
 
 /***/ }),
-/* 171 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(22);
@@ -17854,7 +18103,7 @@ module.exports = listCacheGet;
 
 
 /***/ }),
-/* 172 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(22);
@@ -17876,7 +18125,7 @@ module.exports = listCacheHas;
 
 
 /***/ }),
-/* 173 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var assocIndexOf = __webpack_require__(22);
@@ -17908,12 +18157,12 @@ module.exports = listCacheSet;
 
 
 /***/ }),
-/* 174 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hash = __webpack_require__(99),
+var Hash = __webpack_require__(97),
     ListCache = __webpack_require__(21),
-    Map = __webpack_require__(27);
+    Map = __webpack_require__(29);
 
 /**
  * Removes all key-value entries from the map.
@@ -17935,7 +18184,7 @@ module.exports = mapCacheClear;
 
 
 /***/ }),
-/* 175 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(24);
@@ -17959,7 +18208,7 @@ module.exports = mapCacheDelete;
 
 
 /***/ }),
-/* 176 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(24);
@@ -17981,7 +18230,7 @@ module.exports = mapCacheGet;
 
 
 /***/ }),
-/* 177 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(24);
@@ -18003,7 +18252,7 @@ module.exports = mapCacheHas;
 
 
 /***/ }),
-/* 178 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var getMapData = __webpack_require__(24);
@@ -18031,10 +18280,34 @@ module.exports = mapCacheSet;
 
 
 /***/ }),
-/* 179 */
+/* 174 */
+/***/ (function(module, exports) {
+
+/**
+ * Converts `map` to its key-value pairs.
+ *
+ * @private
+ * @param {Object} map The map to convert.
+ * @returns {Array} Returns the key-value pairs.
+ */
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+
+  map.forEach(function(value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+
+module.exports = mapToArray;
+
+
+/***/ }),
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var memoize = __webpack_require__(202);
+var memoize = __webpack_require__(200);
 
 /** Used as the maximum memoize cache size. */
 var MAX_MEMOIZE_SIZE = 500;
@@ -18063,10 +18336,10 @@ module.exports = memoizeCapped;
 
 
 /***/ }),
-/* 180 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var overArg = __webpack_require__(70);
+var overArg = __webpack_require__(77);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeKeys = overArg(Object.keys, Object);
@@ -18075,7 +18348,7 @@ module.exports = nativeKeys;
 
 
 /***/ }),
-/* 181 */
+/* 177 */
 /***/ (function(module, exports) {
 
 /**
@@ -18101,36 +18374,7 @@ module.exports = nativeKeysIn;
 
 
 /***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(63);
-
-/** Detect free variable `exports`. */
-var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
-
-/** Detect free variable `module`. */
-var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
-
-/** Detect the popular CommonJS extension `module.exports`. */
-var moduleExports = freeModule && freeModule.exports === freeExports;
-
-/** Detect free variable `process` from Node.js. */
-var freeProcess = moduleExports && freeGlobal.process;
-
-/** Used to access faster Node.js helpers. */
-var nodeUtil = (function() {
-  try {
-    return freeProcess && freeProcess.binding && freeProcess.binding('util');
-  } catch (e) {}
-}());
-
-module.exports = nodeUtil;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51)(module)))
-
-/***/ }),
-/* 183 */
+/* 178 */
 /***/ (function(module, exports) {
 
 /** Used for built-in method references. */
@@ -18158,10 +18402,10 @@ module.exports = objectToString;
 
 
 /***/ }),
-/* 184 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = __webpack_require__(106);
+var apply = __webpack_require__(102);
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeMax = Math.max;
@@ -18200,11 +18444,11 @@ module.exports = overRest;
 
 
 /***/ }),
-/* 185 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGet = __webpack_require__(23),
-    baseSlice = __webpack_require__(130);
+    baseSlice = __webpack_require__(128);
 
 /**
  * Gets the parent value at `path` of `object`.
@@ -18222,7 +18466,7 @@ module.exports = parent;
 
 
 /***/ }),
-/* 186 */
+/* 181 */
 /***/ (function(module, exports) {
 
 /** Used to stand-in for `undefined` hash values. */
@@ -18247,7 +18491,7 @@ module.exports = setCacheAdd;
 
 
 /***/ }),
-/* 187 */
+/* 182 */
 /***/ (function(module, exports) {
 
 /**
@@ -18267,11 +18511,35 @@ module.exports = setCacheHas;
 
 
 /***/ }),
-/* 188 */
+/* 183 */
+/***/ (function(module, exports) {
+
+/**
+ * Converts `set` to an array of its values.
+ *
+ * @private
+ * @param {Object} set The set to convert.
+ * @returns {Array} Returns the values.
+ */
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+
+  set.forEach(function(value) {
+    result[++index] = value;
+  });
+  return result;
+}
+
+module.exports = setToArray;
+
+
+/***/ }),
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSetToString = __webpack_require__(129),
-    shortOut = __webpack_require__(189);
+var baseSetToString = __webpack_require__(127),
+    shortOut = __webpack_require__(185);
 
 /**
  * Sets the `toString` method of `func` to return `string`.
@@ -18287,7 +18555,7 @@ module.exports = setToString;
 
 
 /***/ }),
-/* 189 */
+/* 185 */
 /***/ (function(module, exports) {
 
 /** Used to detect hot functions by number of calls within a span of milliseconds. */
@@ -18330,7 +18598,7 @@ module.exports = shortOut;
 
 
 /***/ }),
-/* 190 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(21);
@@ -18351,7 +18619,7 @@ module.exports = stackClear;
 
 
 /***/ }),
-/* 191 */
+/* 187 */
 /***/ (function(module, exports) {
 
 /**
@@ -18375,7 +18643,7 @@ module.exports = stackDelete;
 
 
 /***/ }),
-/* 192 */
+/* 188 */
 /***/ (function(module, exports) {
 
 /**
@@ -18395,7 +18663,7 @@ module.exports = stackGet;
 
 
 /***/ }),
-/* 193 */
+/* 189 */
 /***/ (function(module, exports) {
 
 /**
@@ -18415,12 +18683,12 @@ module.exports = stackHas;
 
 
 /***/ }),
-/* 194 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ListCache = __webpack_require__(21),
-    Map = __webpack_require__(27),
-    MapCache = __webpack_require__(28);
+    Map = __webpack_require__(29),
+    MapCache = __webpack_require__(30);
 
 /** Used as the size to enable large array optimizations. */
 var LARGE_ARRAY_SIZE = 200;
@@ -18455,14 +18723,13 @@ module.exports = stackSet;
 
 
 /***/ }),
-/* 195 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var memoizeCapped = __webpack_require__(179);
+var memoizeCapped = __webpack_require__(175);
 
 /** Used to match property names within property paths. */
-var reLeadingDot = /^\./,
-    rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
 
 /** Used to match backslashes in property paths. */
 var reEscapeChar = /\\(\\)?/g;
@@ -18476,11 +18743,11 @@ var reEscapeChar = /\\(\\)?/g;
  */
 var stringToPath = memoizeCapped(function(string) {
   var result = [];
-  if (reLeadingDot.test(string)) {
+  if (string.charCodeAt(0) === 46 /* . */) {
     result.push('');
   }
-  string.replace(rePropName, function(match, number, quote, string) {
-    result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+  string.replace(rePropName, function(match, number, quote, subString) {
+    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
   });
   return result;
 });
@@ -18489,7 +18756,7 @@ module.exports = stringToPath;
 
 
 /***/ }),
-/* 196 */
+/* 192 */
 /***/ (function(module, exports) {
 
 /**
@@ -18521,10 +18788,10 @@ module.exports = constant;
 
 
 /***/ }),
-/* 197 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseFlatten = __webpack_require__(113);
+var baseFlatten = __webpack_require__(109);
 
 /**
  * Flattens `array` a single level deep.
@@ -18549,7 +18816,7 @@ module.exports = flatten;
 
 
 /***/ }),
-/* 198 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var baseGet = __webpack_require__(23);
@@ -18588,11 +18855,11 @@ module.exports = get;
 
 
 /***/ }),
-/* 199 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseHasIn = __webpack_require__(115),
-    hasPath = __webpack_require__(157);
+var baseHasIn = __webpack_require__(111),
+    hasPath = __webpack_require__(152);
 
 /**
  * Checks if `path` is a direct or inherited property of `object`.
@@ -18628,12 +18895,45 @@ module.exports = hasIn;
 
 
 /***/ }),
-/* 200 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseGetTag = __webpack_require__(13),
-    getPrototype = __webpack_require__(36),
-    isObjectLike = __webpack_require__(16);
+var baseIsMap = __webpack_require__(114),
+    baseUnary = __webpack_require__(36),
+    nodeUtil = __webpack_require__(44);
+
+/* Node.js helper references. */
+var nodeIsMap = nodeUtil && nodeUtil.isMap;
+
+/**
+ * Checks if `value` is classified as a `Map` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a map, else `false`.
+ * @example
+ *
+ * _.isMap(new Map);
+ * // => true
+ *
+ * _.isMap(new WeakMap);
+ * // => false
+ */
+var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
+
+module.exports = isMap;
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseGetTag = __webpack_require__(14),
+    getPrototype = __webpack_require__(39),
+    isObjectLike = __webpack_require__(6);
 
 /** `Object#toString` result references. */
 var objectTag = '[object Object]';
@@ -18696,7 +18996,40 @@ module.exports = isPlainObject;
 
 
 /***/ }),
-/* 201 */
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseIsSet = __webpack_require__(117),
+    baseUnary = __webpack_require__(36),
+    nodeUtil = __webpack_require__(44);
+
+/* Node.js helper references. */
+var nodeIsSet = nodeUtil && nodeUtil.isSet;
+
+/**
+ * Checks if `value` is classified as a `Set` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.3.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a set, else `false`.
+ * @example
+ *
+ * _.isSet(new Set);
+ * // => true
+ *
+ * _.isSet(new WeakSet);
+ * // => false
+ */
+var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
+
+module.exports = isSet;
+
+
+/***/ }),
+/* 199 */
 /***/ (function(module, exports) {
 
 /**
@@ -18722,10 +19055,10 @@ module.exports = last;
 
 
 /***/ }),
-/* 202 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var MapCache = __webpack_require__(28);
+var MapCache = __webpack_require__(30);
 
 /** Error message constants. */
 var FUNC_ERROR_TEXT = 'Expected a function';
@@ -18801,13 +19134,13 @@ module.exports = memoize;
 
 
 /***/ }),
-/* 203 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayMap = __webpack_require__(30),
-    baseIteratee = __webpack_require__(60),
-    basePickBy = __webpack_require__(125),
-    getAllKeysIn = __webpack_require__(35);
+var arrayMap = __webpack_require__(32),
+    baseIteratee = __webpack_require__(69),
+    basePickBy = __webpack_require__(123),
+    getAllKeysIn = __webpack_require__(38);
 
 /**
  * Creates an object composed of the `object` properties `predicate` returns
@@ -18844,13 +19177,13 @@ module.exports = pickBy;
 
 
 /***/ }),
-/* 204 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseProperty = __webpack_require__(126),
-    basePropertyDeep = __webpack_require__(127),
-    isKey = __webpack_require__(39),
-    toKey = __webpack_require__(15);
+var baseProperty = __webpack_require__(124),
+    basePropertyDeep = __webpack_require__(125),
+    isKey = __webpack_require__(42),
+    toKey = __webpack_require__(16);
 
 /**
  * Creates a function that returns the value at `path` of a given object.
@@ -18882,7 +19215,7 @@ module.exports = property;
 
 
 /***/ }),
-/* 205 */
+/* 203 */
 /***/ (function(module, exports) {
 
 /**
@@ -18906,10 +19239,10 @@ module.exports = stubFalse;
 
 
 /***/ }),
-/* 206 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseToString = __webpack_require__(132);
+var baseToString = __webpack_require__(130);
 
 /**
  * Converts `value` to a string. An empty string is returned for `null`
@@ -18940,7 +19273,7 @@ module.exports = toString;
 
 
 /***/ }),
-/* 207 */
+/* 205 */
 /***/ (function(module, exports) {
 
 /**
@@ -20580,7 +20913,7 @@ module.exports = MarkerClusterer
 
 
 /***/ }),
-/* 208 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -20770,13 +21103,13 @@ module.exports = MarkerClusterer
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50), __webpack_require__(79)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28), __webpack_require__(85)))
 
 /***/ }),
-/* 209 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var apply = Function.prototype.apply;
+/* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
 
 // DOM APIs, for completeness
 
@@ -20826,47 +21159,56 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(208);
-exports.setImmediate = setImmediate;
-exports.clearImmediate = clearImmediate;
+__webpack_require__(206);
+// On some exotic environments, it's not clear which object `setimmeidate` was
+// able to install onto.  Search each possibility in the same order as the
+// `setimmediate` library.
+exports.setImmediate = (typeof self !== "undefined" && self.setImmediate) ||
+                       (typeof global !== "undefined" && global.setImmediate) ||
+                       (this && this.setImmediate);
+exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
+                         (typeof global !== "undefined" && global.clearImmediate) ||
+                         (this && this.clearImmediate);
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
 
 /***/ }),
-/* 210 */
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_FilterFirst_vue__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_596512ba_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_FilterFirst_vue__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Calendar_vue__ = __webpack_require__(54);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d65116ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Calendar_vue__ = __webpack_require__(222);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(232)
+  __webpack_require__(228)
 }
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(7)
 /* script */
+
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-596512ba"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_FilterFirst_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_596512ba_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_FilterFirst_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Calendar_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d65116ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Calendar_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "components/FilterFirst.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "components/Calendar.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -20875,10 +21217,125 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-596512ba", Component.options)
+    hotAPI.createRecord("data-v-d65116ce", Component.options)
   } else {
-    hotAPI.reload("data-v-596512ba", Component.options)
-' + '  }
+    hotAPI.reload("data-v-d65116ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 209 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MapGoogle_vue__ = __webpack_require__(55);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4b2ced6a_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MapGoogle_vue__ = __webpack_require__(219);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(225)
+  __webpack_require__(226)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4b2ced6a"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_MapGoogle_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4b2ced6a_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_MapGoogle_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "components/MapGoogle.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4b2ced6a", Component.options)
+  } else {
+    hotAPI.reload("data-v-4b2ced6a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 210 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Test_vue__ = __webpack_require__(56);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3fe14d6d_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Test_vue__ = __webpack_require__(218);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(224)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-3fe14d6d"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Test_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_3fe14d6d_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Test_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "components/Test.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3fe14d6d", Component.options)
+  } else {
+    hotAPI.reload("data-v-3fe14d6d", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -20893,36 +21350,33 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MapGoogle_vue__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4ffc6f57_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MapGoogle_vue__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2c922d06_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_autocomplete_vue__ = __webpack_require__(217);
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(231)
-}
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(7)
 /* script */
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-4ffc6f57"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_MapGoogle_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4ffc6f57_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_MapGoogle_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_2c922d06_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_autocomplete_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "components/MapGoogle.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/autocomplete.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -20931,10 +21385,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4ffc6f57", Component.options)
+    hotAPI.createRecord("data-v-2c922d06", Component.options)
   } else {
-    hotAPI.reload("data-v-4ffc6f57", Component.options)
-' + '  }
+    hotAPI.reload("data-v-2c922d06", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -20949,36 +21403,33 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Social_vue__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_962bf98a_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Social_vue__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_17fc7ddc_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_infoWindow_vue__ = __webpack_require__(216);
 var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(233)
-}
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(7)
 /* script */
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
-var __vue_scopeId__ = "data-v-962bf98a"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Social_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_962bf98a_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Social_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_17fc7ddc_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_infoWindow_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "components/Social.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/infoWindow.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -20987,10 +21438,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-962bf98a", Component.options)
+    hotAPI.createRecord("data-v-17fc7ddc", Component.options)
   } else {
-    hotAPI.reload("data-v-962bf98a", Component.options)
-' + '  }
+    hotAPI.reload("data-v-17fc7ddc", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -21005,36 +21456,37 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Test_vue__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_074ce940_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Test_vue__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_85ca06a4_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_map_vue__ = __webpack_require__(220);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(230)
+  __webpack_require__(227)
 }
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(7)
 /* script */
 
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-074ce940"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_Test_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_074ce940_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_Test_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_85ca06a4_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_map_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "components/Test.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/map.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21043,10 +21495,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-074ce940", Component.options)
+    hotAPI.createRecord("data-v-85ca06a4", Component.options)
   } else {
-    hotAPI.reload("data-v-074ce940", Component.options)
-' + '  }
+    hotAPI.reload("data-v-85ca06a4", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -21061,16 +21513,18 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_9ec4559a_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_autocomplete_vue__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_c1ab87be_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_placeInput_vue__ = __webpack_require__(221);
 var disposed = false
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(7)
 /* script */
+
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -21078,15 +21532,14 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_autocompleteImpl_js___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_9ec4559a_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_autocomplete_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_c1ab87be_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_placeInput_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "node_modules/vue2-google-maps/dist/components/autocomplete.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/placeInput.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21095,10 +21548,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9ec4559a", Component.options)
+    hotAPI.createRecord("data-v-c1ab87be", Component.options)
   } else {
-    hotAPI.reload("data-v-9ec4559a", Component.options)
-' + '  }
+    hotAPI.reload("data-v-c1ab87be", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -21113,32 +21566,37 @@ if (false) {(function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_3583656e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_infoWindow_vue__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__) if(["default","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_ed35740a_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_streetViewPanorama_vue__ = __webpack_require__(223);
 var disposed = false
-var normalizeComponent = __webpack_require__(5)
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(229)
+}
+var normalizeComponent = __webpack_require__(7)
 /* script */
+
 /* template */
 
 /* template functional */
-  var __vue_template_functional__ = false
+var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_infoWindowImpl_js___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_3583656e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_infoWindow_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_ed35740a_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_streetViewPanorama_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "node_modules/vue2-google-maps/dist/components/infoWindow.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+Component.options.__file = "node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -21147,10 +21605,10 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3583656e", Component.options)
+    hotAPI.createRecord("data-v-ed35740a", Component.options)
   } else {
-    hotAPI.reload("data-v-3583656e", Component.options)
-' + '  }
+    hotAPI.reload("data-v-ed35740a", Component.options)
+  }
   module.hot.dispose(function (data) {
     disposed = true
   })
@@ -21164,167 +21622,333 @@ if (false) {(function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_bdfc043e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_map_vue__ = __webpack_require__(227);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(234)
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("div", { ref: "flyaway" }, [_vm._t("default")], 2)])
 }
-var normalizeComponent = __webpack_require__(5)
-/* script */
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_mapImpl_js___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_bdfc043e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_map_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue2-google-maps/dist/components/map.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
   module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-bdfc043e", Component.options)
-  } else {
-    hotAPI.reload("data-v-bdfc043e", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-17fc7ddc", esExports)
+  }
+}
 
 /***/ }),
 /* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_6c6c0b8e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_placeInput_vue__ = __webpack_require__(224);
-var disposed = false
-var normalizeComponent = __webpack_require__(5)
-/* script */
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_placeInputImpl_js___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_6c6c0b8e_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_placeInput_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue2-google-maps/dist/components/placeInput.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6c6c0b8e", Component.options)
-  } else {
-    hotAPI.reload("data-v-6c6c0b8e", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("input", {
+    ref: "input",
+    attrs: { type: "text", placeholder: _vm.placeholder },
+    domProps: { value: _vm.value }
   })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2c922d06", esExports)
+  }
+}
 
 /***/ }),
 /* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_06e94f30_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_streetViewPanorama_vue__ = __webpack_require__(219);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(229)
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("p", [_vm._v(_vm._s(_vm.text))])
 }
-var normalizeComponent = __webpack_require__(5)
-/* script */
-/* template */
-
-/* template functional */
-  var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_streetViewPanoramaImpl_js___default.a,
-  __WEBPACK_IMPORTED_MODULE_1__vue_loader_lib_template_compiler_index_id_data_v_06e94f30_hasScoped_false_buble_transforms_vue_loader_lib_selector_type_template_index_0_bustCache_streetViewPanorama_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue2-google-maps/dist/components/streetViewPanorama.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
   module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-06e94f30", Component.options)
-  } else {
-    hotAPI.reload("data-v-06e94f30", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3fe14d6d", esExports)
+  }
+}
 
 /***/ }),
 /* 219 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "b-map" }, [
+      _c(
+        "div",
+        { staticClass: "map-container" },
+        [
+          _c(
+            "gmap-map",
+            {
+              attrs: {
+                center: { lat: 53.9, lng: 27.48 },
+                zoom: 12,
+                options: { styles: _vm.styles }
+              }
+            },
+            _vm._l(_vm.markers, function(marker, idx) {
+              return _c(
+                "div",
+                [
+                  _c("gmap-marker", {
+                    attrs: { position: marker.coordinates, icon: marker.icon },
+                    on: {
+                      "update:icon": function($event) {
+                        _vm.$set(marker, "icon", $event)
+                      },
+                      click: function($event) {
+                        _vm.choose(idx)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "gmap-info-window",
+                    { attrs: { position: marker.coordinatesInfo } },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(marker.name) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            })
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "tabs_address_wp", attrs: { id: "address_wp" } },
+        _vm._l(_vm.places, function(place) {
+          return _c("div", { staticClass: "tab" }, [
+            _c("input", {
+              staticClass: "address_tab",
+              attrs: { id: "place.index", type: "radio", name: "tabs2" }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "place.index" } }, [
+              _vm._v(_vm._s(place.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "tab-content" }, [
+              _c("p", [_vm._v(_vm._s(place.information.address))]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Время работы: 24/7")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(place.information.phone))])
+            ])
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4b2ced6a", esExports)
+  }
+}
+
+/***/ }),
+/* 220 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "vue-map-container" },
+    [
+      _c("div", { ref: "vue-map", staticClass: "vue-map" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "vue-map-hidden" }, [_vm._t("default")], 2),
+      _vm._v(" "),
+      _vm._t("visible")
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-85ca06a4", esExports)
+  }
+}
+
+/***/ }),
+/* 221 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("label", [
+    _c("span", { domProps: { textContent: _vm._s(_vm.label) } }),
+    _vm._v(" "),
+    _c("input", {
+      ref: "input",
+      class: _vm.className,
+      attrs: { type: "text", placeholder: _vm.placeholder }
+    })
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c1ab87be", esExports)
+  }
+}
+
+/***/ }),
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "calendar" }, [
+    _c("div", { staticClass: "calendar__head" }, [
+      _c("p", [_vm._v("prev")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          _vm._s(_vm.currentMonth.name) + ", " + _vm._s(_vm.currentMonth.year)
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", [_vm._v("next")])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "calendar__body" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.refreshMonth, function(day) {
+          return _c(
+            "div",
+            { staticClass: "day", on: { click: _vm.selectDay } },
+            [
+              _c(
+                "p",
+                {
+                  class: {
+                    "day-current": day[1],
+                    "day-selected": day[2],
+                    "day-no-events": day[3]
+                  },
+                  attrs: { day_num: day[0] }
+                },
+                [_vm._v(_vm._s(day[0]))]
+              )
+            ]
+          )
+        }),
+        _vm._v(" "),
+        _vm.selectedForm.date > 0
+          ? _c("div", { staticClass: "calendar__date" }, [
+              _c("p", [
+                _vm._v(
+                  _vm._s(_vm.selectedForm.date) +
+                    ", " +
+                    _vm._s(_vm.currentMonth.name) +
+                    ", " +
+                    _vm._s(_vm.currentMonth.year)
+                )
+              ])
+            ])
+          : _vm._e()
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Пн")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Вт")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Ср")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Чт")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Пт")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Сб")])]),
+      _vm._v(" "),
+      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Вск")])])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d65116ce", esExports)
+  }
+}
+
+/***/ }),
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21353,759 +21977,64 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-06e94f30", esExports)
-  }
-}
-
-/***/ }),
-/* 220 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("p", [_vm._v(_vm._s(_vm.text))])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-074ce940", esExports)
-  }
-}
-
-/***/ }),
-/* 221 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [_c("div", { ref: "flyaway" }, [_vm._t("default")], 2)])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3583656e", esExports)
-  }
-}
-
-/***/ }),
-/* 222 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "b-map" }, [
-    _c(
-      "div",
-      { staticClass: "map-container" },
-      [
-        _c(
-          "gmap-map",
-          {
-            attrs: {
-              center: { lat: 53.9, lng: 27.48 },
-              zoom: 12,
-              options: { styles: _vm.styles }
-            }
-          },
-          _vm._l(_vm.markers, function(marker, idx) {
-            return _c(
-              "div",
-              [
-                _c("gmap-marker", {
-                  attrs: { position: marker.coordinates, icon: marker.icon },
-                  on: {
-                    "update:icon": function($event) {
-                      _vm.$set(marker, "icon", $event)
-                    },
-                    click: function($event) {
-                      _vm.choose(idx)
-                    }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "gmap-info-window",
-                  { attrs: { position: marker.coordinatesInfo } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(marker.name) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          })
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "tabs_address_wp", attrs: { id: "address_wp" } },
-      _vm._l(_vm.places, function(place) {
-        return _c("div", { staticClass: "tab" }, [
-          _c("input", {
-            staticClass: "address_tab",
-            attrs: { id: "place.index", type: "radio", name: "tabs2" }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "place.index" } }, [
-            _vm._v(_vm._s(place.name))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "tab-content" }, [
-            _c("p", [_vm._v(_vm._s(place.information.address))]),
-            _vm._v(" "),
-            _c("p", [_vm._v("Время работы: 24/7")]),
-            _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(place.information.phone))])
-          ])
-        ])
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4ffc6f57", esExports)
-  }
-}
-
-/***/ }),
-/* 223 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "list" },
-    [
-      _c("div", { staticClass: "list_button" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.search,
-              expression: "search"
-            }
-          ],
-          domProps: { value: _vm.search },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.search = $event.target.value
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("button", { staticClass: "red", on: { click: _vm.sortLtoG } }, [
-          _vm._v("По возрастанию")
-        ]),
-        _vm._v(" "),
-        _c("button", { staticClass: "green", on: { click: _vm.sortGtoL } }, [
-          _vm._v("По убыанию")
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.searchName, function(i) {
-        return _c("div", { staticClass: "item" }, [
-          _c("p", [_vm._v(_vm._s(i.number_f))]),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(i.title))])
-        ])
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-596512ba", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-ed35740a", esExports)
   }
 }
 
 /***/ }),
 /* 224 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("label", [
-    _c("span", { domProps: { textContent: _vm._s(_vm.label) } }),
-    _vm._v(" "),
-    _c("input", {
-      ref: "input",
-      class: _vm.className,
-      attrs: { type: "text", placeholder: _vm.placeholder }
-    })
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6c6c0b8e", esExports)
-  }
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(90);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("20f6f42b", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fe14d6d\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Test.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3fe14d6d\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Test.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ }),
 /* 225 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("social-sharing", {
-    attrs: {
-      url: "https://vuejs.org/",
-      title: "The Progressive JavaScript Framework",
-      description:
-        "Intuitive, Fast and Composable MVVM for building interactive interfaces.",
-      quote: "Vue is a progressive framework for building user interfaces.",
-      hashtags: "vuejs,javascript,framework",
-      "twitter-user": "vuejs"
-    },
-    inlineTemplate: {
-      render: function() {
-        var _vm = this
-        var _h = _vm.$createElement
-        var _c = _vm._self._c || _h
-        return _c(
-          "div",
-          [
-            _c("network", { attrs: { network: "email" } }, [
-              _c("i", { staticClass: "fa fa-envelope" }),
-              _vm._v(" Email\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "facebook" } }, [
-              _c("i", { staticClass: "fa fa-facebook" }),
-              _vm._v(" Facebook\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "googleplus" } }, [
-              _c("i", { staticClass: "fa fa-google-plus" }),
-              _vm._v(" Google +\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "line" } }, [
-              _c("i", { staticClass: "fa fa-line" }),
-              _vm._v(" Line\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "linkedin" } }, [
-              _c("i", { staticClass: "fa fa-linkedin" }),
-              _vm._v(" LinkedIn\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "odnoklassniki" } }, [
-              _c("i", { staticClass: "fa fa-odnoklassniki" }),
-              _vm._v(" Odnoklassniki\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "pinterest" } }, [
-              _c("i", { staticClass: "fa fa-pinterest" }),
-              _vm._v(" Pinterest\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "reddit" } }, [
-              _c("i", { staticClass: "fa fa-reddit" }),
-              _vm._v(" Reddit\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "skype" } }, [
-              _c("i", { staticClass: "fa fa-skype" }),
-              _vm._v(" Skype\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "sms" } }, [
-              _c("i", { staticClass: "fa fa-commenting-o" }),
-              _vm._v(" SMS\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "telegram" } }, [
-              _c("i", { staticClass: "fa fa-telegram" }),
-              _vm._v(" Telegram\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "twitter" } }, [
-              _c("i", { staticClass: "fa fa-twitter" }),
-              _vm._v(" Twitter\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "vk" } }, [
-              _c("i", { staticClass: "fa fa-vk" }),
-              _vm._v(" VKontakte\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "weibo" } }, [
-              _c("i", { staticClass: "fa fa-weibo" }),
-              _vm._v(" Weibo\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "whatsapp" } }, [
-              _c("i", { staticClass: "fa fa-whatsapp" }),
-              _vm._v(" Whatsapp\n        ")
-            ])
-          ],
-          1
-        )
-      },
-      staticRenderFns: []
-    }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-962bf98a", esExports)
-  }
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(91);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("a594e058", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
 }
 
 /***/ }),
 /* 226 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("input", {
-    ref: "input",
-    attrs: { type: "text", placeholder: _vm.placeholder },
-    domProps: { value: _vm.value }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9ec4559a", esExports)
-  }
-}
-
-/***/ }),
-/* 227 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "vue-map-container" },
-    [
-      _c("div", { ref: "vue-map", staticClass: "vue-map" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "vue-map-hidden" }, [_vm._t("default")], 2),
-      _vm._v(" "),
-      _vm._t("visible")
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-bdfc043e", esExports)
-  }
-}
-
-/***/ }),
-/* 228 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * vue-social-sharing v2.2.10 
- * (c) 2017 nicolasbeauvais
- * Released under the MIT License.
- */
-
-
-var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
-var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote","type":"popup"};
-var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
-var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
-var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
-var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
-var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
-var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
-var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
-var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
-var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
-var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
-var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
-var whatsapp = {"sharer":"whatsapp://send?text=@description%0D%0A@url","type":"direct","action":"share/whatsapp/share"};
-var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
-var Networks = {
-	email: email,
-	facebook: facebook,
-	googleplus: googleplus,
-	line: line,
-	linkedin: linkedin,
-	odnoklassniki: odnoklassniki,
-	pinterest: pinterest,
-	reddit: reddit,
-	skype: skype,
-	telegram: telegram,
-	twitter: twitter,
-	vk: vk,
-	weibo: weibo,
-	whatsapp: whatsapp,
-	sms: sms
-};
-
-var SocialSharingNetwork = {
-  functional: true,
-
-  props: {
-    network: {
-      type: String,
-      default: ''
-    }
-  },
-
-  render: function render (createElement, context) {
-    var network = Networks[context.props.network];
-
-    return createElement(context.parent.networkTag, {
-      staticClass: context.data.staticClass || null,
-      staticStyle: context.data.staticStyle || null,
-      class: context.data.class || null,
-      style: context.data.style || null,
-      attrs: {
-        id: context.data.attrs.id || null,
-        'data-link': network.type === 'popup'
-          ? '#share-' + context.props.network
-          : context.parent.createSharingUrl(context.props.network),
-        'data-action': network.type === 'popup' ? null : network.action
-      },
-      on: {
-        click: network.type === 'popup' ? function () {
-          context.parent.share(context.props.network);
-        } : function () {
-          context.parent.touch(context.props.network);
-        }
-      }
-    }, context.children);
-  }
-};
-
-var inBrowser = typeof window !== 'undefined';
-var $window = inBrowser ? window : null;
-
-var SocialSharing = {
-  props: {
-    /**
-     * URL to share.
-     * @var string
-     */
-    url: {
-      type: String,
-      default: inBrowser ? window.location.href : ''
-    },
-
-    /**
-     * Sharing title, if available by network.
-     * @var string
-     */
-    title: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Sharing description, if available by network.
-     * @var string
-     */
-    description: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Facebook quote
-     * @var string
-     */
-    quote: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter hashtags
-     * @var string
-     */
-    hashtags: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter user.
-     * @var string
-     */
-    twitterUser: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Flag that indicates if counts should be retrieved.
-     * - NOT WORKING IN CURRENT VERSION
-     * @var mixed
-     */
-    withCounts: {
-      type: [String, Boolean],
-      default: false
-    },
-
-    /**
-     * Google plus key.
-     * @var string
-     */
-    googleKey: {
-      type: String,
-      default: undefined
-    },
-
-    /**
-     * Pinterest Media URL.
-     * Specifies the image/media to be used.
-     */
-    media: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Network sub component tag.
-     * Default to span tag
-     */
-    networkTag: {
-      type: String,
-      default: 'span'
-    }
-  },
-
-  data: function data () {
-    return {
-      /**
-       * Available sharing networks.
-       * @param object
-       */
-      networks: Networks,
-
-      /**
-       * Popup settings.
-       * @param object
-       */
-      popup: {
-        status: false,
-        resizable: true,
-        toolbar: false,
-        menubar: false,
-        scrollbars: false,
-        location: false,
-        directories: false,
-        width: 626,
-        height: 436,
-        top: 0,
-        left: 0,
-        window: undefined,
-        interval: null
-      }
-    };
-  },
-
-  methods: {
-    /**
-     * Returns generated sharer url.
-     *
-     * @param network Social network key.
-     */
-    createSharingUrl: function createSharingUrl (network) {
-      return this.networks[network].sharer
-        .replace(/@url/g, encodeURIComponent(this.url))
-        .replace(/@title/g, encodeURIComponent(this.title))
-        .replace(/@description/g, encodeURIComponent(this.description))
-        .replace(/@quote/g, encodeURIComponent(this.quote))
-        .replace(/@hashtags/g, this.hashtags)
-        .replace(/@media/g, this.media)
-        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
-    },
-
-    /**
-     * Shares URL in specified network.
-     *
-     * @param string network Social network key.
-     */
-    share: function share (network) {
-      this.openSharer(network, this.createSharingUrl(network));
-      this.$root.$emit('social_shares_open', network, this.url);
-    },
-
-    /**
-     * Touches network and emits click event.
-     *
-     * @param string network Social network key.
-     */
-    touch: function touch (network) {
-      window.open(this.createSharingUrl(network), '_self');
-      this.$root.$emit('social_shares_open', network, this.url);
-    },
-
-    /**
-     * Opens sharer popup.
-     *
-     * @param string url Url to share.
-     */
-    openSharer: function openSharer (network, url) {
-      var this$1 = this;
-
-      // If a popup window already exist it will be replaced, trigger a close event.
-      if (this.popup.window && this.popup.interval) {
-        clearInterval(this.popup.interval);
-        this.popup.window.close();// Force close (for Facebook)
-        this.$root.$emit('social_shares_change', network, this.url);
-      }
-
-      this.popup.window = window.open(
-        url,
-        'sharer',
-        'status=' + (this.popup.status ? 'yes' : 'no') +
-        ',height=' + this.popup.height +
-        ',width=' + this.popup.width +
-        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
-        ',left=' + this.popup.left +
-        ',top=' + this.popup.top +
-        ',screenX=' + this.popup.left +
-        ',screenY=' + this.popup.top +
-        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
-        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
-        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
-        ',location=' + (this.popup.location ? 'yes' : 'no') +
-        ',directories=' + (this.popup.directories ? 'yes' : 'no')
-      );
-
-      this.popup.window.focus();
-
-      // Create an interval to detect popup closing event
-      this.popup.interval = setInterval(function () {
-        if (this$1.popup.window.closed) {
-          clearInterval(this$1.popup.interval);
-          this$1.popup.window = undefined;
-          this$1.$root.$emit('social_shares_close', network, this$1.url);
-        }
-      }, 500);
-    }
-  },
-
-  /**
-   * Sets popup default dimensions.
-   */
-  mounted: function mounted () {
-    if (!inBrowser) {
-      return;
-    }
-
-    /**
-     * Center the popup on dual screens
-     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
-     */
-    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
-    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
-
-    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
-    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
-
-    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
-    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
-  },
-
-  /**
-   * Set component aliases for buttons and links.
-   */
-  components: {
-    'network': SocialSharingNetwork
-  }
-};
-
-SocialSharing.version = '2.2.10';
-
-SocialSharing.install = function (Vue) {
-  Vue.component('social-sharing', SocialSharing);
-};
-
-if (typeof window !== 'undefined') {
-  window.SocialSharing = SocialSharing;
-}
-
-module.exports = SocialSharing;
-
-/***/ }),
-/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -22115,13 +22044,91 @@ var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(17)("3b5f60ce", content, false);
+var update = __webpack_require__(17)("5253d208", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-06e94f30\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0&bustCache!./streetViewPanorama.vue", function() {
-     var newContent = require("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-06e94f30\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0&bustCache!./streetViewPanorama.vue");
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./MapGoogle.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./MapGoogle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 227 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("c63672e2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-85ca06a4\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0!./map.vue", function() {
+     var newContent = require("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-85ca06a4\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0!./map.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(94);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("20c3603a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d65116ce\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calendar.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d65116ce\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calendar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 229 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(95);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("bfb03f5c", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ed35740a\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0!./streetViewPanorama.vue", function() {
+     var newContent = require("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-ed35740a\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0!./streetViewPanorama.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -22132,136 +22139,6 @@ if(false) {
 
 /***/ }),
 /* 230 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(93);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("39aaafa9", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-074ce940\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Test.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-074ce940\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Test.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 231 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(94);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("61f17cae", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ffc6f57\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MapGoogle.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4ffc6f57\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MapGoogle.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 232 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(95);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("a4cac538", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-596512ba\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./FilterFirst.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-596512ba\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./FilterFirst.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 233 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(96);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("ae7c7e5e", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-962bf98a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Social.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-962bf98a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./Social.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 234 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(97);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("1e920c54", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bdfc043e\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0&bustCache!./map.vue", function() {
-     var newContent = require("!!../../../css-loader/index.js?sourceMap!../../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-bdfc043e\",\"scoped\":false,\"hasInlineConfig\":false}!../../../vue-loader/lib/selector.js?type=styles&index=0&bustCache!./map.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 235 */
 /***/ (function(module, exports) {
 
 /**
@@ -22294,7 +22171,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 236 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22308,7 +22185,7 @@ var _clone2 = __webpack_require__(4);
 
 var _clone3 = _interopRequireDefault(_clone2);
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22316,7 +22193,7 @@ var _propsBinder = __webpack_require__(1);
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -22398,7 +22275,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 237 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22412,7 +22289,7 @@ var _clone2 = __webpack_require__(4);
 
 var _clone3 = _interopRequireDefault(_clone2);
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22420,7 +22297,7 @@ var _propsBinder = __webpack_require__(1);
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -22428,7 +22305,7 @@ var _getPropsValuesMixin = __webpack_require__(3);
 
 var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
 
-var _markerClustererPlus = __webpack_require__(207);
+var _markerClustererPlus = __webpack_require__(205);
 
 var _markerClustererPlus2 = _interopRequireDefault(_markerClustererPlus);
 
@@ -22509,7 +22386,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 238 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22519,11 +22396,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _mapValues2 = __webpack_require__(77);
+var _mapValues2 = __webpack_require__(83);
 
 var _mapValues3 = _interopRequireDefault(_mapValues2);
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22535,7 +22412,7 @@ var _getPropsValuesMixin = __webpack_require__(3);
 
 var _getPropsValuesMixin2 = _interopRequireDefault(_getPropsValuesMixin);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -22670,7 +22547,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 239 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22684,13 +22561,13 @@ var _clone2 = __webpack_require__(4);
 
 var _clone3 = _interopRequireDefault(_clone2);
 
-var _omit2 = __webpack_require__(10);
+var _omit2 = __webpack_require__(11);
 
 var _omit3 = _interopRequireDefault(_omit2);
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22698,7 +22575,7 @@ var _propsBinder = __webpack_require__(1);
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -22846,7 +22723,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 240 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22860,13 +22737,13 @@ var _clone2 = __webpack_require__(4);
 
 var _clone3 = _interopRequireDefault(_clone2);
 
-var _omit2 = __webpack_require__(10);
+var _omit2 = __webpack_require__(11);
 
 var _omit3 = _interopRequireDefault(_omit2);
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22874,7 +22751,7 @@ var _propsBinder = __webpack_require__(1);
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -22972,7 +22849,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 241 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22986,7 +22863,7 @@ var _clone2 = __webpack_require__(4);
 
 var _clone3 = _interopRequireDefault(_clone2);
 
-var _eventsBinder = __webpack_require__(6);
+var _eventsBinder = __webpack_require__(5);
 
 var _eventsBinder2 = _interopRequireDefault(_eventsBinder);
 
@@ -22994,7 +22871,7 @@ var _propsBinder = __webpack_require__(1);
 
 var _propsBinder2 = _interopRequireDefault(_propsBinder);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
@@ -23055,7 +22932,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 242 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23069,59 +22946,59 @@ exports.install = install;
 
 var _manager = __webpack_require__(20);
 
-var _marker = __webpack_require__(238);
+var _marker = __webpack_require__(233);
 
 var _marker2 = _interopRequireDefault(_marker);
 
-var _cluster = __webpack_require__(237);
+var _cluster = __webpack_require__(232);
 
 var _cluster2 = _interopRequireDefault(_cluster);
 
-var _polyline = __webpack_require__(240);
+var _polyline = __webpack_require__(235);
 
 var _polyline2 = _interopRequireDefault(_polyline);
 
-var _polygon = __webpack_require__(239);
+var _polygon = __webpack_require__(234);
 
 var _polygon2 = _interopRequireDefault(_polygon);
 
-var _circle = __webpack_require__(236);
+var _circle = __webpack_require__(231);
 
 var _circle2 = _interopRequireDefault(_circle);
 
-var _rectangle = __webpack_require__(241);
+var _rectangle = __webpack_require__(236);
 
 var _rectangle2 = _interopRequireDefault(_rectangle);
 
-var _infoWindow = __webpack_require__(215);
+var _infoWindow = __webpack_require__(212);
 
 var _infoWindow2 = _interopRequireDefault(_infoWindow);
 
-var _map = __webpack_require__(216);
+var _map = __webpack_require__(213);
 
 var _map2 = _interopRequireDefault(_map);
 
-var _streetViewPanorama = __webpack_require__(218);
+var _streetViewPanorama = __webpack_require__(215);
 
 var _streetViewPanorama2 = _interopRequireDefault(_streetViewPanorama);
 
-var _placeInput = __webpack_require__(217);
+var _placeInput = __webpack_require__(214);
 
 var _placeInput2 = _interopRequireDefault(_placeInput);
 
-var _autocomplete = __webpack_require__(214);
+var _autocomplete = __webpack_require__(211);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
-var _mapElementMixin = __webpack_require__(7);
+var _mapElementMixin = __webpack_require__(8);
 
 var _mapElementMixin2 = _interopRequireDefault(_mapElementMixin);
 
-var _mountableMixin = __webpack_require__(49);
+var _mountableMixin = __webpack_require__(52);
 
 var _mountableMixin2 = _interopRequireDefault(_mountableMixin);
 
-var _deferredReady = __webpack_require__(26);
+var _deferredReady = __webpack_require__(27);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23178,11 +23055,11 @@ function install(Vue, options) {
 }
 
 /***/ }),
-/* 243 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(81);
-module.exports = __webpack_require__(82);
+__webpack_require__(88);
+module.exports = __webpack_require__(89);
 
 
 /***/ })

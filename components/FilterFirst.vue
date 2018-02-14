@@ -1,7 +1,18 @@
 <template>
     <div class="list">
+        <div class="list__filter">
+            <ul>
+                <li v-for="(item, index)  in categories">
+
+                    <label class="list__filter__label"    >
+                        <input class="list__filter__checkbox" :data-idx=index checked="checked" type="checkbox">
+                        <span class="list__filter__checkbox-span">{{ item  }}</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
         <div class="list_button">
-            <input v-model="search"/>
+            <input v-model="search" placeholder="Search title.."/>
             <button v-on:click="sortLtoG" class="red">По возрастанию</button>
             <button v-on:click="sortGtoL" class="green">По убыанию</button>
         </div>
@@ -18,34 +29,45 @@
         data: () => ({
             text: 'Hello from Vue',
             search: '',
+            categories: [
+                'vue',
+                'react',
+            ],
             arr: [
                 {
                     title: "text",
-                    number_f: 24
+                    number_f: 24,
+                    category: 'vue'
                 },
                 {
                     title: "name",
-                    number_f: 6
+                    number_f: 6,
+                    category: 'vue'
                 },
                 {
                     title: "name text",
-                    number_f: 1
+                    number_f: 1,
+                    category: 'react'
                 },
                 {
                     title: "text",
-                    number_f: 5
+                    number_f: 5,
+                    category: 'vue'
                 },
                 {
                     title: "name",
-                    number_f: 83
+                    number_f: 83,
+                    category: 'react'
                 },
                 {
                     title: "text",
-                    number_f: 7
+                    number_f: 7,
+                    category: 'react'
                 },
                 {
                     title: "text name",
-                    number_f: 9
+                    number_f: 9,
+                    category: 'vue'
                 }
             ],
             sort_arr: []
@@ -55,8 +77,8 @@
 //                return this.arr;
 //            },
             searchName() {
+//                console.dir(this.arr);
                 return this.arr.filter(post => {
-                    console.log(post)
                     return post.title.toLowerCase().includes(this.search.toLowerCase())
                 })
             }
@@ -154,8 +176,9 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     .list{
-        width: 100%;
+        width: 80%;
         padding: 200px 0;
+        margin: auto;
     }
     .item{
         width: 100px;

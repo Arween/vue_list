@@ -1,4 +1,6 @@
 <template>
+    <div>
+
     <div class="b-map">
         <div class="map-container">
             <gmap-map :center="{lat:53.90, lng:27.48}" :zoom="12" :options="{styles: styles} ">
@@ -27,8 +29,15 @@
 
         </div>
     </div>
+    </div>
 
 </template>
+<style>
+    .particle-div{
+        width: 300px;
+        height: 300px;
+    }
+</style>
 <script>
 
 import Vue from 'vue'
