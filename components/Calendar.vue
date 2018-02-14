@@ -1,13 +1,17 @@
 <template>
     <div class="calendar">
         <div class="calendar__head">
-            <p>prev</p>
+            <p v-on:click="prevMonth">prev</p>
             <p>{{ currentMonth.name }}, {{ currentMonth.year }}</p>
-            <p>next</p>
+            <p v-on:click="nextMonth">next</p>
         </div>
         <div class="calendar__body">
             <div>
-                <div class="day">
+                <div class="day" v-for="day_name in currentMonth.dayWeek">
+                    <p>{{ day_name }}</p>
+                </div>
+
+                <!-- <div class="day">
                     <p>Пн</p>
                 </div>
                 <div class="day">
@@ -27,7 +31,7 @@
                 </div>
                 <div class="day">
                     <p>Вск</p>
-                </div>
+                </div> -->
             </div>
             <div class="day" v-for="day in refreshMonth" v-on:click="selectDay">
                 <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
@@ -42,34 +46,68 @@
 
 </style>
 <script>
-const name_months = [
-    'Январь',
-    'Февраль',
-    'Март',
-    'Апрель',
-    'Май',
-    'Июнь',
-    'Июль',
-    'Август',
-    'Сентябрь',
-    'Октябрь',
-    'Ноябрь',
-    'Декабрь',
-];
-const daysOfTheWeek = [
-    'пн',
-    'вт',
-    'ср',
-    'чт',
-    'пт',
-    'суб',
-    'вс'
-];
+const name_months = {
+        'en': 
+        [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ],
+        'ru': 
+        [
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь',
+        ]
+    
+    };
+const name_daysOfTheWeek  = {
+        'en': 
+        [
+            'Mon',
+            'Tue',
+            'Wed',
+            'Thu',
+            'Fri',
+            'Sat',
+            'Sun',
+        ],
+        'ru': 
+        [
+            'Пн',
+            'Вт',
+            'Ср',
+            'Чт',
+            'Пт',
+            'Сб',
+            'Вс',
+        ]
+    
+    };
     export default {
         data: () => ({
             daysCalendar: [],
             selectedForm: [],
-            currentMonthInfo: {}
+            currentMonthInfo: {},
+            language: 'en'
         }),
         computed: {
             refreshMonth: function () {
@@ -83,9 +121,16 @@ const daysOfTheWeek = [
             currentMonth: function() {
                 this.currentMonthInfo.index = month.infoMonth()[0];
                 this.currentMonthInfo.year = month.infoMonth()[1];
-                this.currentMonthInfo.name = name_months[this.currentMonthInfo.index];
+                this.currentMonthInfo.dayWeek = name_daysOfTheWeek[this.language];
+                // let language = 
+                // console.log(name_months[this.language]+'---------')
+                this.currentMonthInfo.name = name_months[this.language][this.currentMonthInfo.index];
                 return this.currentMonthInfo;
-            }
+            },
+            // dayWeek: function() {
+
+            // }
+            
         },
         methods: {
             selectDay(event){
@@ -98,6 +143,16 @@ const daysOfTheWeek = [
                 this.selectedForm.date =  event.target.attributes.day_num.value;
                 this.$forceUpdate();
 
+            },
+            nextMonth(){
+                getMonthIndex = getMonthIndex + 1;
+                console.log('getMonthIndex(vue):', getMonthIndex);
+                const monthPrevDay = new Month(getMonthIndex, prevMonthT);
+                const monthNextDay = new Month(getMonthIndex, nextMonthT);
+                const month = new Month(getMonthIndex, curMonthT);
+            },
+            prevMonth(){
+                
             }
         }
     };
@@ -151,15 +206,17 @@ const daysOfTheWeek = [
                     for ( let i = 1; i <= this.countsDays; i++ ){
                         tempDays.push(new Day(i,true).day_create());
                     }
+                    console.log('day_generator-current', getMonthIndex);
                     return tempDays;
                 }
         }
     }
-    var getMonthIndex = new Date().getMonth() + 0;
+    var getMonthIndex = new Date().getMonth() + 2;
+
+    console.log('getMonthIndex:', getMonthIndex);
     var prevMonthT = day_generator('prev');
     var nextMonthT = day_generator('next');
     var curMonthT = day_generator('current');
-    
     class Month {
         constructor(index, rule) {
             this.index = index;
@@ -171,14 +228,13 @@ const daysOfTheWeek = [
                 this.first_day_of_the_week = this.first_day_of_the_week + 7;
             }
             this.createDays = rule.bind(this);
-            
         }
-        
         createMonth() {
             var month_prev_days = monthPrevDay.createDays();
             var month_next_days = monthNextDay.createDays();
             var month_days = month.createDays();  
             this.daysCalendar =  month_prev_days.concat(month_days, month_next_days);
+            console.log('month-createMonth');
             return this.daysCalendar;
         };
         infoMonth() {
@@ -186,7 +242,7 @@ const daysOfTheWeek = [
            return informMonth;
         };
     }
-    
+    console.log(getMonthIndex);
     const monthPrevDay = new Month(getMonthIndex, prevMonthT);
     const monthNextDay = new Month(getMonthIndex, nextMonthT);
     const month = new Month(getMonthIndex, curMonthT);

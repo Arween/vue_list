@@ -2434,14 +2434,27 @@ module.exports = function(module) {
 //
 //
 //
+//
+//
+//
+//
 
-const name_months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-const daysOfTheWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'суб', 'вс'];
+const name_months = {
+    'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    'ru': ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+
+};
+const name_daysOfTheWeek = {
+    'en': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    'ru': ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+
+};
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: () => ({
         daysCalendar: [],
         selectedForm: [],
-        currentMonthInfo: {}
+        currentMonthInfo: {},
+        language: 'en'
     }),
     computed: {
         refreshMonth: function () {
@@ -2455,9 +2468,16 @@ const daysOfTheWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'суб', 'вс']
         currentMonth: function () {
             this.currentMonthInfo.index = month.infoMonth()[0];
             this.currentMonthInfo.year = month.infoMonth()[1];
-            this.currentMonthInfo.name = name_months[this.currentMonthInfo.index];
+            this.currentMonthInfo.dayWeek = name_daysOfTheWeek[this.language];
+            // let language = 
+            // console.log(name_months[this.language]+'---------')
+            this.currentMonthInfo.name = name_months[this.language][this.currentMonthInfo.index];
             return this.currentMonthInfo;
         }
+        // dayWeek: function() {
+
+        // }
+
     },
     methods: {
         selectDay(event) {
@@ -2469,7 +2489,15 @@ const daysOfTheWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'суб', 'вс']
             });
             this.selectedForm.date = event.target.attributes.day_num.value;
             this.$forceUpdate();
-        }
+        },
+        nextMonth() {
+            getMonthIndex = getMonthIndex + 1;
+            console.log('getMonthIndex(vue):', getMonthIndex);
+            const monthPrevDay = new Month(getMonthIndex, prevMonthT);
+            const monthNextDay = new Month(getMonthIndex, nextMonthT);
+            const month = new Month(getMonthIndex, curMonthT);
+        },
+        prevMonth() {}
     }
 });
 var cerrentNumbMonth = new Date().getDate();
@@ -2522,15 +2550,17 @@ function day_generator(flag_rule) {
             for (let i = 1; i <= this.countsDays; i++) {
                 tempDays.push(new Day(i, true).day_create());
             }
+            console.log('day_generator-current', getMonthIndex);
             return tempDays;
         };
     }
 }
-var getMonthIndex = new Date().getMonth() + 0;
+var getMonthIndex = new Date().getMonth() + 2;
+
+console.log('getMonthIndex:', getMonthIndex);
 var prevMonthT = day_generator('prev');
 var nextMonthT = day_generator('next');
 var curMonthT = day_generator('current');
-
 class Month {
     constructor(index, rule) {
         this.index = index;
@@ -2544,12 +2574,12 @@ class Month {
         }
         this.createDays = rule.bind(this);
     }
-
     createMonth() {
         var month_prev_days = monthPrevDay.createDays();
         var month_next_days = monthNextDay.createDays();
         var month_days = month.createDays();
         this.daysCalendar = month_prev_days.concat(month_days, month_next_days);
+        console.log('month-createMonth');
         return this.daysCalendar;
     }
     infoMonth() {
@@ -2557,7 +2587,7 @@ class Month {
         return informMonth;
     }
 }
-
+console.log(getMonthIndex);
 const monthPrevDay = new Month(getMonthIndex, prevMonthT);
 const monthNextDay = new Month(getMonthIndex, nextMonthT);
 const month = new Month(getMonthIndex, curMonthT);
@@ -15671,7 +15701,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -21786,7 +21816,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "calendar" }, [
     _c("div", { staticClass: "calendar__head" }, [
-      _c("p", [_vm._v("prev")]),
+      _c("p", { on: { click: _vm.prevMonth } }, [_vm._v("prev")]),
       _vm._v(" "),
       _c("p", [
         _vm._v(
@@ -21794,14 +21824,21 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("p", [_vm._v("next")])
+      _c("p", { on: { click: _vm.nextMonth } }, [_vm._v("next")])
     ]),
     _vm._v(" "),
     _c(
       "div",
       { staticClass: "calendar__body" },
       [
-        _vm._m(0),
+        _c(
+          "div",
+          _vm._l(_vm.currentMonth.dayWeek, function(day_name) {
+            return _c("div", { staticClass: "day" }, [
+              _c("p", [_vm._v(_vm._s(day_name))])
+            ])
+          })
+        ),
         _vm._v(" "),
         _vm._l(_vm.refreshMonth, function(day) {
           return _c(
@@ -21842,28 +21879,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Пн")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Вт")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Ср")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Чт")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Пт")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Сб")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "day" }, [_c("p", [_vm._v("Вск")])])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
