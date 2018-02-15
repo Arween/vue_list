@@ -2472,8 +2472,8 @@ svg {
       color: #c584fc;
       background: #e7d9fc; }
     .day p.day-selected {
-      color: #c584fc;
-      background: #312533; }
+      color: #ffffff;
+      background: #ee463a; }
     .day p.day-no-events {
       pointer-events: none;
       color: #cdcdce;

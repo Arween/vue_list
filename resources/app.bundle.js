@@ -2419,6 +2419,7 @@ module.exports = function(module) {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: () => ({
+        calendar: {},
         current_state: [],
         selectedForm: [],
         currentMonthInfo: {},
@@ -2449,13 +2450,8 @@ module.exports = function(module) {
     },
     created: function () {
         // `this` указывает на экземпляр vm
-        const calendar = new Calendar(new Date().getMonth(), new Date().getFullYear());
-        this.current_state = calendar.createCurrentState();
-        this.monthInfo = calendar.infoMonth();
-        this.monthInfo.name = name_months[this.language][this.monthInfo.index];
-        this.monthInfo.dayWeek = name_daysOfTheWeek[this.language];
-        console.log("calendar", calendar);
-        console.log('current state: ', this.current_state);
+        this.calendar = new Calendar(new Date().getMonth(), new Date().getFullYear());
+        this.get_current_state();
     },
     // created: {
 
@@ -2465,6 +2461,26 @@ module.exports = function(module) {
     //     }
     // },
     methods: {
+        get_current_state() {
+            // let tempMonth = this.monthInfo.index;
+            if (this.calendar.monthIndex < 0) {
+                // console.log('this.monthInfo.index < 0', this.monthInfo.index)
+                this.calendar.monthIndex = 11;
+                this.calendar.yearIndex--;
+            }
+            if (this.calendar.monthIndex > 11) {
+                // console.log('this.monthInfo.index > 11', this.monthInfo.index)
+                this.calendar.monthIndex = 0;
+                this.calendar.yearIndex++;
+            }
+            this.current_state = this.calendar.createCurrentState();
+            this.monthInfo = this.calendar.infoMonth();
+            // console.log('this.monthInfo.index', this.monthInfo.index)
+            this.monthInfo.name = name_months[this.language][this.monthInfo.index];
+            this.monthInfo.dayWeek = name_daysOfTheWeek[this.language];
+            // console.log("calendar", this.calendar);
+            // console.log('current state: ', this.current_state);
+        },
         selectDay(event) {
             this.current_state.forEach(day => {
                 day.selected = false;
@@ -2476,15 +2492,16 @@ module.exports = function(module) {
             // this.$forceUpdate();
         },
         nextMonth() {
-            // monthIndex = monthIndex + 1;
-            // console.log('monthIndex(vue):', monthIndex);
-            // const monthPrevDay = new Month(monthIndex, prevMonthT);
-            // const monthNextDay = new Month(monthIndex, nextMonthT);
-            // const month = new Month(monthIndex, curMonthT);
-            console.log('dsfd');
-            const calendar = new Calendar(new Date().getMonth() + 1, new Date().getFullYear());
+            // console.log('dsfd')
+            this.calendar.monthIndex++;
+            // console.log(this.calendar.monthIndex);
+            this.get_current_state();
         },
-        prevMonth() {}
+        prevMonth() {
+            this.calendar.monthIndex--;
+            // console.log(this.calendar.monthIndex);
+            this.get_current_state();
+        }
     }
 });
 
@@ -2506,43 +2523,45 @@ class Day {
     }
 }
 
-function day_generator(flag_rule) {
-    if (flag_rule == "prev") {
-        return function () {
-            let countsDaysPrevMonth = new Date(this.year, this.index, 0).getDate(); //-- ко-во дней прошлого месяца
-            let temp = getDaysPrevMonth(this.first_day_of_the_week);
-            function getDaysPrevMonth(firstDay) {
-                let tempDays = [];
-                for (let l = firstDay - 1; l >= 0; l--) {
-                    tempDays.push(new Day(countsDaysPrevMonth - l, false).day_create());
-                }
-                return tempDays;
-            }
-            return temp;
-        };
-    } else if (flag_rule == "next") {
-        return function () {
-            let tempLast = getDaysNextMonth(this.last_day_of_the_week);
-            function getDaysNextMonth(lastDay) {
-                let tempDays = [];
-                for (let l = 1; l <= 7 - lastDay; l++) {
-                    tempDays.push(new Day(l, false).day_create());
-                }
-                return tempDays;
-            }
-            return tempLast;
-        };
-    } else {
-        return function () {
-            let tempDays = [];
-            for (let i = 1; i <= this.countsDays; i++) {
-                tempDays.push(new Day(i, true).day_create());
-            }
-            console.log('day_generator-current', monthIndex);
-            return tempDays;
-        };
-    }
-}
+// function day_generator(flag_rule){
+//     if (flag_rule == "prev") {
+//         return function() {
+//             let countsDaysPrevMonth = new Date(this.year, this.index, 0).getDate();   //-- ко-во дней прошлого месяца
+//             let temp = getDaysPrevMonth(this.first_day_of_the_week);
+//             function getDaysPrevMonth(firstDay) {
+//                 let tempDays = [];
+//                 for ( let l = firstDay - 1; l >= 0; l-- ){
+//                     tempDays.push(new Day(countsDaysPrevMonth - l,false).day_create());
+//                 }
+//                 return tempDays;
+//             }
+//             return temp;
+//         }
+//     } else if (flag_rule == "next") {
+//             return function() {
+//                 let tempLast = getDaysNextMonth(this.last_day_of_the_week);
+
+//                 function getDaysNextMonth(lastDay) {
+//                     let tempDays = [];
+//                     for ( let l = 1; l <= 7-lastDay; l++ ){
+//                         tempDays.push(new Day(l,false).day_create());
+//                     }
+//                     return tempDays;
+//                 }
+//                 console.log("last-day", this.last_day_of_the_week, tempLast);
+//                 // console.log('day_generator-current', monthIndex);
+//                 return tempLast;
+//             }
+//     } else {
+//             return function() {
+//                 let tempDays = [];
+//                 for ( let i = 1; i <= this.countsDays; i++ ){
+//                     tempDays.push(new Day(i,true).day_create());
+//                 }
+//                 return tempDays;
+//             }
+//     }
+// }
 // var monthIndex = new Date().getMonth() + 2;
 
 // console.log('monthIndex:', monthIndex);
@@ -2553,8 +2572,8 @@ function day_generator(flag_rule) {
 
 class Calendar {
     constructor(month, year) {
-        this._monthIndex = month;
-        this._yearIndex = year;
+        this.monthIndex = month;
+        this.yearIndex = year;
         this._prevMonthT = this._day_generator('prev');
         this._nextMonthT = this._day_generator('next');
         this._curMonthT = this._day_generator('current');
@@ -2565,27 +2584,29 @@ class Calendar {
         var month_next_days = new Month(this.monthIndex, this.yearIndex, this._nextMonthT).createDays();
         var month_days = new Month(this.monthIndex, this.yearIndex, this._curMonthT).createDays();
         var daysCalendar = month_prev_days.concat(month_days, month_next_days);
-        console.log('month-createMonth');
         return daysCalendar;
     }
     infoMonth() {
         return { 'index': this.monthIndex, 'year': this.yearIndex };
     }
 
-    set monthIndex(num) {
-        this._monthIndex = num;
-    }
+    // set monthIndex(num) {
+    //     this._monthIndex = num;
+    // } 
 
-    get monthIndex() {
-        return this._monthIndex;
-    }
-    set yearIndex(num) {
-        this._yearIndex = num;
-    }
 
-    get yearIndex() {
-        return this._yearIndex;
-    }
+    // get monthIndex() {
+    //     return this._monthIndex;
+    // }
+    // set yearIndex(num) {
+    //     this._yearIndex = num;
+    // } 
+
+
+    // get yearIndex() {
+    //     return this._yearIndex;
+    // }
+
 
     _day_generator(flag_rule) {
         if (flag_rule == "prev") {
@@ -2603,15 +2624,21 @@ class Calendar {
             };
         } else if (flag_rule == "next") {
             return function () {
-                let tempLast = getDaysNextMonth(this.last_day_of_the_week);
-                function getDaysNextMonth(lastDay) {
-                    let tempDays = [];
-                    for (let l = 1; l <= 7 - lastDay; l++) {
-                        tempDays.push(new Day(l, false));
+                // console.log(this.last_day_of_the_wee )
+                if (this.last_day_of_the_week != 0) {
+                    let tempLast = getDaysNextMonth(this.last_day_of_the_week);
+                    function getDaysNextMonth(lastDay) {
+                        let tempDays = [];
+                        for (let l = 1; l <= 7 - lastDay; l++) {
+                            tempDays.push(new Day(l, false));
+                        }
+                        return tempDays;
                     }
-                    return tempDays;
+                    return tempLast;
+                } else {
+                    let tempLast = [];
+                    return tempLast;
                 }
-                return tempLast;
             };
         } else {
             return function () {
@@ -2619,7 +2646,6 @@ class Calendar {
                 for (let i = 1; i <= this.countsDays; i++) {
                     tempDays.push(new Day(i, true));
                 }
-                console.log('day_generator-current', 456);
                 return tempDays;
             };
         }
@@ -2675,6 +2701,7 @@ class Month {
 // const monthNextDay = new Month(monthIndex, nextMonthT);
 // const month = new Month(monthIndex, curMonthT);
 
+console.log('Работает!');
 
 const name_months = {
     'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
