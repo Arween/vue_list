@@ -2421,7 +2421,7 @@ module.exports = function(module) {
     data: () => ({
         calendar: {},
         current_state: [],
-        selectedForm: [],
+        selectedForm: {},
         currentMonthInfo: {},
         language: 'en'
     }),
@@ -2489,6 +2489,10 @@ module.exports = function(module) {
                 }
             });
             this.selectedForm.date = event.target.attributes.day_num.value;
+            // console.log(this.selectedForm.month_index, this.monthInfo.month_name)
+            this.selectedForm.month_index = this.calendar.monthIndex;
+            this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+            this.selectedForm.year = this.calendar.yearIndex;
             // this.$forceUpdate();
         },
         nextMonth() {
@@ -21986,9 +21990,9 @@ var render = function() {
                 _vm._v(
                   _vm._s(_vm.selectedForm.date) +
                     ", " +
-                    _vm._s(_vm.monthInfo.name) +
+                    _vm._s(_vm.selectedForm.month_name) +
                     ", " +
-                    _vm._s(_vm.monthInfo.year)
+                    _vm._s(_vm.selectedForm.year)
                 )
               ])
             ])

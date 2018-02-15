@@ -15,7 +15,7 @@
                 <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
             </div>
             <div v-if='selectedForm.date > 0' class="calendar__date">
-                <p>{{ selectedForm.date }}, {{ monthInfo.name }}, {{ monthInfo.year }}</p>
+                <p>{{ selectedForm.date }}, {{ selectedForm.month_name }}, {{ selectedForm.year }}</p>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
         data: () => ({
             calendar: {},
             current_state: [],
-            selectedForm: [],
+            selectedForm: {},
             currentMonthInfo: {},
             language: 'en'
         }),
@@ -97,6 +97,10 @@
                    }
                 });
                 this.selectedForm.date =  event.target.attributes.day_num.value;
+                // console.log(this.selectedForm.month_index, this.monthInfo.month_name)
+                this.selectedForm.month_index = this.calendar.monthIndex;
+                this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+                this.selectedForm.year = this.calendar.yearIndex;
                 // this.$forceUpdate();
 
             },
