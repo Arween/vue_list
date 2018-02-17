@@ -14,10 +14,15 @@
             <div class="day" v-for="day in current_state" v-on:click="selectDay">
                 <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
             </div>
-            <div v-if='selectedForm.date > 0' class="calendar__date">
-                <p>{{ selectedForm.date }}, {{ selectedForm.month_name }}, {{ selectedForm.year }}</p>
+            <div v-if='selectedForm.day > 0' class="calendar__date">
+                <p>{{ selectedForm.day }}, {{ selectedForm.month_name }}, {{ selectedForm.year }}</p>
+                <!-- <p v-bind:value=selectedForm.date></p> -->
             </div>
         </div>
+        <!-- <div v-model="selectedForm"> -->
+            <input type="text" placeholder="Введите дату" v-model="selectedForm.date">
+            <button v-on:click="selectDayInput">Применить</button>
+        <!-- </div> -->
     </div>
 </template>
 <style>
@@ -30,30 +35,10 @@
             current_state: [],
             selectedForm: {},
             currentMonthInfo: {},
-            language: 'en'
+            language: 'en',
+            msg : ''
         }),
-        computed: {
-            refreshMonth: function () {
-                // this.daysCalendar = month.createMonth();
-                // return this.current_state;
-            },
-            // currentDay: function () {
-            //    this.selectDay();
-            //     // return this.current_state;
-            // },
-            currentMonth: function() {
-                // this.currentMonthInfo.index = month.infoMonth()[0];
-                // this.currentMonthInfo.year = month.infoMonth()[1];
-                // this.currentMonthInfo.dayWeek = name_daysOfTheWeek[this.language];
-                // let language = 
-                // console.log(name_months[this.language]+'---------')
-                
-                // return this.currentMonthInfo;
-            },
-            // dayWeek: function() {
-
-            // }
-            
+        computed: {   
         },
         created: function () {
             // `this` указывает на экземпляр vm
@@ -61,13 +46,6 @@
             this.get_current_state();
             
         },
-        // created: {
-            
-        //     createMonth(){
-        //         this.current_state = calendar.createCurrentState();
-        //         console.log('current state: ', this.current_state);
-        //     }
-        // },
         methods: {
             get_current_state(){
                 // let tempMonth = this.monthInfo.index;
@@ -96,13 +74,43 @@
                        day.selected = true;
                    }
                 });
-                this.selectedForm.date =  event.target.attributes.day_num.value;
+                this.selectedForm.day =  event.target.attributes.day_num.value;
                 // console.log(this.selectedForm.month_index, this.monthInfo.month_name)
                 this.selectedForm.month_index = this.calendar.monthIndex;
                 this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
                 this.selectedForm.year = this.calendar.yearIndex;
+                
+                this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
                 // this.$forceUpdate();
 
+            },
+            selectDayInput(){
+                this.selectedForm.day = this.selectedForm.date.split('.')[0];
+                this.selectedForm.month_index = this.selectedForm.date.split('.')[1];
+                this.selectedForm.year = this.selectedForm.date.split('.')[2];
+                // this.$forceUpdate();
+                console.log( this.selectedForm.date.split('.'));
+
+                
+                this.calendar.monthIndex = this.selectedForm.month_index;
+                this.calendar.yearIndex = this.selectedForm.year;
+                this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+                this.get_current_state();
+                this.current_state.forEach(day => {
+                    day.selected = false;
+                   if ( day.val == +this.selectedForm.day ){
+                       day.selected = true;
+                   }
+                });
+                this.selectedForm.day =  event.target.attributes.day_num.value;
+                console.log(this.selectedForm.month_index, this.monthInfo.month_name)
+                this.selectedForm.month_index = this.calendar.monthIndex;
+                this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+                console.log(this.selectedForm.month_name)
+                this.selectedForm.year = this.calendar.yearIndex;
+                
+                this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+                // this.$forceUpdate();
             },
             nextMonth(){
                 // console.log('dsfd')
@@ -119,11 +127,12 @@
     };
    
     class Day{
-        constructor(val, currentMonth) {
+        constructor(val, currentMonth, flagCurrentDay) {
             this.val = val;
             this.selected = false;
             this.notEvents = !currentMonth;
-            if(currentMonth){
+            // this.flagCurrentDay = flagCurrentDay;
+            if(flagCurrentDay){
 
                 var cerrentNumbMonth = new Date().getDate();
 
@@ -135,55 +144,6 @@
             }
         }
     }
-
-
-    // function day_generator(flag_rule){
-    //     if (flag_rule == "prev") {
-    //         return function() {
-    //             let countsDaysPrevMonth = new Date(this.year, this.index, 0).getDate();   //-- ко-во дней прошлого месяца
-    //             let temp = getDaysPrevMonth(this.first_day_of_the_week);
-    //             function getDaysPrevMonth(firstDay) {
-    //                 let tempDays = [];
-    //                 for ( let l = firstDay - 1; l >= 0; l-- ){
-    //                     tempDays.push(new Day(countsDaysPrevMonth - l,false).day_create());
-    //                 }
-    //                 return tempDays;
-    //             }
-    //             return temp;
-    //         }
-    //     } else if (flag_rule == "next") {
-    //             return function() {
-    //                 let tempLast = getDaysNextMonth(this.last_day_of_the_week);
-                    
-    //                 function getDaysNextMonth(lastDay) {
-    //                     let tempDays = [];
-    //                     for ( let l = 1; l <= 7-lastDay; l++ ){
-    //                         tempDays.push(new Day(l,false).day_create());
-    //                     }
-    //                     return tempDays;
-    //                 }
-    //                 console.log("last-day", this.last_day_of_the_week, tempLast);
-    //                 // console.log('day_generator-current', monthIndex);
-    //                 return tempLast;
-    //             }
-    //     } else {
-    //             return function() {
-    //                 let tempDays = [];
-    //                 for ( let i = 1; i <= this.countsDays; i++ ){
-    //                     tempDays.push(new Day(i,true).day_create());
-    //                 }
-    //                 return tempDays;
-    //             }
-    //     }
-    // }
-    // var monthIndex = new Date().getMonth() + 2;
-
-    // console.log('monthIndex:', monthIndex);
-    // var prevMonthT = day_generator('prev');
-    // var nextMonthT = day_generator('next');
-    // var curMonthT = day_generator('current');
-
-
 
 class Calendar {
     constructor(month, year) {
@@ -204,26 +164,6 @@ class Calendar {
     infoMonth() {
         return { 'index' : this.monthIndex, 'year' : this.yearIndex};
     }
-
-
-    // set monthIndex(num) {
-    //     this._monthIndex = num;
-    // } 
-
-
-    // get monthIndex() {
-    //     return this._monthIndex;
-    // }
-    // set yearIndex(num) {
-    //     this._yearIndex = num;
-    // } 
-
-
-    // get yearIndex() {
-    //     return this._yearIndex;
-    // }
-
-
     _day_generator(flag_rule){       
         if (flag_rule == "prev") {
             return function() {
@@ -232,7 +172,7 @@ class Calendar {
                 function getDaysPrevMonth(firstDay) {
                     let tempDays = [];
                     for ( let l = firstDay - 1; l >= 0; l-- ){
-                        tempDays.push(new Day(countsDaysPrevMonth - l,false));
+                        tempDays.push(new Day(countsDaysPrevMonth - l, false, false));
                     }
                     return tempDays;
                 }
@@ -246,7 +186,7 @@ class Calendar {
                         function getDaysNextMonth(lastDay) {
                             let tempDays = [];
                             for ( let l = 1; l <= 7-lastDay; l++ ){
-                                tempDays.push(new Day(l,false));
+                                tempDays.push(new Day(l,false, false));
                             }
                             return tempDays;
                         }
@@ -258,9 +198,14 @@ class Calendar {
                 }
         } else {
                 return function() {
+                    let currentMonth = new Date().getMonth();
+                    let flagCurrentMonth = false;
+                    if ( currentMonth == this.index ){
+                        flagCurrentMonth = true;
+                    }
                     let tempDays = [];
                     for ( let i = 1; i <= this.countsDays; i++ ){
-                        tempDays.push(new Day(i,true));
+                        tempDays.push(new Day(i, true, flagCurrentMonth));
                     }
                     return tempDays;
                 }
@@ -283,41 +228,8 @@ class Month {
             }
             this.createDays = rule.bind(this);
     }
-
-    //  infoMonth() {
-    //        return [this.index, this.year];
-    //     };
-
 }
-    // class Month_old {
-    //     constructor(index, rule) {
-    //         this.index = index;
-    //         this.year = new Date().getFullYear();
-    //         this.countsDays = new Date(this.year, this.index+1, 0).getDate(); //количество дней в текущем месяце
-    //         this.first_day_of_the_week = new Date(this.year, this.index).getDay() - 1; //-- день недели первого дня месяца
-    //         this.last_day_of_the_week = new Date(this.year, this.index, this.countsDays).getDay(); //-- день недели последнего дня месяца
-    //         if(this.first_day_of_the_week < 0){ //-- проверка если вск
-    //             this.first_day_of_the_week = this.first_day_of_the_week + 7;
-    //         }
-    //         this.createDays = rule.bind(this);
-    //     }
-    //     static createCurrentState() {
-    //         var month_prev_days = new Month(monthIndex, prevMonthT).createDays();
-    //         var month_next_days = new Month(monthIndex, nextMonthT).createDays();
-    //         var month_days = new Month(monthIndex, curMonthT).createDays();  
-    //         var daysCalendar =  month_prev_days.concat(month_days, month_next_days);
-    //         console.log('month-createMonth');
-    //         return daysCalendar;
-    //     };
-    //     infoMonth() {
-    //        return [this.index, this.year];
-    //     };
-    // }
-    // console.log(monthIndex);
-    // const monthPrevDay = new Month(monthIndex, prevMonthT);
-    // const monthNextDay = new Month(monthIndex, nextMonthT);
-    // const month = new Month(monthIndex, curMonthT);
-    
+
     console.log('Работает!');
 
 
