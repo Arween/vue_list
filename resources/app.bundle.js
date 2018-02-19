@@ -2423,6 +2423,7 @@ module.exports = function(module) {
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: () => ({
@@ -2473,12 +2474,12 @@ module.exports = function(module) {
             this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
             this.selectedForm.year = this.calendar.yearIndex;
 
-            this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+            this.selectedForm.date = this.selectedForm.day + '.' + (this.selectedForm.month_index + 1) + '.' + this.selectedForm.year;
             // this.$forceUpdate();
         },
         selectDayInput() {
             this.selectedForm.day = this.selectedForm.date.split('.')[0];
-            this.selectedForm.month_index = this.selectedForm.date.split('.')[1];
+            this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
             this.selectedForm.year = this.selectedForm.date.split('.')[2];
             // this.$forceUpdate();
             console.log(this.selectedForm.date.split('.'));
@@ -15741,7 +15742,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -21944,7 +21945,9 @@ var render = function() {
       }
     }),
     _vm._v(" "),
-    _c("button", { on: { click: _vm.selectDayInput } }, [_vm._v("Применить")])
+    _c("button", { on: { click: _vm.selectDayInput } }, [_vm._v("Применить")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "calendar-gradient" })
   ])
 }
 var staticRenderFns = []

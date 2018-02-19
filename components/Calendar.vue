@@ -25,6 +25,7 @@
             <input type="text" placeholder="Введите дату" v-model="selectedForm.date">
             <button v-on:click="selectDayInput">Применить</button>
         <!-- </div> -->
+        <div class="calendar-gradient"></div>
     </div>
 </template>
 <style>
@@ -82,13 +83,13 @@
                 this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
                 this.selectedForm.year = this.calendar.yearIndex;
                 
-                this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+                this.selectedForm.date = this.selectedForm.day + '.' + (this.selectedForm.month_index + 1) + '.' + this.selectedForm.year;
                 // this.$forceUpdate();
 
             },
             selectDayInput(){
                 this.selectedForm.day = this.selectedForm.date.split('.')[0];
-                this.selectedForm.month_index = this.selectedForm.date.split('.')[1];
+                this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
                 this.selectedForm.year = this.selectedForm.date.split('.')[2];
                 // this.$forceUpdate();
                 console.log( this.selectedForm.date.split('.'));
