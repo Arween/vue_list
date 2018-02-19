@@ -11,8 +11,10 @@
                     <p>{{ day_name }}</p>
                 </div>
             </div>
-            <div class="day" v-for="day in current_state" v-on:click="selectDay">
-                <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
+            <div class="calendar__body_table">
+                <div class="day" v-for="day in current_state" v-on:click="selectDay">
+                    <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
+                </div>
             </div>
             <div v-if='selectedForm.day > 0' class="calendar__date">
                 <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>

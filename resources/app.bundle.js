@@ -2421,6 +2421,8 @@ module.exports = function(module) {
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     data: () => ({
@@ -15739,7 +15741,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -21871,19 +21873,19 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "calendar__body" },
-      [
-        _c(
-          "div",
-          _vm._l(_vm.monthInfo.dayWeek, function(day_name) {
-            return _c("div", { staticClass: "day" }, [
-              _c("p", [_vm._v(_vm._s(day_name))])
-            ])
-          })
-        ),
-        _vm._v(" "),
+    _c("div", { staticClass: "calendar__body" }, [
+      _c(
+        "div",
+        _vm._l(_vm.monthInfo.dayWeek, function(day_name) {
+          return _c("div", { staticClass: "day" }, [
+            _c("p", [_vm._v(_vm._s(day_name))])
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "calendar__body_table" },
         _vm._l(_vm.current_state, function(day) {
           return _c(
             "div",
@@ -21903,24 +21905,23 @@ var render = function() {
               )
             ]
           )
-        }),
-        _vm._v(" "),
-        _vm.selectedForm.day > 0
-          ? _c("div", { staticClass: "calendar__date" }, [
-              _c("p", [
-                _vm._v(
-                  _vm._s(_vm.selectedForm.month_name) +
-                    " " +
-                    _vm._s(_vm.selectedForm.day) +
-                    ", " +
-                    _vm._s(_vm.selectedForm.year)
-                )
-              ])
+        })
+      ),
+      _vm._v(" "),
+      _vm.selectedForm.day > 0
+        ? _c("div", { staticClass: "calendar__date" }, [
+            _c("p", [
+              _vm._v(
+                _vm._s(_vm.selectedForm.month_name) +
+                  " " +
+                  _vm._s(_vm.selectedForm.day) +
+                  ", " +
+                  _vm._s(_vm.selectedForm.year)
+              )
             ])
-          : _vm._e()
-      ],
-      2
-    ),
+          ])
+        : _vm._e()
+    ]),
     _vm._v(" "),
     _c("input", {
       directives: [

@@ -2422,17 +2422,19 @@ svg {
 
 .calendar {
   width: 360px;
-  height: 355px;
+  height: 375px;
   background: #f8f8f8;
   border-radius: 9px;
-  margin: 100px 0 0 100px; }
+  margin: 100px 0 0 100px;
+  position: relative; }
   .calendar__head {
     height: 36px;
     width: 100%;
     background: #35495e;
     display: flex;
     border-top-right-radius: 9px;
-    border-top-left-radius: 9px; }
+    border-top-left-radius: 9px;
+    border-bottom: 0.5px solid #a1aab3; }
     .calendar__head p {
       font-weight: bold;
       color: #40b88f;
@@ -2440,7 +2442,8 @@ svg {
       margin: auto; }
     .calendar__head_arrow {
       font-size: 30px !important;
-      line-height: 30px; }
+      line-height: 30px;
+      cursor: pointer; }
   .calendar__body {
     width: 100%;
     height: 100%;
@@ -2449,24 +2452,31 @@ svg {
       background: #40b88f; }
       .calendar__body > div:first-of-type p {
         color: white; }
-  .calendar__date {
-    padding-top: 20px; }
-    .calendar__date p {
-      font-size: 25px;
-      text-align: center;
-      color: #35495e; }
+    .calendar__body_table {
+      border: 0.5px solid #a1aab3;
+      border-top: 0; }
+  .calendar__date p {
+    font-size: 20px;
+    color: #35495e;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px; }
   .calendar input {
     height: 30px;
     width: 170px;
     padding: 0 10px;
     border: 1px solid #a1aab3;
-    color: #35495e; }
+    color: #35495e;
+    font-size: 16px;
+    vertical-align: top; }
   .calendar button {
     width: 100px;
     height: 32px;
     background: #40b88f;
     color: #ffffff;
-    border: 1px solid #40b88f; }
+    border: 1px solid #40b88f;
+    vertical-align: top; }
 
 .day {
   width: 14%;
