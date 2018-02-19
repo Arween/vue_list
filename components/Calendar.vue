@@ -1,9 +1,9 @@
 <template>
     <div class="calendar">
         <div class="calendar__head">
-            <p v-on:click="prevMonth">prev</p>
+            <p v-on:click="prevMonth" class="calendar__head_arrow">&lt;</p>
             <p>{{ monthInfo.name }}, {{ monthInfo.year }}</p>
-            <p v-on:click="nextMonth">next</p>
+            <p v-on:click="nextMonth" class="calendar__head_arrow">&gt;</p>
         </div>
         <div class="calendar__body">
             <div>
@@ -15,7 +15,7 @@
                 <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
             </div>
             <div v-if='selectedForm.day > 0' class="calendar__date">
-                <p>{{ selectedForm.day }}, {{ selectedForm.month_name }}, {{ selectedForm.year }}</p>
+                <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>
                 <!-- <p v-bind:value=selectedForm.date></p> -->
             </div>
         </div>

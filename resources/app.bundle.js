@@ -21854,13 +21854,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "calendar" }, [
     _c("div", { staticClass: "calendar__head" }, [
-      _c("p", { on: { click: _vm.prevMonth } }, [_vm._v("prev")]),
+      _c(
+        "p",
+        { staticClass: "calendar__head_arrow", on: { click: _vm.prevMonth } },
+        [_vm._v("<")]
+      ),
       _vm._v(" "),
       _c("p", [
         _vm._v(_vm._s(_vm.monthInfo.name) + ", " + _vm._s(_vm.monthInfo.year))
       ]),
       _vm._v(" "),
-      _c("p", { on: { click: _vm.nextMonth } }, [_vm._v("next")])
+      _c(
+        "p",
+        { staticClass: "calendar__head_arrow", on: { click: _vm.nextMonth } },
+        [_vm._v(">")]
+      )
     ]),
     _vm._v(" "),
     _c(
@@ -21901,9 +21909,9 @@ var render = function() {
           ? _c("div", { staticClass: "calendar__date" }, [
               _c("p", [
                 _vm._v(
-                  _vm._s(_vm.selectedForm.day) +
-                    ", " +
-                    _vm._s(_vm.selectedForm.month_name) +
+                  _vm._s(_vm.selectedForm.month_name) +
+                    " " +
+                    _vm._s(_vm.selectedForm.day) +
                     ", " +
                     _vm._s(_vm.selectedForm.year)
                 )
