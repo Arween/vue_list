@@ -2387,7 +2387,287 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 54 */,
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['placeholder', 'language'],
+    data: () => ({
+        calendar: {},
+        current_state: [],
+        selectedForm: {},
+        currentMonthInfo: {}
+        // language: 'en',
+    }),
+    computed: {},
+    created: function () {
+        this.calendar = new Calendar(new Date().getMonth(), new Date().getFullYear());
+        this.get_current_state();
+    },
+    methods: {
+        get_current_state() {
+            if (this.calendar.monthIndex < 0) {
+                this.calendar.monthIndex = 11;
+                this.calendar.yearIndex--;
+            }
+            if (this.calendar.monthIndex > 11) {
+                this.calendar.monthIndex = 0;
+                this.calendar.yearIndex++;
+            }
+            this.current_state = this.calendar.createCurrentState();
+            this.monthInfo = this.calendar.infoMonth();
+            this.monthInfo.name = name_months[this.language][this.monthInfo.index];
+            this.monthInfo.dayWeek = name_daysOfTheWeek[this.language];
+        },
+        selectDay(event) {
+            this.current_state.forEach(day => {
+                day.selected = false;
+                if (day.val == +event.target.attributes.day_num.value) {
+                    day.selected = true;
+                }
+            });
+            this.selectedForm.day = event.target.attributes.day_num.value;
+            this.selectedForm.month_index = this.calendar.monthIndex;
+            this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+            this.selectedForm.year = this.calendar.yearIndex;
+            const correctFormatDayMonth = this.getCorrectFormatDate(this.selectedForm.day, this.selectedForm.month_index);
+            this.selectedForm.date = correctFormatDayMonth[0] + '.' + correctFormatDayMonth[1] + '.' + this.selectedForm.year;
+            // this.$forceUpdate();
+        },
+        getCorrectFormatDate(day, month) {
+            if (month + 1 < 10) {
+                month = '0' + (month + 1);
+            } else {
+                month = +month + 1;
+            }
+            if (+day < 10) {
+                day = '0' + day;
+            } else {
+                day = day;
+            }
+            let temp = [];
+            temp.push(day, month);
+            return temp;
+        },
+        selectDayInput() {
+            this.selectedForm.day = this.selectedForm.date.split('.')[0];
+            this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
+            this.selectedForm.year = this.selectedForm.date.split('.')[2];
+            this.calendar.monthIndex = this.selectedForm.month_index;
+            this.calendar.yearIndex = this.selectedForm.year;
+            this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+            this.get_current_state();
+            this.current_state.forEach(day => {
+                day.selected = false;
+                if (day.val == +this.selectedForm.day) {
+                    day.selected = true;
+                }
+            });
+            this.selectedForm.day = event.target.attributes.day_num.value;
+            this.selectedForm.month_index = this.calendar.monthIndex;
+            this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+            this.selectedForm.year = this.calendar.yearIndex;
+            this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+            // this.$forceUpdate();
+        },
+        nextMonth() {
+            this.calendar.monthIndex++;
+            this.get_current_state();
+        },
+        prevMonth() {
+            this.calendar.monthIndex--;
+            this.get_current_state();
+        }
+    }
+});
+
+class Day {
+    constructor(val, currentMonth, flagCurrentDay) {
+        this.val = val;
+        this.selected = false;
+        this.notEvents = !currentMonth;
+        if (flagCurrentDay) {
+            var cerrentNumbMonth = new Date().getDate();
+            if (cerrentNumbMonth == val) {
+                this.currentDay = true;
+            }
+        } else {
+            this.currentDay = false;
+        }
+    }
+}
+
+class Calendar {
+    constructor(month, year) {
+        this.monthIndex = month;
+        this.yearIndex = year;
+        this._prevMonthT = this._day_generator('prev');
+        this._nextMonthT = this._day_generator('next');
+        this._curMonthT = this._day_generator('current');
+    }
+
+    createCurrentState() {
+        var month_prev_days = new Month(this.monthIndex, this.yearIndex, this._prevMonthT).createDays();
+        var month_next_days = new Month(this.monthIndex, this.yearIndex, this._nextMonthT).createDays();
+        var month_days = new Month(this.monthIndex, this.yearIndex, this._curMonthT).createDays();
+        var daysCalendar = month_prev_days.concat(month_days, month_next_days);
+        return daysCalendar;
+    }
+    infoMonth() {
+        return { 'index': this.monthIndex, 'year': this.yearIndex };
+    }
+    _day_generator(flag_rule) {
+        if (flag_rule == "prev") {
+            return function () {
+                let countsDaysPrevMonth = new Date(this.year, this.index, 0).getDate(); //-- ко-во дней прошлого месяца
+                let temp = getDaysPrevMonth(this.first_day_of_the_week);
+                function getDaysPrevMonth(firstDay) {
+                    let tempDays = [];
+                    for (let l = firstDay - 1; l >= 0; l--) {
+                        tempDays.push(new Day(countsDaysPrevMonth - l, false, false));
+                    }
+                    return tempDays;
+                }
+                return temp;
+            };
+        } else if (flag_rule == "next") {
+            return function () {
+                if (this.last_day_of_the_week != 0) {
+                    let tempLast = getDaysNextMonth(this.last_day_of_the_week);
+                    function getDaysNextMonth(lastDay) {
+                        let tempDays = [];
+                        for (let l = 1; l <= 7 - lastDay; l++) {
+                            tempDays.push(new Day(l, false, false));
+                        }
+                        return tempDays;
+                    }
+                    return tempLast;
+                } else {
+                    let tempLast = [];
+                    return tempLast;
+                }
+            };
+        } else {
+            return function () {
+                let currentMonth = new Date().getMonth();
+                let flagCurrentMonth = false;
+                if (currentMonth == this.index) {
+                    flagCurrentMonth = true;
+                }
+                let tempDays = [];
+                for (let i = 1; i <= this.countsDays; i++) {
+                    tempDays.push(new Day(i, true, flagCurrentMonth));
+                }
+                return tempDays;
+            };
+        }
+    }
+
+}
+
+class Month {
+    constructor(index, year, rule) {
+        this.index = index;
+        this.year = year;
+        this.countsDays = new Date(this.year, this.index + 1, 0).getDate(); //количество дней в текущем месяце
+        this.first_day_of_the_week = new Date(this.year, this.index).getDay() - 1; //-- день недели первого дня месяца
+        this.last_day_of_the_week = new Date(this.year, this.index, this.countsDays).getDay(); //-- день недели последнего дня месяца
+        if (this.first_day_of_the_week < 0) {
+            //-- проверка если вск
+            this.first_day_of_the_week = this.first_day_of_the_week + 7;
+        }
+        this.createDays = rule.bind(this);
+    }
+}
+
+console.log('Работает!');
+
+const name_months = {
+    'en': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    'ru': ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
+
+};
+const name_daysOfTheWeek = {
+    'en': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    'ru': ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
+
+};
+
+//------------ apply,call,bind     
+
+// function filter_generator(flag){ // ф-ции фильтров
+//     // var arr = arr;
+//     if (flag){
+//         return function() {
+//             // arr.sort(a,b);
+//             console.log('this.msg', this.arr);
+//         }
+//     } else{
+//         return function() {
+//             // arr.sort(a,b);
+//             console.log('this.msg', this.arr);
+//         }
+//     }
+// }
+// var ruleSortF = filter_generator(true); //flag F
+// var ruleSortT = filter_generator(false); //flag T
+// function RuleGenerator(arr, rule){
+//     // this.rule = form.querSelectorAll('INPUT');
+//     this.arr = arr;
+//     this.msg = 'My sort';
+//     this.sort = rule.bind(this);
+//     this.test = function() {
+//         console.log("this sort(test)");
+//     }
+// }
+// var filter_1 = new RuleGenerator([4,5], ruleSortF);
+// var filter_2 = new RuleGenerator([4,5,9], ruleSortT);
+// var resF1 = filter_1.sort();
+// var resF2 = filter_2.sort();
+// filter_1.test();
+// console.log(resF1);
+// console.log(resF2);
+
+/***/ }),
 /* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2395,6 +2675,15 @@ module.exports = function(module) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__ = __webpack_require__(237);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_google_maps___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_google_maps__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15322,13 +15611,9 @@ var _Test = __webpack_require__(210);
 
 var _Test2 = _interopRequireDefault(_Test);
 
-var _Social = __webpack_require__(245);
+var _Calendar = __webpack_require__(208);
 
-var _Social2 = _interopRequireDefault(_Social);
-
-var _FilterFirst = __webpack_require__(244);
-
-var _FilterFirst2 = _interopRequireDefault(_FilterFirst);
+var _Calendar2 = _interopRequireDefault(_Calendar);
 
 var _MapGoogle = __webpack_require__(209);
 
@@ -15337,6 +15622,10 @@ var _MapGoogle2 = _interopRequireDefault(_MapGoogle);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 console.log('test');
+// import Social from './components/Social.vue'
+// import FilterFirst from './components/FilterFirst.vue'
+// import FilterSecond from './components/FilterSecond.vue'
+
 
 // import Tabscalendar from './components/Tabscalendar.vue'
 // import Calendar from './components/Calendar.vue'
@@ -15347,9 +15636,11 @@ console.log('test');
 window.Vue = _vue2.default;
 
 _vue2.default.component('test', _Test2.default);
-_vue2.default.component('socialsharning', _Social2.default);
-_vue2.default.component('mapgoogle', _MapGoogle2.default);
-_vue2.default.component('filterfirst', _FilterFirst2.default);
+_vue2.default.component('calendar', _Calendar2.default);
+// Vue.component('socialsharning', Social);
+// Vue.component('mapgoogle', MapGoogle);
+// Vue.component('filterfirst', FilterFirst);
+// Vue.component('filtersecond', FilterSecond);
 // Vue.component('tabscalendar', Tabscalendar);
 // Vue.component('calendar', Calendar);
 // Vue.component('tabscalendar', Tabscalendar);
@@ -15399,8 +15690,34 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"source
 
 
 /***/ }),
-/* 91 */,
-/* 92 */,
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n.particle-div{\n    width: 300px;\n    height: 300px;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/MapGoogle.vue"],"names":[],"mappings":";AAmCA;IACA,aAAA;IACA,cAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div>\n\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n    </div>\n\n</template>\n<style>\n    .particle-div{\n        width: 300px;\n        height: 300px;\n    }\n</style>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n.map-container[data-v-4b2ced6a] {\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container[data-v-4b2ced6a]{\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container .vue-map[data-v-4b2ced6a]{\n        height: 500px !important;\n}\n\n\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/MapGoogle.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAkVA,oBAAA;KACA,gBAAA;KACA,kBAAA;GACA,KAAA;;;GAGA,aAAA;IACA,kBAAA;GACA,KAAA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AAGA;QACA,yBAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div>\n\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n    </div>\n\n</template>\n<style>\n    .particle-div{\n        width: 300px;\n        height: 300px;\n    }\n</style>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
 /* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15415,7 +15732,20 @@ exports.push([module.i, "\n.vue-map-container {\n  position: relative;\n}\n.vue-
 
 
 /***/ }),
-/* 94 */,
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(12)();
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+
+// exports
+
+
+/***/ }),
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20839,7 +21169,63 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(28)))
 
 /***/ }),
-/* 208 */,
+/* 208 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Calendar_vue__ = __webpack_require__(54);
+/* empty harmony namespace reexport */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d65116ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Calendar_vue__ = __webpack_require__(222);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(228)
+}
+var normalizeComponent = __webpack_require__(7)
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Calendar_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_d65116ce_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Calendar_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "components/Calendar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d65116ce", Component.options)
+  } else {
+    hotAPI.reload("data-v-d65116ce", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
 /* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -20851,7 +21237,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(251)
+  __webpack_require__(225)
+  __webpack_require__(226)
 }
 var normalizeComponent = __webpack_require__(7)
 /* script */
@@ -21305,80 +21692,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "b-map" }, [
-    _c(
-      "div",
-      { staticClass: "map-container" },
-      [
-        _c(
-          "gmap-map",
-          {
-            attrs: {
-              center: { lat: 53.9, lng: 27.48 },
-              zoom: 12,
-              options: { styles: _vm.styles }
-            }
-          },
-          _vm._l(_vm.markers, function(marker, idx) {
-            return _c(
-              "div",
-              [
-                _c("gmap-marker", {
-                  attrs: { position: marker.coordinates, icon: marker.icon },
-                  on: {
-                    "update:icon": function($event) {
-                      _vm.$set(marker, "icon", $event)
-                    },
-                    click: function($event) {
-                      _vm.choose(idx)
+  return _c("div", [
+    _c("div", { staticClass: "b-map" }, [
+      _c(
+        "div",
+        { staticClass: "map-container" },
+        [
+          _c(
+            "gmap-map",
+            {
+              attrs: {
+                center: { lat: 53.9, lng: 27.48 },
+                zoom: 12,
+                options: { styles: _vm.styles }
+              }
+            },
+            _vm._l(_vm.markers, function(marker, idx) {
+              return _c(
+                "div",
+                [
+                  _c("gmap-marker", {
+                    attrs: { position: marker.coordinates, icon: marker.icon },
+                    on: {
+                      "update:icon": function($event) {
+                        _vm.$set(marker, "icon", $event)
+                      },
+                      click: function($event) {
+                        _vm.choose(idx)
+                      }
                     }
-                  }
-                }),
-                _vm._v(" "),
-                _c(
-                  "gmap-info-window",
-                  { attrs: { position: marker.coordinatesInfo } },
-                  [
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(marker.name) +
-                        "\n                "
-                    )
-                  ]
-                )
-              ],
-              1
-            )
-          })
-        )
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "tabs_address_wp", attrs: { id: "address_wp" } },
-      _vm._l(_vm.places, function(place) {
-        return _c("div", { staticClass: "tab" }, [
-          _c("input", {
-            staticClass: "address_tab",
-            attrs: { id: "place.index", type: "radio", name: "tabs2" }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "place.index" } }, [
-            _vm._v(_vm._s(place.name))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "tab-content" }, [
-            _c("p", [_vm._v(_vm._s(place.information.address))]),
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "gmap-info-window",
+                    { attrs: { position: marker.coordinatesInfo } },
+                    [
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(marker.name) +
+                          "\n                "
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            })
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "tabs_address_wp", attrs: { id: "address_wp" } },
+        _vm._l(_vm.places, function(place) {
+          return _c("div", { staticClass: "tab" }, [
+            _c("input", {
+              staticClass: "address_tab",
+              attrs: { id: "place.index", type: "radio", name: "tabs2" }
+            }),
             _vm._v(" "),
-            _c("p", [_vm._v("Время работы: 24/7")]),
+            _c("label", { attrs: { for: "place.index" } }, [
+              _vm._v(_vm._s(place.name))
+            ]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(place.information.phone))])
+            _c("div", { staticClass: "tab-content" }, [
+              _c("p", [_vm._v(_vm._s(place.information.address))]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Время работы: 24/7")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(place.information.phone))])
+            ])
           ])
-        ])
-      })
-    )
+        })
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -21456,7 +21845,132 @@ if (false) {
 }
 
 /***/ }),
-/* 222 */,
+/* 222 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "calendar" }, [
+      _c("div", { staticClass: "calendar__head" }, [
+        _c(
+          "p",
+          { staticClass: "calendar__head_arrow", on: { click: _vm.prevMonth } },
+          [_vm._v("<")]
+        ),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(_vm._s(_vm.monthInfo.name) + ", " + _vm._s(_vm.monthInfo.year))
+        ]),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "calendar__head_arrow", on: { click: _vm.nextMonth } },
+          [_vm._v(">")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "calendar__body" }, [
+        _c(
+          "div",
+          _vm._l(_vm.monthInfo.dayWeek, function(day_name) {
+            return _c("div", { staticClass: "day" }, [
+              _c("p", [_vm._v(_vm._s(day_name))])
+            ])
+          })
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "calendar__body_table" },
+          _vm._l(_vm.current_state, function(day) {
+            return _c(
+              "div",
+              { staticClass: "day", on: { click: _vm.selectDay } },
+              [
+                _c(
+                  "p",
+                  {
+                    class: {
+                      "day-current": day.currentDay,
+                      "day-selected": day.selected,
+                      "day-no-events": day.notEvents
+                    },
+                    attrs: { day_num: day.val }
+                  },
+                  [_vm._v(_vm._s(day.val))]
+                )
+              ]
+            )
+          })
+        ),
+        _vm._v(" "),
+        _vm.selectedForm.day > 0
+          ? _c("div", { staticClass: "calendar__date" }, [
+              _c("p", [
+                _vm._v(
+                  _vm._s(_vm.selectedForm.month_name) +
+                    " " +
+                    _vm._s(_vm.selectedForm.day) +
+                    ", " +
+                    _vm._s(_vm.selectedForm.year)
+                )
+              ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.selectedForm.date,
+            expression: "selectedForm.date"
+          }
+        ],
+        attrs: { type: "text", placeholder: _vm.placeholder },
+        domProps: { value: _vm.selectedForm.date },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.selectedForm, "date", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.selectDayInput } }, [_vm._v("Применить")])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "calendar-gradient" }, [
+      _c("p", [_vm._v("Calendar Vue")])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d65116ce", esExports)
+  }
+}
+
+/***/ }),
 /* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21517,8 +22031,58 @@ if(false) {
 }
 
 /***/ }),
-/* 225 */,
-/* 226 */,
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(91);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("a594e058", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 226 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(92);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("5253d208", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./MapGoogle.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./MapGoogle.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21545,7 +22109,32 @@ if(false) {
 }
 
 /***/ }),
-/* 228 */,
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(94);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("20c3603a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d65116ce\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calendar.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d65116ce\",\"scoped\":false,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Calendar.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -22495,931 +23084,6 @@ function install(Vue, options) {
 __webpack_require__(88);
 module.exports = __webpack_require__(89);
 
-
-/***/ }),
-/* 239 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: () => ({
-        text: 'Hello from Vue',
-        arr: [24, 1, 83, 5, 9],
-        sort_arr: []
-    }),
-    computed: {
-        selectedSortLtoG() {
-            return this.arr;
-        }
-    },
-    watch: {},
-    //        mounted: function(){
-    //            this.sortLtoG();
-    //        },
-    methods: {
-        sortLtoG() {
-            let temp_arr = this.arr;
-            //                this.sort_arr = temp_arr.sort();
-
-
-            //                const result = this.quickSort(temp_arr, 0, temp_arr.length - 1);
-            this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1);
-            console.dir(this.arr);
-        },
-        quickSort(items, left, right) {
-            let index;
-            if (items.length > 1) {
-                index = this.partition(items, left, right);
-                if (left < index - 1) {
-                    this.quickSort(items, left, index - 1);
-                }
-                if (index < right) {
-                    this.quickSort(items, index, right);
-                }
-            }
-            return items;
-        },
-        partition(items, left, right) {
-            var pivot = items[Math.floor((right + left) / 2)],
-                i = left,
-                j = right;
-
-            while (i <= j) {
-                while (items[i] < pivot) {
-                    i++;
-                }
-                while (items[j] > pivot) {
-                    j--;
-                }
-                if (i <= j) {
-                    this.swap(items, i, j);
-                    i++;
-                    j--;
-                }
-            }
-            return i;
-        },
-        swap(items, firstIndex, secondIndex) {
-            const temp = items[firstIndex];
-            items[firstIndex] = items[secondIndex];
-            items[secondIndex] = temp;
-        }
-    }
-
-});
-
-/***/ }),
-/* 240 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_social_sharing___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_social_sharing__);
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-    data: () => ({ text: 'Hello from Vue' })
-});
-
-/***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Social.vue","sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 242 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)();
-// imports
-
-
-// module
-exports.push([module.i, "\n.list[data-v-4a6e580d]{\n    width: 100%;\n    padding: 200px 0;\n}\n.item[data-v-4a6e580d]{\n    width: 100px;\n    height: 100px;\n    border: none;\n    background: slateblue;\n    display: inline-flex;\n    margin-right: 10px;\n}\n.item p[data-v-4a6e580d]{\n    color: darkorange;\n    display: block;\n    margin: auto;\n}\n.list_button[data-v-4a6e580d]{\n    width: 100%;\n    margin-bottom: 50px;\n}\n.list button[data-v-4a6e580d]{\n    width: 150px;\n    height: 50px;\n    color: white;\n    background: firebrick;\n    border: none;\n}\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/FilterFirst.vue"],"names":[],"mappings":";AAyFA;IACA,YAAA;IACA,iBAAA;CACA;AACA;IACA,aAAA;IACA,cAAA;IACA,aAAA;IACA,sBAAA;IACA,qBAAA;IACA,mBAAA;CACA;AACA;IACA,kBAAA;IACA,eAAA;IACA,aAAA;CACA;AACA;IACA,YAAA;IACA,oBAAA;CACA;AACA;IACA,aAAA;IACA,aAAA;IACA,aAAA;IACA,sBAAA;IACA,aAAA;CAEA","file":"FilterFirst.vue","sourcesContent":["<template>\n    <div class=\"list\">\n        <div class=\"list_button\">\n            <button v-on:click=\"sortLtoG\" >По возрастанию</button>\n        </div>\n\n\n        <div class=\"item\" v-for=\"i in selectedSortLtoG\">\n            <p>{{ i }}</p>\n        </div>\n    </div>\n</template>\n<script>\n    export default {\n        data: () => ({\n            text: 'Hello from Vue',\n            arr: [ 24, 1, 83, 5, 9],\n            sort_arr: []\n        }),\n        computed: {\n            selectedSortLtoG() {\n                return this.arr;\n            }\n        },\n        watch: {\n\n        },\n//        mounted: function(){\n//            this.sortLtoG();\n//        },\n        methods: {\n            sortLtoG() {\n                let temp_arr = this.arr;\n//                this.sort_arr = temp_arr.sort();\n\n\n//                const result = this.quickSort(temp_arr, 0, temp_arr.length - 1);\n                this.arr = this.quickSort(temp_arr, 0, temp_arr.length - 1);\n                console.dir(this.arr)\n\n            },\n           quickSort(items, left, right) {\n                let index;\n                if (items.length > 1) {\n                    index = this.partition(items, left, right);\n                if (left < index - 1) {\n                    this.quickSort(items, left, index - 1);\n                }\n                if (index < right) {\n                    this.quickSort(items, index, right);\n                }\n                }\n                return items;\n           },\n            partition(items, left, right) {\n                var pivot   = items[Math.floor((right + left) / 2)],\n                    i       = left,\n                    j       = right;\n\n                while (i <= j) {\n                    while (items[i] < pivot) {\n                        i++;\n                    }\n                    while (items[j] > pivot) {\n                        j--;\n                    }\n                    if (i <= j) {\n                        this.swap(items, i, j);\n                        i++;\n                        j--;\n                    }\n                }\n                return i;\n            },\n            swap(items, firstIndex, secondIndex){\n                const temp = items[firstIndex];\n                items[firstIndex] = items[secondIndex];\n                items[secondIndex] = temp;\n            }\n        },\n\n    }\n\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n    .list{\n        width: 100%;\n        padding: 200px 0;\n    }\n    .item{\n        width: 100px;\n        height: 100px;\n        border: none;\n        background: slateblue;\n        display: inline-flex;\n        margin-right: 10px;\n    }\n    .item p{\n        color: darkorange;\n        display: block;\n        margin: auto;\n    }\n    .list_button{\n        width: 100%;\n        margin-bottom: 50px;\n    }\n    .list button{\n        width: 150px;\n        height: 50px;\n        color: white;\n        background: firebrick;\n        border: none;\n\n    }\n</style>\n\n"],"sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 243 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(12)();
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n.map-container[data-v-4b2ced6a] {\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container[data-v-4b2ced6a]{\n        width: 100%;\n        height: 500px !important;\n}\n.vue-map-container .vue-map[data-v-4b2ced6a]{\n        height: 500px !important;\n}\n\n\n", "", {"version":3,"sources":["/Users/Alesya/projects/list_components/calendar/components/components/MapGoogle.vue"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;CAyUA,oBAAA;KACA,gBAAA;KACA,kBAAA;GACA,KAAA;;;GAGA,aAAA;IACA,kBAAA;GACA,KAAA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AACA;QACA,YAAA;QACA,yBAAA;CACA;AAGA;QACA,yBAAA;CACA","file":"MapGoogle.vue","sourcesContent":["<template>\n    <div class=\"b-map\">\n        <div class=\"map-container\">\n            <gmap-map :center=\"{lat:53.90, lng:27.48}\" :zoom=\"12\" :options=\"{styles: styles} \">\n                <div v-for=\"(marker, idx) in markers\" >\n                    <gmap-marker :position=marker.coordinates :icon.sync=\"marker.icon\" v-on:click=\"choose(idx)\">\n                    </gmap-marker>\n                    <gmap-info-window :position=marker.coordinatesInfo>\n                        {{ marker.name }}\n                    </gmap-info-window>\n                </div>\n\n            </gmap-map>\n\n        </div>\n\n        <div class=\"tabs_address_wp\" id=\"address_wp\">\n            <div class=\"tab\" v-for=\"place in places\" >\n                <input id=\"place.index\" type=\"radio\" name=\"tabs2\" class=\"address_tab\">\n                <label for=\"place.index\" >{{ place.name }}</label>\n                <div class=\"tab-content\">\n                    <p>{{ place.information.address }}</p>\n                    <p>Время работы: 24/7</p>\n                    <p>{{ place.information.phone }}</p>\n                </div>\n            </div>\n\n        </div>\n    </div>\n\n</template>\n<script>\n\nimport Vue from 'vue'\nimport * as VueGoogleMaps from 'vue2-google-maps'\n\nVue.use(VueGoogleMaps, {\n  load: {\n    key: 'AIzaSyCkTmRLe13JUfDeihf5xKO-aHhCehQHMfo',\n    v: '3',\n    // libraries: 'places' // Only if you need Autocomplete\n  }\n})\nexport default {\n    data () {\n      return {\n\n      markers: [\n      \t{\t\n      \t\tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.90,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo:\n      \t\t\t{\n      \t\t\t\tlat: 53.91,\n        \t\t\tlng: 27.50\n      \t\t\t}\n      \t\t,\n        \tname: 'Minsk',\n            icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',\n      \t},\n      \t{\n      \t\t\n        \tcoordinates: \n      \t\t\t{\n      \t\t\t\tlat: 53.88,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n      \t\tcoordinatesInfo: \n      \t\t\t{\n      \t\t\t\tlat: 53.89,\n        \t\t\tlng: 27.46\n      \t\t\t}\n      \t\t,\n        \tname: 'Uzda',\n            icon: 'img/map_icon.png',\n      \t}\n      ],\n\n          places: [\n              {\n                  name: \"г. Узда\",\n                  index: \"tab_1\",\n                  information:\n                      {\n                          address: 'г. Узда',\n                          phone: '3784273648'\n                      }\n\n              },\n              {\n                  name: \"г. Минск\",\n                  index: \"tab_2\",\n                  information:\n                      {\n                          address: 'г. Минск',\n                          phone: '2344354888'\n                      }\n\n              }\n\n          ],\n\n          styles: [\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#ffffff\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.text.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#3e606f\"\n                    },\n                    {\n                        \"weight\": 2\n                    },\n                    {\n                        \"gamma\": 0.84\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"all\",\n                \"elementType\": \"labels.icon\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"weight\": 0.6\n                    },\n                    {\n                        \"color\": \"#1a3541\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"administrative.neighborhood\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"off\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"landscape\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#2b7396\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#306782\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"poi.park\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#5388a2\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"lightness\": -37\n                    },\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"geometry.stroke\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road\",\n                \"elementType\": \"labels.text\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"weight\": \".25\"\n                    },\n                    {\n                        \"gamma\": \"1\"\n                    },\n                    {\n                        \"color\": \"#cdcdcd\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.arterial\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#214658\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"all\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"simplified\"\n                    },\n                    {\n                        \"color\": \"#144056\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"road.local\",\n                \"elementType\": \"labels.text.fill\",\n                \"stylers\": [\n                    {\n                        \"visibility\": \"on\"\n                    },\n                    {\n                        \"color\": \"#8ba0ab\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"transit\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#406d80\"\n                    }\n                ]\n            },\n            {\n                \"featureType\": \"water\",\n                \"elementType\": \"geometry\",\n                \"stylers\": [\n                    {\n                        \"color\": \"#193341\"\n                    }\n                ]\n            }\n         ]\n      }\n    },\n    methods: {\n\n        choose(idx) {\n//        choose(idx) {\n//            this.places.forEach(place => {\n//                place.chosen = false;\n//            });\n//\n//            this.places[idx].chosen = true;\n//            this.$emit('choose_place', this.places[idx].address);\n//            this.$forceUpdate();\n            console.log(idx)\n//            console.log('sdsdfsd')\n        }\n    }\n  }\n\n\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n\n\t/*.map-container {*/\n    \t/*width: 100%;*/\n    \t/*height: 300px;*/\n  \t/*}*/\n\n\n  \t/*.vue-map{*/\n  \t\t/*height: 500px;*/\n  \t/*}*/\n    .map-container {\n        width: 100%;\n        height: 500px !important;\n    }\n    .vue-map-container{\n        width: 100%;\n        height: 500px !important;\n    }\n\n\n    .vue-map-container .vue-map{\n        height: 500px !important;\n    }\n\n\n</style>"],"sourceRoot":""}]);
-
-// exports
-
-
-/***/ }),
-/* 244 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_FilterFirst_vue__ = __webpack_require__(239);
-/* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a6e580d_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_FilterFirst_vue__ = __webpack_require__(247);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(250)
-}
-var normalizeComponent = __webpack_require__(7)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-4a6e580d"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_FilterFirst_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a6e580d_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_FilterFirst_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "components/FilterFirst.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4a6e580d", Component.options)
-  } else {
-    hotAPI.reload("data-v-4a6e580d", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-/* 245 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Social_vue__ = __webpack_require__(240);
-/* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35897608_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Social_vue__ = __webpack_require__(246);
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(249)
-}
-var normalizeComponent = __webpack_require__(7)
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-35897608"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_Social_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_35897608_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_Social_vue__["a" /* default */],
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "components/Social.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-35897608", Component.options)
-  } else {
-    hotAPI.reload("data-v-35897608", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
-
-
-/***/ }),
-/* 246 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("social-sharing", {
-    attrs: {
-      url: "https://vuejs.org/",
-      title: "The Progressive JavaScript Framework",
-      description:
-        "Intuitive, Fast and Composable MVVM for building interactive interfaces.",
-      quote: "Vue is a progressive framework for building user interfaces.",
-      hashtags: "vuejs,javascript,framework",
-      "twitter-user": "vuejs"
-    },
-    inlineTemplate: {
-      render: function() {
-        var _vm = this
-        var _h = _vm.$createElement
-        var _c = _vm._self._c || _h
-        return _c(
-          "div",
-          [
-            _c("network", { attrs: { network: "email" } }, [
-              _c("i", { staticClass: "fa fa-envelope" }),
-              _vm._v(" Email\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "facebook" } }, [
-              _c("i", { staticClass: "fa fa-facebook" }),
-              _vm._v(" Facebook\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "googleplus" } }, [
-              _c("i", { staticClass: "fa fa-google-plus" }),
-              _vm._v(" Google +\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "line" } }, [
-              _c("i", { staticClass: "fa fa-line" }),
-              _vm._v(" Line\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "linkedin" } }, [
-              _c("i", { staticClass: "fa fa-linkedin" }),
-              _vm._v(" LinkedIn\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "odnoklassniki" } }, [
-              _c("i", { staticClass: "fa fa-odnoklassniki" }),
-              _vm._v(" Odnoklassniki\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "pinterest" } }, [
-              _c("i", { staticClass: "fa fa-pinterest" }),
-              _vm._v(" Pinterest\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "reddit" } }, [
-              _c("i", { staticClass: "fa fa-reddit" }),
-              _vm._v(" Reddit\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "skype" } }, [
-              _c("i", { staticClass: "fa fa-skype" }),
-              _vm._v(" Skype\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "sms" } }, [
-              _c("i", { staticClass: "fa fa-commenting-o" }),
-              _vm._v(" SMS\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "telegram" } }, [
-              _c("i", { staticClass: "fa fa-telegram" }),
-              _vm._v(" Telegram\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "twitter" } }, [
-              _c("i", { staticClass: "fa fa-twitter" }),
-              _vm._v(" Twitter\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "vk" } }, [
-              _c("i", { staticClass: "fa fa-vk" }),
-              _vm._v(" VKontakte\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "weibo" } }, [
-              _c("i", { staticClass: "fa fa-weibo" }),
-              _vm._v(" Weibo\n        ")
-            ]),
-            _vm._v(" "),
-            _c("network", { attrs: { network: "whatsapp" } }, [
-              _c("i", { staticClass: "fa fa-whatsapp" }),
-              _vm._v(" Whatsapp\n        ")
-            ])
-          ],
-          1
-        )
-      },
-      staticRenderFns: []
-    }
-  })
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-35897608", esExports)
-  }
-}
-
-/***/ }),
-/* 247 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "list" },
-    [
-      _c("div", { staticClass: "list_button" }, [
-        _c("button", { on: { click: _vm.sortLtoG } }, [
-          _vm._v("По возрастанию")
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._l(_vm.selectedSortLtoG, function(i) {
-        return _c("div", { staticClass: "item" }, [
-          _c("p", [_vm._v(_vm._s(i))])
-        ])
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ __webpack_exports__["a"] = (esExports);
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4a6e580d", esExports)
-  }
-}
-
-/***/ }),
-/* 248 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * vue-social-sharing v2.3.3 
- * (c) 2017 nicolasbeauvais
- * Released under the MIT License.
- */
-
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var Vue = _interopDefault(__webpack_require__(86));
-
-var SocialSharingNetwork = {
-  functional: true,
-
-  props: {
-    network: {
-      type: String,
-      default: ''
-    }
-  },
-
-  render: function (createElement, context) {
-    var network = context.parent._data.baseNetworks[context.props.network];
-
-    if (!network) {
-      return console.warn(("Network " + (context.props.network) + " does not exist"));
-    }
-
-    return createElement(context.parent.networkTag, {
-      staticClass: context.data.staticClass || null,
-      staticStyle: context.data.staticStyle || null,
-      class: context.data.class || null,
-      style: context.data.style || null,
-      attrs: {
-        id: context.data.attrs.id || null,
-        'data-link': network.type === 'popup'
-          ? '#share-' + context.props.network
-          : context.parent.createSharingUrl(context.props.network),
-        'data-action': network.type === 'popup' ? null : network.action
-      },
-      on: {
-        click: network.type === 'popup' ? function () {
-          context.parent.share(context.props.network);
-        } : function () {
-          context.parent.touch(context.props.network);
-        }
-      }
-    }, context.children);
-  }
-};
-
-var email = {"sharer":"mailto:?subject=@title&body=@url%0D%0A%0D%0A@description","type":"direct"};
-var facebook = {"sharer":"https://www.facebook.com/sharer/sharer.php?u=@url&title=@title&description=@description&quote=@quote","type":"popup"};
-var googleplus = {"sharer":"https://plus.google.com/share?url=@url","type":"popup"};
-var line = {"sharer":"http://line.me/R/msg/text/?@description%0D%0A@url","type":"popup"};
-var linkedin = {"sharer":"https://www.linkedin.com/shareArticle?mini=true&url=@url&title=@title&summary=@description","type":"popup"};
-var odnoklassniki = {"sharer":"https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=@url&st.comments=@description","type":"popup"};
-var pinterest = {"sharer":"https://pinterest.com/pin/create/button/?url=@url&media=@media&description=@title","type":"popup"};
-var reddit = {"sharer":"https://www.reddit.com/submit?url=@url&title=@title","type":"popup"};
-var skype = {"sharer":"https://web.skype.com/share?url=@description%0D%0A@url","type":"popup"};
-var telegram = {"sharer":"https://t.me/share/url?url=@url&text=@description","type":"popup"};
-var twitter = {"sharer":"https://twitter.com/intent/tweet?text=@title&url=@url&hashtags=@hashtags@twitteruser","type":"popup"};
-var viber = {"sharer":"viber://forward?text=@url @description","type":"direct"};
-var vk = {"sharer":"https://vk.com/share.php?url=@url&title=@title&description=@description&image=@media&noparse=true","type":"popup"};
-var weibo = {"sharer":"http://service.weibo.com/share/share.php?url=@url&title=@title","type":"popup"};
-var whatsapp = {"sharer":"whatsapp://send?text=@description%0D%0A@url","type":"direct","action":"share/whatsapp/share"};
-var sms = {"sharer":"sms:?body=@url%20@description","type":"direct"};
-var BaseNetworks = {
-	email: email,
-	facebook: facebook,
-	googleplus: googleplus,
-	line: line,
-	linkedin: linkedin,
-	odnoklassniki: odnoklassniki,
-	pinterest: pinterest,
-	reddit: reddit,
-	skype: skype,
-	telegram: telegram,
-	twitter: twitter,
-	viber: viber,
-	vk: vk,
-	weibo: weibo,
-	whatsapp: whatsapp,
-	sms: sms
-};
-
-var inBrowser = typeof window !== 'undefined';
-var $window = inBrowser ? window : null;
-
-var SocialSharing = {
-  props: {
-    /**
-     * URL to share.
-     * @var string
-     */
-    url: {
-      type: String,
-      default: inBrowser ? window.location.href : ''
-    },
-
-    /**
-     * Sharing title, if available by network.
-     * @var string
-     */
-    title: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Sharing description, if available by network.
-     * @var string
-     */
-    description: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Facebook quote
-     * @var string
-     */
-    quote: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter hashtags
-     * @var string
-     */
-    hashtags: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Twitter user.
-     * @var string
-     */
-    twitterUser: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Flag that indicates if counts should be retrieved.
-     * - NOT WORKING IN CURRENT VERSION
-     * @var mixed
-     */
-    withCounts: {
-      type: [String, Boolean],
-      default: false
-    },
-
-    /**
-     * Google plus key.
-     * @var string
-     */
-    googleKey: {
-      type: String,
-      default: undefined
-    },
-
-    /**
-     * Pinterest Media URL.
-     * Specifies the image/media to be used.
-     */
-    media: {
-      type: String,
-      default: ''
-    },
-
-    /**
-     * Network sub component tag.
-     * Default to span tag
-     */
-    networkTag: {
-      type: String,
-      default: 'span'
-    },
-
-    /**
-     * Additional or overridden networks.
-     * Default to BaseNetworks
-     */
-    networks: {
-      type: Object,
-      default: function () {
-        return {};
-      }
-    }
-  },
-
-  data: function data () {
-    return {
-      /**
-       * Available sharing networks.
-       * @param object
-       */
-      baseNetworks: BaseNetworks,
-
-      /**
-       * Popup settings.
-       * @param object
-       */
-      popup: {
-        status: false,
-        resizable: true,
-        toolbar: false,
-        menubar: false,
-        scrollbars: false,
-        location: false,
-        directories: false,
-        width: 626,
-        height: 436,
-        top: 0,
-        left: 0,
-        window: undefined,
-        interval: null
-      }
-    };
-  },
-
-  methods: {
-    /**
-     * Returns generated sharer url.
-     *
-     * @param network Social network key.
-     */
-    createSharingUrl: function createSharingUrl (network) {
-      return this.baseNetworks[network].sharer
-        .replace(/@url/g, encodeURIComponent(this.url))
-        .replace(/@title/g, encodeURIComponent(this.title))
-        .replace(/@description/g, encodeURIComponent(this.description))
-        .replace(/@quote/g, encodeURIComponent(this.quote))
-        .replace(/@hashtags/g, this.hashtags)
-        .replace(/@media/g, this.media)
-        .replace(/@twitteruser/g, this.twitterUser ? '&via=' + this.twitterUser : '');
-    },
-
-    /**
-     * Shares URL in specified network.
-     *
-     * @param string network Social network key.
-     */
-    share: function share (network) {
-      this.openSharer(network, this.createSharingUrl(network));
-
-      this.$root.$emit('social_shares_open', network, this.url);
-      this.$emit('open', network, this.url);
-    },
-
-    /**
-     * Touches network and emits click event.
-     *
-     * @param string network Social network key.
-     */
-    touch: function touch (network) {
-      window.open(this.createSharingUrl(network), '_self');
-
-      this.$root.$emit('social_shares_open', network, this.url);
-      this.$emit('open', network, this.url);
-    },
-
-    /**
-     * Opens sharer popup.
-     *
-     * @param string url Url to share.
-     */
-    openSharer: function openSharer (network, url) {
-      var this$1 = this;
-
-      // If a popup window already exist it will be replaced, trigger a close event.
-      if (this.popup.window && this.popup.interval) {
-        clearInterval(this.popup.interval);
-
-        this.popup.window.close();// Force close (for Facebook)
-
-        this.$root.$emit('social_shares_change', network, this.url);
-        this.$emit('change', network, this.url);
-      }
-
-      this.popup.window = window.open(
-        url,
-        'sharer',
-        'status=' + (this.popup.status ? 'yes' : 'no') +
-        ',height=' + this.popup.height +
-        ',width=' + this.popup.width +
-        ',resizable=' + (this.popup.resizable ? 'yes' : 'no') +
-        ',left=' + this.popup.left +
-        ',top=' + this.popup.top +
-        ',screenX=' + this.popup.left +
-        ',screenY=' + this.popup.top +
-        ',toolbar=' + (this.popup.toolbar ? 'yes' : 'no') +
-        ',menubar=' + (this.popup.menubar ? 'yes' : 'no') +
-        ',scrollbars=' + (this.popup.scrollbars ? 'yes' : 'no') +
-        ',location=' + (this.popup.location ? 'yes' : 'no') +
-        ',directories=' + (this.popup.directories ? 'yes' : 'no')
-      );
-
-      this.popup.window.focus();
-
-      // Create an interval to detect popup closing event
-      this.popup.interval = setInterval(function () {
-        if (this$1.popup.window.closed) {
-          clearInterval(this$1.popup.interval);
-
-          this$1.popup.window = undefined;
-
-          this$1.$root.$emit('social_shares_close', network, this$1.url);
-          this$1.$emit('close', network, this$1.url);
-        }
-      }, 500);
-    }
-  },
-
-  /**
-   * Merge base networks list with user's list
-   */
-  beforeMount: function beforeMount () {
-    this.baseNetworks = Vue.util.extend(this.baseNetworks, this.networks);
-  },
-
-  /**
-   * Sets popup default dimensions.
-   */
-  mounted: function mounted () {
-    if (!inBrowser) {
-      return;
-    }
-
-    /**
-     * Center the popup on dual screens
-     * http://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen/32261263
-     */
-    var dualScreenLeft = $window.screenLeft !== undefined ? $window.screenLeft : screen.left;
-    var dualScreenTop = $window.screenTop !== undefined ? $window.screenTop : screen.top;
-
-    var width = $window.innerWidth ? $window.innerWidth : (document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width);
-    var height = $window.innerHeight ? $window.innerHeight : (document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height);
-
-    this.popup.left = ((width / 2) - (this.popup.width / 2)) + dualScreenLeft;
-    this.popup.top = ((height / 2) - (this.popup.height / 2)) + dualScreenTop;
-  },
-
-  /**
-   * Set component aliases for buttons and links.
-   */
-  components: {
-    'network': SocialSharingNetwork
-  }
-};
-
-SocialSharing.version = '2.3.3';
-
-SocialSharing.install = function (Vue) {
-  Vue.component('social-sharing', SocialSharing);
-};
-
-if (typeof window !== 'undefined') {
-  window.SocialSharing = SocialSharing;
-}
-
-module.exports = SocialSharing;
-
-/***/ }),
-/* 249 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(241);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("c3701bd8", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35897608\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Social.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-35897608\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Social.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 250 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(242);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("5dec969a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4a6e580d\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterFirst.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4a6e580d\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./FilterFirst.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 251 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(243);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(17)("c5e915c6", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js?sourceMap!../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4b2ced6a\",\"scoped\":true,\"hasInlineConfig\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MapGoogle.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
 
 /***/ })
 /******/ ]);

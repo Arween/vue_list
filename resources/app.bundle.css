@@ -2378,9 +2378,25 @@ table {
 body {
   font-size: 0;
   font-size: 16px;
-  background: #193341; }
+  font-family: Trebuchet MS; }
   body p {
     color: white; }
+
+.bar {
+  fill: steelblue; }
+
+.bar:hover {
+  fill: brown; }
+
+.axis--x path {
+  display: none; }
+
+.d3_wp {
+  width: 500px;
+  overflow-x: scroll; }
+
+.test {
+  fill: greenyellow; }
 
 body.hidden-scroll {
   overflow: hidden;
@@ -2389,6 +2405,129 @@ body.hidden-scroll {
   left: 0;
   right: 0;
   bottom: 0; }
+
+svg {
+  height: 500px; }
+
+#Shape {
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 2500;
+  animation: draw 5s linear; }
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 0; }
+  to {
+    stroke-dashoffset: 2500; } }
+
+.calendar {
+  width: 360px;
+  height: 375px;
+  background: #f8f8f8;
+  border-radius: 9px;
+  margin: 100px 0 0 100px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top; }
+  .calendar__head {
+    height: 36px;
+    width: 100%;
+    background: #35495e;
+    display: flex;
+    border-top-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-bottom: 0.5px solid #a1aab3; }
+    .calendar__head p {
+      font-weight: bold;
+      color: #40b88f;
+      font-size: 16px;
+      margin: auto; }
+    .calendar__head_arrow {
+      font-size: 30px !important;
+      line-height: 30px;
+      cursor: pointer; }
+  .calendar__body {
+    width: 100%;
+    height: 100%;
+    font-size: 0; }
+    .calendar__body > div:first-of-type {
+      background: #40b88f; }
+      .calendar__body > div:first-of-type p {
+        color: white; }
+    .calendar__body_table {
+      border: 0.5px solid #a1aab3;
+      border-top: 0; }
+  .calendar__date p {
+    font-size: 20px;
+    color: #35495e;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px; }
+  .calendar input {
+    height: 30px;
+    width: 170px;
+    padding: 0 10px;
+    border: 1px solid #a1aab3;
+    color: #35495e;
+    font-size: 16px;
+    vertical-align: top; }
+  .calendar button {
+    width: 100px;
+    height: 32px;
+    background: #40b88f;
+    color: #ffffff;
+    border: 1px solid #40b88f;
+    vertical-align: top;
+    cursor: pointer; }
+
+.day {
+  width: 14%;
+  height: 40px;
+  border: 0.5px solid #a1aab3;
+  display: inline-flex;
+  vertical-align: top;
+  cursor: pointer; }
+  .day p {
+    margin: auto;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    color: #272a3a;
+    line-height: 40px;
+    text-align: center; }
+    .day p.day-current {
+      color: #c584fc;
+      background: #e7d9fc; }
+    .day p.day-selected {
+      color: #40b88f;
+      background: #35495e; }
+    .day p.day-no-events {
+      pointer-events: none;
+      color: #cdcdce;
+      background: #f5f2f5; }
+
+.calendar-gradient {
+  width: 500px;
+  height: 100px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 100px;
+  margin-left: 80px;
+  background: #6b4d89;
+  /* Old browsers */
+  background: -moz-linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b4d89', endColorstr='#3ab783',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+  .calendar-gradient p {
+    font-size: 30px;
+    color: white;
+    padding: 20px 20px; }
 
 .b-map {
   position: relative;
@@ -2466,5 +2605,104 @@ body.hidden-scroll {
     width: 100%; }
   .b-map .tab {
     width: 100%; } }
+
+.list {
+  padding: 115px 0 70px; }
+  .list__filter {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top; }
+    .list__filter ul {
+      padding-top: 30px; }
+      .list__filter ul li {
+        font-size: 14px;
+        padding-bottom: 20px; }
+  .list__list {
+    width: 60%;
+    display: inline-block;
+    vertical-align: top; }
+    .list__list__item p {
+      font-size: 24px;
+      margin: 57px 0 47px; }
+    .list__list__item ul li {
+      background: white;
+      display: flex;
+      margin: 28px 0; }
+      .list__list__item ul li a {
+        margin: 45px auto 45px 30px;
+        font-size: 18px;
+        color: darkorange;
+        text-decoration: none; }
+        .list__list__item ul li a:first-of-type {
+          margin: 45px auto 45px 30px; }
+      .list__list__item ul li a.btn-arrow {
+        margin: auto 35px;
+        color: white; }
+      .list__list__item ul li:hover {
+        box-shadow: -2px -1px 30px 8px rgba(17, 37, 113, 0.25);
+        transition: 0.4s; }
+    .list__list__item:first-of-type p {
+      margin: 0 0 47px; }
+
+.list__filter__label {
+  width: 100%;
+  display: block; }
+
+.list__filter__label:not(:last-child) {
+  margin-bottom: 25px; }
+
+.list__filter__checkbox {
+  width: auto;
+  height: auto;
+  margin: 0;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  opacity: 0;
+  position: absolute; }
+
+.list__filter__checkbox:checked + .list__filter__checkbox-span {
+  width: 100%;
+  position: relative;
+  opacity: 1;
+  padding: 0 0 0 40px; }
+
+.list__filter__checkbox:checked + .list__filter__checkbox-span a {
+  color: orange; }
+
+.list__filter__checkbox:checked + .list__filter__checkbox-span:before {
+  font-family: FontAwesome;
+  content: '\F00C';
+  color: #fff;
+  border: 1px solid orange;
+  background-color: orange;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center; }
+
+.list__filter__checkbox-span:before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #a1aab3;
+  background-color: transparent;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: border, background .1s ease;
+  transition: border, background .1s ease;
+  cursor: pointer; }
+
+.list__filter__checkbox-span {
+  width: 100%;
+  position: relative;
+  opacity: 1;
+  padding: 0 0 0 40px;
+  cursor: pointer;
+  color: orange; }
 
 /*# sourceMappingURL=app.bundle.css.map*/
