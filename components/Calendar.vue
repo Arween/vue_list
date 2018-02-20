@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="calendar_wp">
         <div class="calendar">
             <div class="calendar__head">
                 <p v-on:click="prevMonth" class="calendar__head_arrow">&lt;</p>
@@ -19,17 +19,51 @@
                 </div>
                 <div v-if='selectedForm.day > 0' class="calendar__date">
                     <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>
-                <!-- <p v-bind:value=selectedForm.date></p> -->
                 </div>
             </div>
-        <!-- <div v-model="selectedForm"> -->
                 <input type="text" :placeholder=placeholder v-model="selectedForm.date" v-mask="'##.##.####'">
                 <button v-on:click="selectDayInput">Применить</button>
-        <!-- </div> -->
         </div>
         <div class="calendar-gradient">
             <p>Calendar Vue</p>
         </div>
+        <!-- ----------------- CLOSE/OPEN    -------------- -->
+        
+        <!-- <div class="calendar-gradient">
+            <p>Calendar Vue</p>
+        </div> 
+        
+        <div class="calendar-wrap" v-if="showClendar" v-on:click="focusDateClose"></div>
+
+        <div class="calendar-btn _drop">
+            
+            <input type="text" :placeholder=placeholder v-model="selectedForm.date" v-mask="'##.##.####'" @focus="focusDate">
+            <button v-on:click="selectDayInput">Применить</button>
+            <div class="calendar" v-if="showClendar">
+                <div class="calendar__head">
+                    <p v-on:click="prevMonth" class="calendar__head_arrow">&lt;</p>
+                    <p>{{ monthInfo.name }}, {{ monthInfo.year }}</p>
+                    <p v-on:click="nextMonth" class="calendar__head_arrow">&gt;</p>
+                </div>
+                <div class="calendar__body">
+                <div>
+                    <div class="day" v-for="day_name in monthInfo.dayWeek">
+                        <p>{{ day_name }}</p>
+                    </div>
+                </div>
+                <div class="calendar__body_table">
+                    <div class="day" v-for="day in current_state" v-on:click="selectDay">
+                        <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
+                    </div>
+                </div>
+                <div v-if='selectedForm.day > 0' class="calendar__date">
+                    <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>
+                </div>
+
+                </div>
+            </div>
+        </div> -->
+         <!-- ----------------- end CLOSE/OPEN    -------------- -->
     </div>
 </template>
 <style>
@@ -40,12 +74,13 @@ import Vue from 'vue'
 import VueTheMask from 'vue-the-mask'
 Vue.use(VueTheMask)
     export default {
-        props: ['placeholder', 'language'],
+        props: ['placeholder', 'language', 'type'],
         data: () => ({
             calendar: {},
             current_state: [],
             selectedForm: {},
             currentMonthInfo: {},
+            showClendar: false
             // language: 'en',
         }),
         computed: {   
@@ -56,6 +91,12 @@ Vue.use(VueTheMask)
             
         },
         methods: {
+            focusDate(){
+                this.showClendar = true;
+            },
+            focusDateClose(){
+                this.showClendar = false;
+            },
             get_current_state(){
                 if ( this.calendar.monthIndex < 0 ){
                     this.calendar.monthIndex = 11;

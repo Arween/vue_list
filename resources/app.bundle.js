@@ -2431,17 +2431,52 @@ module.exports = function(module) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue_the_mask___default.a);
 /* harmony default export */ __webpack_exports__["a"] = ({
-    props: ['placeholder', 'language'],
+    props: ['placeholder', 'language', 'type'],
     data: () => ({
         calendar: {},
         current_state: [],
         selectedForm: {},
-        currentMonthInfo: {}
+        currentMonthInfo: {},
+        showClendar: false
         // language: 'en',
     }),
     computed: {},
@@ -2450,6 +2485,12 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["default"].use(__WEBPACK_IMPORTED_MODULE_1_vue
         this.get_current_state();
     },
     methods: {
+        focusDate() {
+            this.showClendar = true;
+        },
+        focusDateClose() {
+            this.showClendar = false;
+        },
         get_current_state() {
             if (this.calendar.monthIndex < 0) {
                 this.calendar.monthIndex = 11;
@@ -15752,7 +15793,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -21865,7 +21906,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "calendar_wp" }, [
     _c("div", { staticClass: "calendar" }, [
       _c("div", { staticClass: "calendar__head" }, [
         _c(

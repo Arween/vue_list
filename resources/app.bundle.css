@@ -2474,28 +2474,6 @@ svg {
     left: 50%;
     transform: translateX(-50%);
     bottom: 15px; }
-  .calendar input {
-    height: 30px;
-    width: 170px;
-    padding: 0 10px;
-    border: 1px solid #a1aab3;
-    color: #35495e;
-    font-size: 16px;
-    vertical-align: top;
-    border-right: 0; }
-  .calendar button {
-    width: 100px;
-    height: 32px;
-    background: #40b88f;
-    color: #ffffff;
-    border: none;
-    border-bottom: 3px solid #35495e;
-    vertical-align: top;
-    cursor: pointer;
-    transition: 0.8s; }
-    .calendar button:hover {
-      background: #6b4d89;
-      transition: 0.8s; }
 
 .day {
   width: 13.719%;
@@ -2549,6 +2527,53 @@ svg {
 
 input, button {
   outline: none; }
+
+.calendar_wp input {
+  height: 30px;
+  width: 170px;
+  padding: 0 10px;
+  border: 1px solid #a1aab3;
+  color: #35495e;
+  font-size: 16px;
+  vertical-align: top;
+  border-right: 0; }
+
+.calendar_wp button {
+  width: 100px;
+  height: 32px;
+  background: #40b88f;
+  color: #ffffff;
+  border: none;
+  border-bottom: 3px solid #35495e;
+  vertical-align: top;
+  cursor: pointer;
+  transition: 0.8s; }
+  .calendar_wp button:hover {
+    background: #6b4d89;
+    transition: 0.8s; }
+
+.calendar-btn {
+  font-size: 0;
+  margin: 50px 0 0 50px;
+  z-index: 20;
+  position: relative; }
+  .calendar-btn._drop .calendar {
+    width: 360px;
+    height: 375px;
+    background: #f8f8f8;
+    border-radius: 9px;
+    margin: 40px 0 0 50px;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0; }
+
+.calendar-wrap {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0; }
 
 .b-map {
   position: relative;
