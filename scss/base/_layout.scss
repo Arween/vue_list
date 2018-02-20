@@ -5,6 +5,8 @@
   border-radius: 9px;
   margin: 100px 0 0 100px;
   position: relative;
+  display: inline-block;
+  vertical-align: top;
   &__head{
     height: 36px;
     width: 100%;
@@ -75,6 +77,7 @@
     color: #ffffff;
     border: 1px solid #40b88f;
     vertical-align: top;
+    cursor: pointer;
 
   }
 }
@@ -94,10 +97,10 @@
     line-height: 40px;
     text-align: center;
     &.day-current{
-      // color: #c584fc;
-      // background: #e7d9fc;
-      color: #fff;
-      background: #b5c7da;
+      color: #c584fc;
+      background: #e7d9fc;
+      // color: #fff;
+      // background: #b5c7da;
     }
     &.day-selected{
       color: #40b88f;
@@ -115,10 +118,18 @@
 .calendar-gradient{
   width: 500px;
   height: 100px;
-  margin-top: 50px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 100px;
+  margin-left: 80px;
   background: #6b4d89; /* Old browsers */
   background: -moz-linear-gradient(45deg, #6b4d89 30%, #3ab783 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(45deg, #6b4d89 30%,#3ab783 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(45deg, #6b4d89 30%,#3ab783 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b4d89', endColorstr='#3ab783',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  p{
+    font-size: 30px;
+    color: white;
+    padding: 20px 20px;
+  }
 }

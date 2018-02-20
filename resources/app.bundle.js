@@ -2424,42 +2424,39 @@ module.exports = function(module) {
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+    props: ['placeholder', 'language'],
     data: () => ({
         calendar: {},
         current_state: [],
         selectedForm: {},
-        currentMonthInfo: {},
-        language: 'en',
-        msg: ''
+        currentMonthInfo: {}
+        // language: 'en',
     }),
     computed: {},
     created: function () {
-        // `this` указывает на экземпляр vm
         this.calendar = new Calendar(new Date().getMonth(), new Date().getFullYear());
         this.get_current_state();
     },
     methods: {
         get_current_state() {
-            // let tempMonth = this.monthInfo.index;
             if (this.calendar.monthIndex < 0) {
-                // console.log('this.monthInfo.index < 0', this.monthInfo.index)
                 this.calendar.monthIndex = 11;
                 this.calendar.yearIndex--;
             }
             if (this.calendar.monthIndex > 11) {
-                // console.log('this.monthInfo.index > 11', this.monthInfo.index)
                 this.calendar.monthIndex = 0;
                 this.calendar.yearIndex++;
             }
             this.current_state = this.calendar.createCurrentState();
             this.monthInfo = this.calendar.infoMonth();
-            // console.log('this.monthInfo.index', this.monthInfo.index)
             this.monthInfo.name = name_months[this.language][this.monthInfo.index];
             this.monthInfo.dayWeek = name_daysOfTheWeek[this.language];
-            // console.log("calendar", this.calendar);
-            // console.log('current state: ', this.current_state);
         },
         selectDay(event) {
             this.current_state.forEach(day => {
@@ -2469,21 +2466,32 @@ module.exports = function(module) {
                 }
             });
             this.selectedForm.day = event.target.attributes.day_num.value;
-            // console.log(this.selectedForm.month_index, this.monthInfo.month_name)
             this.selectedForm.month_index = this.calendar.monthIndex;
             this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
             this.selectedForm.year = this.calendar.yearIndex;
-
-            this.selectedForm.date = this.selectedForm.day + '.' + (this.selectedForm.month_index + 1) + '.' + this.selectedForm.year;
+            const correctFormatDayMonth = this.getCorrectFormatDate(this.selectedForm.day, this.selectedForm.month_index);
+            this.selectedForm.date = correctFormatDayMonth[0] + '.' + correctFormatDayMonth[1] + '.' + this.selectedForm.year;
             // this.$forceUpdate();
+        },
+        getCorrectFormatDate(day, month) {
+            if (month + 1 < 10) {
+                month = '0' + (month + 1);
+            } else {
+                month = +month + 1;
+            }
+            if (+day < 10) {
+                day = '0' + day;
+            } else {
+                day = day;
+            }
+            let temp = [];
+            temp.push(day, month);
+            return temp;
         },
         selectDayInput() {
             this.selectedForm.day = this.selectedForm.date.split('.')[0];
             this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
             this.selectedForm.year = this.selectedForm.date.split('.')[2];
-            // this.$forceUpdate();
-            console.log(this.selectedForm.date.split('.'));
-
             this.calendar.monthIndex = this.selectedForm.month_index;
             this.calendar.yearIndex = this.selectedForm.year;
             this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
@@ -2495,24 +2503,18 @@ module.exports = function(module) {
                 }
             });
             this.selectedForm.day = event.target.attributes.day_num.value;
-            console.log(this.selectedForm.month_index, this.monthInfo.month_name);
             this.selectedForm.month_index = this.calendar.monthIndex;
             this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
-            console.log(this.selectedForm.month_name);
             this.selectedForm.year = this.calendar.yearIndex;
-
             this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
             // this.$forceUpdate();
         },
         nextMonth() {
-            // console.log('dsfd')
             this.calendar.monthIndex++;
-            // console.log(this.calendar.monthIndex);
             this.get_current_state();
         },
         prevMonth() {
             this.calendar.monthIndex--;
-            // console.log(this.calendar.monthIndex);
             this.get_current_state();
         }
     }
@@ -2523,11 +2525,8 @@ class Day {
         this.val = val;
         this.selected = false;
         this.notEvents = !currentMonth;
-        // this.flagCurrentDay = flagCurrentDay;
         if (flagCurrentDay) {
-
             var cerrentNumbMonth = new Date().getDate();
-
             if (cerrentNumbMonth == val) {
                 this.currentDay = true;
             }
@@ -2572,7 +2571,6 @@ class Calendar {
             };
         } else if (flag_rule == "next") {
             return function () {
-                // console.log(this.last_day_of_the_wee )
                 if (this.last_day_of_the_week != 0) {
                     let tempLast = getDaysNextMonth(this.last_day_of_the_week);
                     function getDaysNextMonth(lastDay) {
@@ -15742,7 +15740,7 @@ exports = module.exports = __webpack_require__(12)();
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"Calendar.vue","sourceRoot":""}]);
 
 // exports
 
@@ -21855,102 +21853,113 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "calendar" }, [
-    _c("div", { staticClass: "calendar__head" }, [
-      _c(
-        "p",
-        { staticClass: "calendar__head_arrow", on: { click: _vm.prevMonth } },
-        [_vm._v("<")]
-      ),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(_vm._s(_vm.monthInfo.name) + ", " + _vm._s(_vm.monthInfo.year))
+  return _c("div", [
+    _c("div", { staticClass: "calendar" }, [
+      _c("div", { staticClass: "calendar__head" }, [
+        _c(
+          "p",
+          { staticClass: "calendar__head_arrow", on: { click: _vm.prevMonth } },
+          [_vm._v("<")]
+        ),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(_vm._s(_vm.monthInfo.name) + ", " + _vm._s(_vm.monthInfo.year))
+        ]),
+        _vm._v(" "),
+        _c(
+          "p",
+          { staticClass: "calendar__head_arrow", on: { click: _vm.nextMonth } },
+          [_vm._v(">")]
+        )
       ]),
       _vm._v(" "),
-      _c(
-        "p",
-        { staticClass: "calendar__head_arrow", on: { click: _vm.nextMonth } },
-        [_vm._v(">")]
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "calendar__body" }, [
-      _c(
-        "div",
-        _vm._l(_vm.monthInfo.dayWeek, function(day_name) {
-          return _c("div", { staticClass: "day" }, [
-            _c("p", [_vm._v(_vm._s(day_name))])
-          ])
-        })
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "calendar__body_table" },
-        _vm._l(_vm.current_state, function(day) {
-          return _c(
-            "div",
-            { staticClass: "day", on: { click: _vm.selectDay } },
-            [
-              _c(
-                "p",
-                {
-                  class: {
-                    "day-current": day.currentDay,
-                    "day-selected": day.selected,
-                    "day-no-events": day.notEvents
-                  },
-                  attrs: { day_num: day.val }
-                },
-                [_vm._v(_vm._s(day.val))]
-              )
-            ]
-          )
-        })
-      ),
-      _vm._v(" "),
-      _vm.selectedForm.day > 0
-        ? _c("div", { staticClass: "calendar__date" }, [
-            _c("p", [
-              _vm._v(
-                _vm._s(_vm.selectedForm.month_name) +
-                  " " +
-                  _vm._s(_vm.selectedForm.day) +
-                  ", " +
-                  _vm._s(_vm.selectedForm.year)
-              )
+      _c("div", { staticClass: "calendar__body" }, [
+        _c(
+          "div",
+          _vm._l(_vm.monthInfo.dayWeek, function(day_name) {
+            return _c("div", { staticClass: "day" }, [
+              _c("p", [_vm._v(_vm._s(day_name))])
             ])
-          ])
-        : _vm._e()
+          })
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "calendar__body_table" },
+          _vm._l(_vm.current_state, function(day) {
+            return _c(
+              "div",
+              { staticClass: "day", on: { click: _vm.selectDay } },
+              [
+                _c(
+                  "p",
+                  {
+                    class: {
+                      "day-current": day.currentDay,
+                      "day-selected": day.selected,
+                      "day-no-events": day.notEvents
+                    },
+                    attrs: { day_num: day.val }
+                  },
+                  [_vm._v(_vm._s(day.val))]
+                )
+              ]
+            )
+          })
+        ),
+        _vm._v(" "),
+        _vm.selectedForm.day > 0
+          ? _c("div", { staticClass: "calendar__date" }, [
+              _c("p", [
+                _vm._v(
+                  _vm._s(_vm.selectedForm.month_name) +
+                    " " +
+                    _vm._s(_vm.selectedForm.day) +
+                    ", " +
+                    _vm._s(_vm.selectedForm.year)
+                )
+              ])
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.selectedForm.date,
+            expression: "selectedForm.date"
+          }
+        ],
+        attrs: { type: "text", placeholder: _vm.placeholder },
+        domProps: { value: _vm.selectedForm.date },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.selectedForm, "date", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("button", { on: { click: _vm.selectDayInput } }, [_vm._v("Применить")])
     ]),
     _vm._v(" "),
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.selectedForm.date,
-          expression: "selectedForm.date"
-        }
-      ],
-      attrs: { type: "text", placeholder: "Введите дату" },
-      domProps: { value: _vm.selectedForm.date },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
-          }
-          _vm.$set(_vm.selectedForm, "date", $event.target.value)
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c("button", { on: { click: _vm.selectDayInput } }, [_vm._v("Применить")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "calendar-gradient" })
+    _vm._m(0)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "calendar-gradient" }, [
+      _c("p", [_vm._v("Calendar Vue")])
+    ])
+  }
+]
 render._withStripped = true
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);

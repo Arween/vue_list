@@ -1,31 +1,35 @@
 <template>
-    <div class="calendar">
-        <div class="calendar__head">
-            <p v-on:click="prevMonth" class="calendar__head_arrow">&lt;</p>
-            <p>{{ monthInfo.name }}, {{ monthInfo.year }}</p>
-            <p v-on:click="nextMonth" class="calendar__head_arrow">&gt;</p>
-        </div>
-        <div class="calendar__body">
-            <div>
-                <div class="day" v-for="day_name in monthInfo.dayWeek">
-                    <p>{{ day_name }}</p>
-                </div>
+    <div>
+        <div class="calendar">
+            <div class="calendar__head">
+                <p v-on:click="prevMonth" class="calendar__head_arrow">&lt;</p>
+                <p>{{ monthInfo.name }}, {{ monthInfo.year }}</p>
+                <p v-on:click="nextMonth" class="calendar__head_arrow">&gt;</p>
             </div>
-            <div class="calendar__body_table">
-                <div class="day" v-for="day in current_state" v-on:click="selectDay">
-                    <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
+            <div class="calendar__body">
+                <div>
+                    <div class="day" v-for="day_name in monthInfo.dayWeek">
+                        <p>{{ day_name }}</p>
+                    </div>
                 </div>
-            </div>
-            <div v-if='selectedForm.day > 0' class="calendar__date">
-                <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>
+                <div class="calendar__body_table">
+                    <div class="day" v-for="day in current_state" v-on:click="selectDay">
+                        <p v-bind:class="{'day-current': day.currentDay, 'day-selected': day.selected, 'day-no-events': day.notEvents}" :day_num=day.val>{{ day.val }}</p>
+                    </div>
+                </div>
+                <div v-if='selectedForm.day > 0' class="calendar__date">
+                    <p>{{ selectedForm.month_name }} {{ selectedForm.day }}, {{ selectedForm.year }}</p>
                 <!-- <p v-bind:value=selectedForm.date></p> -->
+                </div>
             </div>
-        </div>
         <!-- <div v-model="selectedForm"> -->
-            <input type="text" placeholder="Введите дату" v-model="selectedForm.date">
-            <button v-on:click="selectDayInput">Применить</button>
+                <input type="text" :placeholder=placeholder v-model="selectedForm.date">
+                <button v-on:click="selectDayInput">Применить</button>
         <!-- </div> -->
-        <div class="calendar-gradient"></div>
+        </div>
+        <div class="calendar-gradient">
+            <p>Calendar Vue</p>
+        </div>
     </div>
 </template>
 <style>
@@ -33,42 +37,35 @@
 </style>
 <script>
     export default {
+        props: ['placeholder', 'language'],
         data: () => ({
             calendar: {},
             current_state: [],
             selectedForm: {},
             currentMonthInfo: {},
-            language: 'en',
-            msg : ''
+            // language: 'en',
         }),
         computed: {   
         },
         created: function () {
-            // `this` указывает на экземпляр vm
             this.calendar = new Calendar(new Date().getMonth(), new Date().getFullYear());
             this.get_current_state();
             
         },
         methods: {
             get_current_state(){
-                // let tempMonth = this.monthInfo.index;
                 if ( this.calendar.monthIndex < 0 ){
-                    // console.log('this.monthInfo.index < 0', this.monthInfo.index)
                     this.calendar.monthIndex = 11;
                     this.calendar.yearIndex--;
                 }
                 if ( this.calendar.monthIndex > 11 ){
-                    // console.log('this.monthInfo.index > 11', this.monthInfo.index)
                     this.calendar.monthIndex = 0;
                     this.calendar.yearIndex++;
                 }
                 this.current_state = this.calendar.createCurrentState();
                 this.monthInfo = this.calendar.infoMonth();
-                // console.log('this.monthInfo.index', this.monthInfo.index)
                 this.monthInfo.name = name_months[this.language][this.monthInfo.index];
                 this.monthInfo.dayWeek = name_daysOfTheWeek[this.language];
-                // console.log("calendar", this.calendar);
-                // console.log('current state: ', this.current_state);
             },
             selectDay(event){
                 this.current_state.forEach(day => {
@@ -78,23 +75,33 @@
                    }
                 });
                 this.selectedForm.day =  event.target.attributes.day_num.value;
-                // console.log(this.selectedForm.month_index, this.monthInfo.month_name)
                 this.selectedForm.month_index = this.calendar.monthIndex;
                 this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
                 this.selectedForm.year = this.calendar.yearIndex;
-                
-                this.selectedForm.date = this.selectedForm.day + '.' + (this.selectedForm.month_index + 1) + '.' + this.selectedForm.year;
+                const correctFormatDayMonth = this.getCorrectFormatDate(this.selectedForm.day, this.selectedForm.month_index);
+                this.selectedForm.date = correctFormatDayMonth[0] + '.' + correctFormatDayMonth[1] + '.' + this.selectedForm.year;
                 // this.$forceUpdate();
 
+            },
+            getCorrectFormatDate(day, month){
+                    if ( (month + 1) < 10 ){
+                        month = '0' + (month + 1);
+                    } else {
+                        month =  +month + 1;
+                    }
+                    if ( +day < 10 ){
+                        day = '0' + day;
+                    } else {
+                        day =  day;
+                    }
+                    let temp = [];
+                    temp.push(day, month);
+                    return temp;
             },
             selectDayInput(){
                 this.selectedForm.day = this.selectedForm.date.split('.')[0];
                 this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
                 this.selectedForm.year = this.selectedForm.date.split('.')[2];
-                // this.$forceUpdate();
-                console.log( this.selectedForm.date.split('.'));
-
-                
                 this.calendar.monthIndex = this.selectedForm.month_index;
                 this.calendar.yearIndex = this.selectedForm.year;
                 this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
@@ -106,24 +113,18 @@
                    }
                 });
                 this.selectedForm.day =  event.target.attributes.day_num.value;
-                console.log(this.selectedForm.month_index, this.monthInfo.month_name)
                 this.selectedForm.month_index = this.calendar.monthIndex;
                 this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
-                console.log(this.selectedForm.month_name)
                 this.selectedForm.year = this.calendar.yearIndex;
-                
                 this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
                 // this.$forceUpdate();
             },
             nextMonth(){
-                // console.log('dsfd')
                 this.calendar.monthIndex++;
-                // console.log(this.calendar.monthIndex);
                 this.get_current_state();
             },
             prevMonth(){
                 this.calendar.monthIndex--;
-                // console.log(this.calendar.monthIndex);
                 this.get_current_state();
             }
         }
@@ -134,11 +135,8 @@
             this.val = val;
             this.selected = false;
             this.notEvents = !currentMonth;
-            // this.flagCurrentDay = flagCurrentDay;
             if(flagCurrentDay){
-
                 var cerrentNumbMonth = new Date().getDate();
-
                 if ( cerrentNumbMonth == val){
                     this.currentDay = true;
                 }
@@ -183,7 +181,6 @@ class Calendar {
             }
         } else if (flag_rule == "next") {
                 return function() {
-                    // console.log(this.last_day_of_the_wee )
                     if ( this.last_day_of_the_week != 0 ){
                         let tempLast = getDaysNextMonth(this.last_day_of_the_week);
                         function getDaysNextMonth(lastDay) {
