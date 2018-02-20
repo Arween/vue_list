@@ -2428,15 +2428,15 @@ svg {
   margin: 100px 0 0 100px;
   position: relative;
   display: inline-block;
-  vertical-align: top; }
+  vertical-align: top;
+  font-size: 0; }
   .calendar__head {
     height: 36px;
     width: 100%;
     background: #35495e;
     display: flex;
     border-top-right-radius: 9px;
-    border-top-left-radius: 9px;
-    border-bottom: 0.5px solid #a1aab3; }
+    border-top-left-radius: 9px; }
     .calendar__head p {
       font-weight: bold;
       color: #40b88f;
@@ -2451,11 +2451,13 @@ svg {
     height: 100%;
     font-size: 0; }
     .calendar__body > div:first-of-type {
-      background: #40b88f; }
+      background: #40b88f;
+      pointer-events: none; }
       .calendar__body > div:first-of-type p {
         color: white; }
+      .calendar__body > div:first-of-type > .day {
+        border: 1px solid #40b88f; }
     .calendar__body_table {
-      border: 0.5px solid #a1aab3;
       border-top: 0; }
   .calendar__date p {
     font-size: 20px;
@@ -2471,20 +2473,26 @@ svg {
     border: 1px solid #a1aab3;
     color: #35495e;
     font-size: 16px;
-    vertical-align: top; }
+    vertical-align: top;
+    border-right: 0; }
   .calendar button {
     width: 100px;
     height: 32px;
     background: #40b88f;
     color: #ffffff;
-    border: 1px solid #40b88f;
+    border: none;
+    border-bottom: 3px solid #35495e;
     vertical-align: top;
-    cursor: pointer; }
+    cursor: pointer;
+    transition: 0.8s; }
+    .calendar button:hover {
+      background: #6b4d89;
+      transition: 0.8s; }
 
 .day {
-  width: 14%;
+  width: 13.719%;
   height: 40px;
-  border: 0.5px solid #a1aab3;
+  border: 1px solid #f5f2f5;
   display: inline-flex;
   vertical-align: top;
   cursor: pointer; }
@@ -2505,7 +2513,8 @@ svg {
     .day p.day-no-events {
       pointer-events: none;
       color: #cdcdce;
-      background: #f5f2f5; }
+      background: #f5f2f5;
+      cursor: none; }
 
 .calendar-gradient {
   width: 500px;
@@ -2528,6 +2537,9 @@ svg {
     font-size: 30px;
     color: white;
     padding: 20px 20px; }
+
+input, button {
+  outline: none; }
 
 .b-map {
   position: relative;

@@ -23,7 +23,7 @@
                 </div>
             </div>
         <!-- <div v-model="selectedForm"> -->
-                <input type="text" :placeholder=placeholder v-model="selectedForm.date">
+                <input type="text" :placeholder=placeholder v-model="selectedForm.date" v-mask="'##.##.####'">
                 <button v-on:click="selectDayInput">Применить</button>
         <!-- </div> -->
         </div>
@@ -36,6 +36,9 @@
 
 </style>
 <script>
+import Vue from 'vue'
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
     export default {
         props: ['placeholder', 'language'],
         data: () => ({
@@ -99,26 +102,31 @@
                     return temp;
             },
             selectDayInput(){
-                this.selectedForm.day = this.selectedForm.date.split('.')[0];
-                this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
-                this.selectedForm.year = this.selectedForm.date.split('.')[2];
-                this.calendar.monthIndex = this.selectedForm.month_index;
-                this.calendar.yearIndex = this.selectedForm.year;
-                this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
-                this.get_current_state();
-                this.current_state.forEach(day => {
+                let successful_validation = this.validateDateInput();
+                if ( successful_validation ){
+                    this.selectedForm.day = this.selectedForm.date.split('.')[0];
+                    this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
+                    this.selectedForm.year = this.selectedForm.date.split('.')[2];
+                    this.calendar.monthIndex = this.selectedForm.month_index;
+                    this.calendar.yearIndex = this.selectedForm.year;
+                    this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+                    this.get_current_state();
+                    this.current_state.forEach(day => {
                     day.selected = false;
-                   if ( day.val == +this.selectedForm.day ){
+                    if ( day.val == +this.selectedForm.day ){
                        day.selected = true;
-                   }
-                });
-                this.selectedForm.day =  event.target.attributes.day_num.value;
-                this.selectedForm.month_index = this.calendar.monthIndex;
-                this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
-                this.selectedForm.year = this.calendar.yearIndex;
-                this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+                    }
+                    });
+                    this.selectedForm.day =  event.target.attributes.day_num.value;
+                    this.selectedForm.month_index = this.calendar.monthIndex;
+                    this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
+                    this.selectedForm.year = this.calendar.yearIndex;
+                    this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
+                } else {
+
+                }
                 // this.$forceUpdate();
-            },
+            }, 
             nextMonth(){
                 this.calendar.monthIndex++;
                 this.get_current_state();
@@ -126,7 +134,21 @@
             prevMonth(){
                 this.calendar.monthIndex--;
                 this.get_current_state();
-            }
+            },
+            // validateDateInput(){
+            //     try {
+            //         console.log(this.selectedForm.date.length)
+            //         if ( this.selectedForm.date.length != 10 ) {
+            //             throw new SyntaxError("Ошибка в данных");
+            //         }
+            //     } catch (e) {
+            //         if (e.name == "SyntaxError") {
+            //             alert( "Извините, в данных ошибка" );
+            //         } 
+            //     }
+                
+            //     return true;
+            // }
         }
     };
    
