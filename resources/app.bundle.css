@@ -2433,19 +2433,27 @@ svg {
   .calendar__head {
     height: 36px;
     width: 100%;
-    background: #35495e;
+    background: -moz-linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #6b4d89 30%, #3ab783 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6b4d89', endColorstr='#3ab783',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */
     display: flex;
     border-top-right-radius: 9px;
     border-top-left-radius: 9px; }
     .calendar__head p {
       font-weight: bold;
-      color: #40b88f;
+      color: #ffffff;
       font-size: 16px;
       margin: auto; }
     .calendar__head_arrow {
       font-size: 30px !important;
       line-height: 30px;
-      cursor: pointer; }
+      cursor: pointer;
+      font-weight: 100 !important; }
   .calendar__body {
     width: 100%;
     height: 100%;
@@ -2508,8 +2516,8 @@ svg {
       color: #c584fc;
       background: #e7d9fc; }
     .day p.day-selected {
-      color: #40b88f;
-      background: #35495e; }
+      color: #fff;
+      background: #40b88f; }
     .day p.day-no-events {
       pointer-events: none;
       color: #cdcdce;
@@ -2519,6 +2527,7 @@ svg {
 .calendar-gradient {
   width: 500px;
   height: 100px;
+  border-radius: 9px;
   display: inline-block;
   vertical-align: top;
   margin-top: 100px;

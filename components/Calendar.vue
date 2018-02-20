@@ -102,8 +102,8 @@ Vue.use(VueTheMask)
                     return temp;
             },
             selectDayInput(){
-                let successful_validation = this.validateDateInput();
-                if ( successful_validation ){
+                // let successful_validation = this.validateDateInput();
+                // if ( successful_validation ){
                     this.selectedForm.day = this.selectedForm.date.split('.')[0];
                     this.selectedForm.month_index = +this.selectedForm.date.split('.')[1] - 1;
                     this.selectedForm.year = this.selectedForm.date.split('.')[2];
@@ -122,9 +122,9 @@ Vue.use(VueTheMask)
                     this.selectedForm.month_name = name_months[this.language][this.selectedForm.month_index];
                     this.selectedForm.year = this.calendar.yearIndex;
                     this.selectedForm.date = this.selectedForm.day + '.' + this.selectedForm.month_index + '.' + this.selectedForm.year;
-                } else {
+                // } else {
 
-                }
+                // }
                 // this.$forceUpdate();
             }, 
             nextMonth(){
@@ -220,9 +220,10 @@ class Calendar {
                 }
         } else {
                 return function() {
-                    let currentMonth = new Date().getMonth();
-                    let flagCurrentMonth = false;
-                    if ( currentMonth == this.index ){
+                    let currentMonth = new Date().getMonth(),
+                        currentYear = new Date().getFullYear(), 
+                        flagCurrentMonth = false;
+                    if ( currentMonth == this.index && currentYear == this.year ){
                         flagCurrentMonth = true;
                     }
                     let tempDays = [];
